@@ -1,8 +1,13 @@
 package com.bean;
 
+import java.io.Serializable;
+
 public class UtenteBean {
 	String email, pw;
 	boolean isAdmin;
+	
+    private static final long serialVersionUID = 1L;
+
 	public UtenteBean() {
 		
 	}
@@ -28,4 +33,9 @@ public class UtenteBean {
 	void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+	
+    @Override
+    public String toString() {
+        return "UtenteBean [email=" + email + ", pw=" + pw + ", prezzo=" + isAdmin + "]";
+    }
 }

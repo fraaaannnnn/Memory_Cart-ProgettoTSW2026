@@ -42,5 +42,32 @@ public class ProdottoDAO {
 
         return prodotti;
     }
+    
+    public ProdottoBean prodottoDaId(int id) {
+        ProdottoBean prodotto = null;
+        String query = "SELECT * FROM " + NOME_TABELLA + " WHERE id = ?";
 
+        try (Connection connection = ConnessioneDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             
+            preparedStatement.setInt(1, id);
+            
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    prodotto = new ProdottoBean();
+                    prodotto.setId(resultSet.getInt("id"));
+                    prodotto.setNome(resultSet.getString("nome"));
+                    prodotto.setDescrizione(resultSet.getString("descrizione"));
+                    prodotto.setPrezzo(resultSet.getDouble("prezzo"));
+                    prodotto.setImmagine(resultSet.getString("immagine"));
+                }
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Errore durante l'estrazione del prodotto per ID: " + e.getMessage());
+        }
+
+        return prodotto;
+    }
 }
+	
