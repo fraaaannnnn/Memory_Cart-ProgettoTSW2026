@@ -1,0 +1,129 @@
+@charset "ISO-8859-1";
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 550px;
+    overflow: hidden;
+    border-bottom: 3px solid var(--8bit-teal);
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.4) contrast(1.2) saturate(1.5);
+}
+
+.slide-content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    max-width: 600px;
+    z-index: 10;
+}
+
+.slide-content h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2.2rem;
+    color: var(--8bit-teal);
+    margin-bottom: 1.5rem;
+    text-shadow: 4px 4px var(--cyber-purple);
+    line-height: 1.4;
+}
+
+.slide-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--classic-white);
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(112, 11, 151, 0.4);
+    border: 2px solid var(--8bit-teal);
+    color: var(--8bit-teal);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5px;
+    cursor: pointer;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.2rem;
+    z-index: 20;
+    transition: 0.3s;
+}
+
+.carousel-btn.prev { 
+    left: 20px; 
+    padding-left: 0;
+    padding-right: 5px; 
+}
+
+.carousel-btn.next { right: 20px; }
+
+.carousel-btn:hover {
+    background: var(--insert-coin-pink);
+    color: var(--classic-white);
+    border-color: var(--insert-coin-pink);
+    box-shadow: 0 0 15px var(--insert-coin-pink);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.content-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.card {
+    background: #111122;
+    border: 2px solid var(--cyber-purple);
+    padding: 30px;
+    text-align: center;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    border-color: var(--insert-coin-pink);
+    box-shadow: 0 0 20px rgba(255, 0, 117, 0.3);
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    color: var(--8bit-teal);
+    margin-bottom: 15px;
+}
+
+@media (max-width: 768px) {
+    .slide-content { left: 5%; right: 5%; text-align: center; }
+    .slide-content h2 { font-size: 1.5rem; }
+    .carousel-container { height: 400px; }
+    .carousel-btn { width: 45px; height: 45px; font-size: 1rem; }
+}
