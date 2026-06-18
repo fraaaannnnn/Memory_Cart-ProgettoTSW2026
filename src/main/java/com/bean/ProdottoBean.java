@@ -11,6 +11,7 @@ public class ProdottoBean implements Serializable {
     private String descrizione;
     private double prezzo;
     private String immagine;
+    private double media_stelle;
     
     public ProdottoBean() {
     }
@@ -53,6 +54,13 @@ public class ProdottoBean implements Serializable {
 
     public void setImmagine(String immagine) {
         this.immagine = immagine;
+    }
+    
+    public double getMediaStelle() {
+    	return media_stelle;
+    }
+    public void setMediaStelle(double media_stelle) {
+    	this.media_stelle = media_stelle;
     }
 
     @Override

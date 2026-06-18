@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.lang.Math"%>
 <%@ page import="com.bean.ProdottoBean" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -113,13 +114,24 @@
                 
                 
                 <a href="Prodotto?id=<%= prodotto.getId() %>" class="product-title"><%= prodotto.getNome() %></a>
-                    
-               <!-- stelle recensioni placeholder    
+                        
                <div class="product-rating">
-                        <span class="stars">★★★★☆</span> 
+                        	<%
+                        		String stelle = "";
+                        		int mediaStelle = (int) Math.floor(prodotto.getMediaStelle());
+                        		for(int i = 0; i < mediaStelle; i++) {
+                        			stelle += "★";
+                        		}
+                        		for(int i = 0; i < 5 - mediaStelle; i++) {
+                        			stelle += "☆";
+                        		}
+                        	
+                        	%>
+                        <span class="stars"><%=stelle %>
+                        </span> 
                         <span class="rating-count">1.245 recensioni</span>
-                    </div>
-                    -->  
+                    </div>  
+  
                     <div class="product-price">
                         <span class="currency">€</span>
                         <span class="whole"><%= parteIntera %></span>

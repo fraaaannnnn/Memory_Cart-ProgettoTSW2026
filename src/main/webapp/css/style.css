@@ -260,6 +260,16 @@ footer {
     font-family: 'Inter', sans-serif;
 }
 
+.product-rating-product-page-stars .stars {
+	font-size: 2rem;
+	color: var(--8bit-teal);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
 .product-price {
     display: flex;
     align-items: flex-start;

@@ -1,6 +1,5 @@
 @charset "ISO-8859-1";
 
-/* --- LAYOUT PAGINA PRODOTTO --- */
 .product-detail-container {
     max-width: 1200px;
     margin: 4rem auto;
@@ -10,11 +9,10 @@
     gap: 40px;
 }
 
-/* Sezione Immagine + Info */
 .product-top-section {
     display: flex;
     gap: 40px;
-    background-color: var(--deep-space); /* Background pagina  */
+    background-color: var(--deep-space); 
     padding: 20px;
     border-radius: 8px;
 }
@@ -46,7 +44,7 @@
 }
 
 .product-title-large {
-    color: var(--insert-coin-pink); /* Intestazioni  */
+    color: var(--insert-coin-pink); 
     font-family: 'Press Start 2P', monospace;
     font-size: 1.5rem;
     line-height: 1.4;
@@ -56,7 +54,7 @@
 }
 
 .product-region {
-    color: var(--classic-white); /* Testo secondario  */
+    color: var(--classic-white); 
     font-family: 'Inter', sans-serif;
     margin-bottom: 15px;
 }
@@ -86,10 +84,9 @@
     margin-top: 5px;
 }
 
-/* Form e Bottoni */
 .add-to-cart-form {
     margin-top: 140px;
-    background-color: #111122; /* Sfondo alternativo  */
+    background-color: #111122; 
     padding: 20px;
     border: 1px solid var(--cyber-purple);
     border-radius: 8px;
@@ -141,9 +138,8 @@
     box-shadow: 0 0 10px rgba(255, 0, 117, 0.4);
 }
 
-/* Tabs e Recensioni */
 .product-bottom-section {
-    background-color: #111122; /* Sfondo alternativo  */
+    background-color: #111122; 
     border: 1px solid var(--cyber-purple);
     border-radius: 8px;
     padding: 20px;
@@ -168,7 +164,7 @@
 }
 
 .tab-btn.active, .tab-btn:hover {
-    color: var(--8bit-teal); /* Testo principale  */
+    color: var(--8bit-teal);
     border-bottom: 3px solid var(--8bit-teal);
 }
 
@@ -197,14 +193,12 @@
     border-radius: 0 4px 4px 0;
 }
 
-/* --- GRIGLIA PRINCIPALE --- */
 .product-page-wrapper {
     max-width: 1200px;
     margin: 4rem auto;
     padding: 0 20px;
     display: grid;
     gap: 30px;
-    /* Su Desktop: Colonna grande a sinistra, piccola a destra */
     grid-template-columns: 3fr 1fr; 
     grid-template-areas:
         "top sidebar"
@@ -212,13 +206,11 @@
         "reviews sidebar";
 }
 
-/* Assegnazione delle aree */
 .product-top-section { grid-area: top; display: flex; gap: 40px; background-color: var(--deep-space); padding: 20px; border-radius: 8px;}
 .product-tabs-section { grid-area: tabs; background-color: #111122; padding: 20px; border: 1px solid var(--cyber-purple); border-radius: 8px;}
 .product-reviews-section { grid-area: reviews; background-color: #111122; padding: 20px; border: 1px solid var(--cyber-purple); border-radius: 8px;}
 .product-sidebar { grid-area: sidebar; }
 
-/* --- STILI SIDEBAR "Ti potrebbe interessare" (AGGIORNATI) --- */
 .sidebar-title {
     font-family: 'Inter', sans-serif;
     color: var(--classic-white);
@@ -277,15 +269,13 @@
     color: var(--8bit-teal);
 }
 
-/* --- RESPONSIVE MOBILE --- */
 @media (max-width: 992px) {
     .product-page-wrapper {
-        /* Su Mobile: Una singola colonna, riordinata come da wireframe! */
         grid-template-columns: 1fr;
         grid-template-areas:
             "top"
             "tabs"
-            "sidebar"      /* La sidebar si sposta QUI in mezzo! */
+            "sidebar"      
             "reviews";
     }
 
@@ -294,7 +284,6 @@
     }
 
     .suggested-grid {
-        /* Su mobile affianchiamo i prodotti suggeriti orizzontalmente con scroll */
         flex-direction: row;
         overflow-x: auto;
         padding-bottom: 15px;
