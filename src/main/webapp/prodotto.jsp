@@ -112,7 +112,7 @@
                            if(sugg.getId() != prodotto.getId()) {
                 %>
                 <div class="mini-product-card">
-                    <a href="ProdottoServlet?id=<%= sugg.getId() %>">
+                    <a href="Prodotto?id=<%= sugg.getId() %>">
                         <img src="<%= sugg.getImmagine() %>" alt="<%= sugg.getNome() %>">
                         <h4 class="mini-title"><%= sugg.getNome() %></h4>
                         <span class="mini-price">€<%= String.format("%.2f", sugg.getPrezzo()) %></span>
@@ -140,22 +140,6 @@
         <p style="font-family: 'Press Start 2P', monospace; color: var(--8bit-teal); font-size: 0.7rem;">&copy; <%= year %> MEMORY_CART - PRESS X TO START</p>
     </footer>
 
-    <script>
-        // Script rapido per la gestione delle tab
-        function openTab(tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(tabName).style.display = "block";
-            event.currentTarget.classList.add("active");
-        }
-    </script>
+    <script src="./js/product.js">
 </body>
 </html>
