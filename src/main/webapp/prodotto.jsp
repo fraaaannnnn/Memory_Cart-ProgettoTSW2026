@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="com.bean.ProdottoBean" %>
+<%@ page import="com.bean.RecensioneBean" %>
 <%
     ProdottoBean prodotto = (ProdottoBean) request.getAttribute("dettaglioProdotto");
     
@@ -22,8 +23,8 @@
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="./css/style.css?v=10">
-    <link rel="stylesheet" href="./css/prodotto.css?v=3">
+    <link rel="stylesheet" href="./css/style.css?v=13">
+    <link rel="stylesheet" href="./css/prodotto.css?v=8">
     
     <script src="./js/home.js" defer></script> 
 </head>
@@ -144,10 +145,43 @@
         
         <section class="product-reviews-section">
             <h3 style="color: var(--8bit-teal); font-family: 'Press Start 2P', monospace; font-size: 0.8rem;">Recensioni Utenti</h3>
+				       <% 
+				       	java.util.List<RecensioneBean> recensioni = (java.util.List<RecensioneBean>) request.getAttribute("recensioniProdotto");	
+				       if(recensioni != null && !recensioni.isEmpty()) {
+				       		for(RecensioneBean recensione : recensioni) {
+				       		%>
+				       		
             <div class="review-card">
-                <div class="review-stars" style="color: var(--8bit-teal); margin-bottom: 5px; font-size: 1.2rem;">★★★★★</div>
-                <p class="review-text">Ottimo acquisto!</p>
+            	<div class = "user-email-img">
+            		<div class="user_img"><img class = "user_img_img" src="./images/user/utente_propic.png" alt="propic.png"></div>
+            		<div class="user-email"><p><%=recensione.getEmailUtente() %></p></div>
+            	</div>
+                <div class="review-stars">
+                	<%	 
+                	stelle = "";
+		       	int nstelle = recensione.getStelle();
+		       	for(int i = 0; i < nstelle; i++) { 
+		       		stelle += "★";
+		       	}
+		       	
+		       	for(int i = 0; i < 5 - nstelle; i++) {
+		       		stelle += "☆";
+		       	}
+                	%>
+                	<%= stelle%>
+                </div>
+                <p class="review-text"><%= recensione.getRecensione() %></p>
             </div>
+				       <%	
+				       	
+		       		}
+		       	} else {
+		       		
+				       %>    
+				<h1> Questo Prodotto non ha recensioni</h1>
+		       	<%  }%>
+            <!--  
+            -->
         </section>
 
     </main>
