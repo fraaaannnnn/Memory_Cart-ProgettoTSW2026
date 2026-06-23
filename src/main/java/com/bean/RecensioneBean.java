@@ -31,6 +31,7 @@ public class RecensioneBean {
 		return emailUtente;
 	}
 	
+	
 	//setters
 	public void setIdRecensione(int id_recensione) {
 		this.id_recensione = id_recensione;
@@ -51,4 +52,10 @@ public class RecensioneBean {
 	public void setEmailUtente(String emailUtente) { 
 		this.emailUtente = emailUtente;
 	}
+	
+	@Override
+	public String toString() {
+        return "RecensioneBean [id_recensione=" + id_recensione + ", id_utente=" + id_utente + ", id_prodotto=" + id_prodotto + "stelle=" + stelle
+        		+ "recensione=" + recensione + "emailUtente=" + emailUtente + "]";
+    }
 }

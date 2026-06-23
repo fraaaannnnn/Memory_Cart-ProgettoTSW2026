@@ -129,7 +129,7 @@
                         	%>
                         <span class="stars"><%=stelle %>
                         </span> 
-                        <span class="rating-count">1.245 recensioni</span>
+                        <span class="rating-count"><%=prodotto.getNumeroRecensioni() %> recensioni</span>
                     </div>  
   
                     <div class="product-price">

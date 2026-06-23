@@ -1,8 +1,6 @@
-// --- index.js ---
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    /* ---- HAMBURGER MENU LOGIC ---- */
     const hamburgerBtn = document.getElementById('hamburgerBtn');
     const mainNav = document.getElementById('mainNav');
 
@@ -13,13 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ---- CAROUSEL LOGIC ---- */
     const track = document.getElementById('carouselTrack');
     const slides = document.querySelectorAll('.carousel-slide');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
-    // Only run carousel logic if we are on a page that has the carousel
     if (track && slides.length > 0) {
         let slideIndex = 0;
         let slideTimer;

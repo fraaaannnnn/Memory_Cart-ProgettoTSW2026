@@ -7,11 +7,12 @@ public class ProdottoBean implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private int id;
+    private int numero_recensioni;
+    private double prezzo;
+    private double media_stelle;
     private String nome;
     private String descrizione;
-    private double prezzo;
     private String immagine;
-    private double media_stelle;
     
     public ProdottoBean() {
     }
@@ -62,7 +63,13 @@ public class ProdottoBean implements Serializable {
     public void setMediaStelle(double media_stelle) {
     	this.media_stelle = media_stelle;
     }
-
+    public int getNumeroRecensioni() {
+		return numero_recensioni;
+	}
+    public void setNumeroRecensioni(int numero_recensioni) {
+		this.numero_recensioni = numero_recensioni;
+	}
+    
     @Override
     public String toString() {
         return "ProdottoBean [id=" + id + ", nome=" + nome + ", prezzo=" + prezzo + "]";

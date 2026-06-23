@@ -32,6 +32,7 @@ public class ProdottoDAO {
                     bean.setPrezzo(resultSet.getDouble("prezzo"));
                     bean.setImmagine(resultSet.getString("immagine"));
                     bean.setMediaStelle(resultSet.getDouble("media_stelle"));
+                    bean.setNumeroRecensioni(resultSet.getInt("totale_recensioni"));
                     prodotti.add(bean);
                 }
             }
@@ -61,6 +62,7 @@ public class ProdottoDAO {
                     prodotto.setPrezzo(resultSet.getDouble("prezzo"));
                     prodotto.setImmagine(resultSet.getString("immagine"));
                     prodotto.setMediaStelle(resultSet.getDouble("media_stelle"));
+                    prodotto.setNumeroRecensioni(resultSet.getInt("totale_recensioni"));
                 }
             }
 

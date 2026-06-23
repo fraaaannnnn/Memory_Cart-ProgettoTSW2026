@@ -90,15 +90,14 @@
                             stelle += "☆";
                         }
                     %>
-                    <span class="stars"><%= stelle %></span> 
+                    <span class="stars"><%= stelle %></span><p style="font-size=8px">Totale recensioni: <%=prodotto.getNumeroRecensioni() %></p> 
                 </div>
                 
                 <div class="product-price-large">
                     <span class="currency">€</span>
                     <span class="whole"><%= parteIntera %></span>
                     <span class="fraction"><%= decimali %></span>
-                </div>
-                
+                </div>                
                 <form action="CarrelloServlet" method="post" class="add-to-cart-form">
                     <input type="hidden" name="action" value="add">
                     <input type="hidden" name="id" value="<%= prodotto.getId() %>">

@@ -27,7 +27,7 @@ public class RecensioneDAO {
             preparedStatement.setInt(2, limite);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    RecensioneBean bean = new RecensioneBean();
+                	RecensioneBean bean = new RecensioneBean();
                     bean.setIdRecensione(resultSet.getInt("id_recensione"));
                     bean.setStelle(resultSet.getInt("stelle"));
                     bean.setRecensione(resultSet.getString("descrizione"));
@@ -39,7 +39,6 @@ public class RecensioneDAO {
         } catch (SQLException e) {
             System.err.println("Errore durante l'estrazione della recensione: " + e.getMessage());
         }
-
         return recensioni;
     }
 }
