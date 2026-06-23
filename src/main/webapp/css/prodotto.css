@@ -95,7 +95,7 @@
 }
 
 .add-to-cart-form {
-    margin-top: 20px;
+    margin-top: auto;
     background-color: #111122;
     padding: 20px;
     border: 1px solid var(--cyber-purple);
@@ -279,6 +279,83 @@
     color: var(--8bit-teal);
 }
 
+.top-section {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 15px;
+    flex-wrap: wrap;
+}
+
+
+.top-section .tab-btn {
+    flex: 1 1 auto; 
+    text-align: center;
+    white-space: nowrap; 
+    padding: 10px 4%; 
+    font-size: clamp(0.55rem, 1.5vw, 0.8rem);
+}
+.add-review-form {
+	padding-bottom: 20px; 
+	max-height: 500px; 
+    opacity: 1;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+#recensioneUtente {
+	width: 100%;
+	box-sizing: border-box;
+	resize: vertical;
+	padding: 10px;
+	min-height: 100px;
+	background: transparent;
+	border: 1px solid var(--8bit-teal);
+	border-radius: 20px;
+	color: white; 
+	font-family: 'Press Start 2P', monospace;
+}
+
+#invia-recensione-btn {
+    max-width: 200px;
+    opacity: 1;
+    overflow: hidden;
+    transition: all 0.4s ease-in-out;
+}
+.review-radio {
+	display: none;
+}
+
+.stars-container {
+	display: inline-flex;
+    flex-direction: row-reverse; 
+    font-size: 2rem;
+}
+
+.stars-container label {
+	color: #444;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.stars-container input:checked ~ label {
+    color: var(--8bit-teal);
+}
+
+.stars-container label:hover,
+.stars-container label:hover ~ label {
+    color: var(--8bit-teal);
+}
+
+.hidden-item {
+	max-height: 0 !important;
+    max-width: 0 !important;
+    opacity: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    visibility: hidden !important;
+}
+
+
 @media (max-width: 992px) {
     .product-page-wrapper {
         grid-template-columns: 1fr;
@@ -320,5 +397,5 @@
 @media (max-width: 480px) {
     .product-image-gallery {
         min-height: 200px;
-    }
+    } 
 }

@@ -144,7 +144,30 @@
         </aside>
         
         <section class="product-reviews-section">
-            <h3 style="color: var(--8bit-teal); font-family: 'Press Start 2P', monospace; font-size: 0.8rem;">Recensioni Utenti</h3>
+        	<div class="top-section">
+            <h3 style="color: var(--8bit-teal); font-family: 'Press Start 2P', monospace; font-size: 0.8rem;">Recensioni Utenti</h3> 
+            <button class="tab-btn active" id="mostra-form-btn">Aggiungi Recensione</button>
+        	<button class="tab-btn active hidden-item" id="invia-recensione-btn">Invia</button>
+        	</div>
+            <br>
+            <div class = "add-review-form hidden-item">
+                <form>
+                <div class ="stars-container">
+	                <input type="radio" id="star5" name="rating" value="5" class="review-radio">
+	                <label for="star5">★</label>
+	                <input type="radio" id="star4" name="rating" value="4" class="review-radio">
+	                <label for="star4">★</label>
+	                <input type="radio" id="star3" name="rating" value="3" class="review-radio">
+	                <label for="star3">★</label>
+	                <input type="radio" id="star2" name="rating" value="2" class="review-radio">
+	                <label for="star2">★</label>
+	                <input type="radio" id="star1" name="rating" value="1" class="review-radio">
+	                <label for="star1">★</label>
+                </div>
+                
+                <textarea id="recensioneUtente" rows="5" cols="40" placeholder="Press X to Start"></textarea>
+                </form>
+			</div>
                        <% 
                        java.util.List<RecensioneBean> recensioni = (java.util.List<RecensioneBean>) request.getAttribute("recensioniProdotto");    
                        if(recensioni != null && !recensioni.isEmpty()) {
@@ -152,6 +175,7 @@
                        %>
                        
             <div class="review-card">
+                
                 <div class="user-email-img">
                     <div class="user_img"><img class="user_img_img" src="./images/user/utente_propic.png" alt="propic.png"></div>
                     <div class="user-email"><p><%=recensione.getEmailUtente() %></p></div>
