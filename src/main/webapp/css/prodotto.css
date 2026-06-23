@@ -306,7 +306,7 @@
 	width: 100%;
 	box-sizing: border-box;
 	resize: vertical;
-	padding: 10px;
+	padding: 5px;
 	min-height: 100px;
 	background: transparent;
 	border: 1px solid var(--8bit-teal);
@@ -315,6 +315,9 @@
 	font-family: 'Press Start 2P', monospace;
 }
 
+#recensioneUtente:focus {
+	outline: none;
+}
 #invia-recensione-btn {
     max-width: 200px;
     opacity: 1;
