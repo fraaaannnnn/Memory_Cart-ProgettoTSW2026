@@ -23,8 +23,8 @@
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="./css/style.css?v=13">
-    <link rel="stylesheet" href="./css/prodotto.css?v=8">
+    <link rel="stylesheet" href="./css/style.css?v=17">
+    <link rel="stylesheet" href="./css/prodotto.css?v=12">
     
     <script src="./js/home.js" defer></script> 
 </head>
@@ -52,7 +52,6 @@
                 </li>
             </ul>
         </nav>
-        
         <div class="desktop-actions">
             <a href="#" class="action-icon" title="Preferiti">
                 <img src="./images/whishlist.png" alt="Preferiti" class="nav-icon">
@@ -68,16 +67,15 @@
     </header>
     
     <main class="product-page-wrapper">
-        
         <section class="product-top-section">
             <div class="product-image-gallery">
-                <img src="<%= prodotto.getImmagine() %>" alt="<%= prodotto.getNome() %>" id="mainImage">
+                <img src="<%= prodotto.getImmagine() %>" alt="<%= prodotto.getNome() %>" id="mainImage" style="overflow: hidden;">
             </div>
             
             <div class="product-core-info">
                 <h1 class="product-title-large"><%= prodotto.getNome() %></h1>
                 
-                <div class="product-rating-product-page-stars">
+                <div class="product-rating product-page-stars">
                     <%
                         String stelle = "";
                         int mediaStelle = (int) Math.floor(prodotto.getMediaStelle());
@@ -90,7 +88,10 @@
                             stelle += "☆";
                         }
                     %>
-                    <span class="stars"><%= stelle %></span><p style="font-size=8px">Totale recensioni: <%=prodotto.getNumeroRecensioni() %></p> 
+                    <span class="stars"><%= stelle %></span>
+                    <p style="font-size: 10px; transform: translateY(20%)">
+                        Totale recensioni: <%=prodotto.getNumeroRecensioni() %>
+                    </p> 
                 </div>
                 
                 <div class="product-price-large">
@@ -98,6 +99,7 @@
                     <span class="whole"><%= parteIntera %></span>
                     <span class="fraction"><%= decimali %></span>
                 </div>                
+                
                 <form action="CarrelloServlet" method="post" class="add-to-cart-form">
                     <input type="hidden" name="action" value="add">
                     <input type="hidden" name="id" value="<%= prodotto.getId() %>">
@@ -110,7 +112,6 @@
         <section class="product-tabs-section">
             <div class="tabs">
                 <button class="tab-btn active">Descrizione</button>
-                <button class="tab-btn">Scheda Tecnica</button>
             </div>
             <div class="tab-content active">
                 <p><%= prodotto.getDescrizione() %></p>
@@ -129,7 +130,7 @@
                 %>
                 <div class="mini-product-card">
                     <a href="Prodotto?id=<%= sugg.getId() %>">
-                        <img src="<%= sugg.getImmagine() %>" alt="<%= sugg.getNome() %>">
+                        <img src="<%= sugg.getImmagine() %>" alt="<%= sugg.getNome() %>" style="overflow: hidden">
                         <h4 class="mini-title"><%= sugg.getNome() %></h4>
                         <span class="mini-price">€<%= String.format("%.2f", sugg.getPrezzo()) %></span>
                     </a>
@@ -144,43 +145,39 @@
         
         <section class="product-reviews-section">
             <h3 style="color: var(--8bit-teal); font-family: 'Press Start 2P', monospace; font-size: 0.8rem;">Recensioni Utenti</h3>
-				       <% 
-				       	java.util.List<RecensioneBean> recensioni = (java.util.List<RecensioneBean>) request.getAttribute("recensioniProdotto");	
-				       if(recensioni != null && !recensioni.isEmpty()) {
-				       		for(RecensioneBean recensione : recensioni) {
-				       		%>
-				       		
+                       <% 
+                       java.util.List<RecensioneBean> recensioni = (java.util.List<RecensioneBean>) request.getAttribute("recensioniProdotto");    
+                       if(recensioni != null && !recensioni.isEmpty()) {
+                           for(RecensioneBean recensione : recensioni) {
+                       %>
+                       
             <div class="review-card">
-            	<div class = "user-email-img">
-            		<div class="user_img"><img class = "user_img_img" src="./images/user/utente_propic.png" alt="propic.png"></div>
-            		<div class="user-email"><p><%=recensione.getEmailUtente() %></p></div>
-            	</div>
-                <div class="review-stars">
-                	<%	 
-                	stelle = "";
-		       	int nstelle = recensione.getStelle();
-		       	for(int i = 0; i < nstelle; i++) { 
-		       		stelle += "★";
-		       	}
-		       	
-		       	for(int i = 0; i < 5 - nstelle; i++) {
-		       		stelle += "☆";
-		       	}
-                	%>
-                	<%= stelle%>
+                <div class="user-email-img">
+                    <div class="user_img"><img class="user_img_img" src="./images/user/utente_propic.png" alt="propic.png"></div>
+                    <div class="user-email"><p><%=recensione.getEmailUtente() %></p></div>
                 </div>
-                <p class="review-text"><%= recensione.getRecensione() %></p>
+                <div class="review-stars">
+                    <%  
+                    stelle = "";
+                    int nstelle = recensione.getStelle();
+                    for(int i = 0; i < nstelle; i++) { 
+                        stelle += "★";
+                    }
+                    
+                    for(int i = 0; i < 5 - nstelle; i++) {
+                        stelle += "☆";
+                    }
+                    %>
+                    <%= stelle%>
+                </div>
+                <p class="review-text" style="font-family: 'Inter', sans-serif; color: var(--classic-white);"><%= recensione.getRecensione() %></p>
             </div>
-				       <%	
-				       	
-		       		}
-		       	} else {
-		       		
-				       %>    
-				<h1> Questo Prodotto non ha recensioni</h1>
-		       	<%  }%>
-            <!--  
-            -->
+                       <%  
+                           }
+                       } else {
+                       %>    
+                <p style="color: var(--classic-white); font-family: 'Inter', sans-serif;">Questo Prodotto non ha recensioni</p>
+               <%  }%>
         </section>
 
     </main>
