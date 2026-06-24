@@ -3,39 +3,45 @@ package com.bean;
 import java.io.Serializable;
 
 public class UtenteBean {
-	String email, pw;
-	boolean isAdmin;
+	private int id;
+	private String email, pw;
+	private boolean isAdmin;
 	
     private static final long serialVersionUID = 1L;
 
 	public UtenteBean() {
 		
 	}
-	
-	String getEmail() {
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getEmail() {
 		return email;
 	}
-	void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 	
-	String getPw() {
+	public String getPw() {
 		return pw;
 	}
-	void setPw(String pw) {
+	public void setPw(String pw) {
 		this.pw = pw;
 	}
 	
-	boolean getAdmin() {
+	public boolean getAdmin() {
 		return isAdmin;
 	}
 	
-	void setAdmin(boolean isAdmin) {
+	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
 	
     @Override
     public String toString() {
-        return "UtenteBean [email=" + email + ", pw=" + pw + ", prezzo=" + isAdmin + "]";
+        return "UtenteBean [id=" + id + " email=" + email + ", pw=" + pw + ", prezzo=" + isAdmin + "]";
     }
 }

@@ -1,0 +1,187 @@
+@charset "UTF-8";
+
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 250px); 
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    box-sizing: border-box;
+}
+
+.auth-card {
+    background-color: #111122;
+    border: 2px solid var(--cyber-purple);
+    border-radius: 8px;
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 0 20px rgba(112, 11, 151, 0.3);
+    text-align: center;
+}
+
+.auth-title {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--insert-coin-pink);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px var(--deep-space);
+}
+
+.auth-subtitle {
+    font-family: 'Press Start 2P', monospace;
+    color: #bbb;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+.retro-form {
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    min-width: 0;
+}
+
+.form-group label {
+     font-family: 'Press Start 2P', monospace;
+    font-weight: 600;
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background-color: var(--deep-space);
+    border: 2px solid var(--cyber-purple);
+    color: var(--classic-white);
+    padding: 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--8bit-teal);
+    box-shadow: 0 0 10px rgba(50, 224, 196, 0.4);
+}
+
+.form-grid-auth {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.auth-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.85rem;
+}
+
+.auth-link {
+	font-family: 'Press Start 2P', monospace;
+    color: var(--8bit-teal);
+    text-decoration: none;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.auth-link:hover {
+    color: var(--classic-white);
+    text-shadow: 0 0 8px var(--8bit-teal);
+}
+
+.auth-link.highlight {
+    color: var(--insert-coin-pink);
+    font-weight: bold;
+}
+
+.auth-link.highlight:hover {
+    color: var(--classic-white);
+    text-shadow: 0 0 8px var(--insert-coin-pink);
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #bbb;
+}
+
+.checkbox-label input[type="checkbox"] {
+    display: none; 
+}
+
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    background-color: var(--deep-space);
+    border: 2px solid var(--cyber-purple);
+    border-radius: 3px;
+    margin-right: 8px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
+    background-color: var(--8bit-teal);
+    border-color: var(--8bit-teal);
+    box-shadow: 0 0 8px var(--8bit-teal);
+}
+
+.checkbox-text {
+    padding-top: 2px;
+    font-family: 'Press Start 2P', monospace;
+}
+
+.auth-btn {
+    width: 100%;
+    font-family: 'Press Start 2P', monospace;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 15px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.auth-footer-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    color: #bbb;
+    border-top: 1px dashed rgba(112, 11, 151, 0.4);
+    padding-top: 20px;
+}
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 30px 20px;
+        border-radius: 8px;
+        border: 2px solid var(--cyber-purple);
+        margin: 0 15px; 
+        width: calc(100% - 30px);
+    }
+
+    .form-grid-auth {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .auth-options {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+}

@@ -13,7 +13,7 @@ public class RecensioneDAO {
 	
 	public List<RecensioneBean>recensioneDaIdProdotto(int id, int limite) {
         List<RecensioneBean>recensioni = new ArrayList<>();
-        String query = "SELECT r.id_recensione, r.descrizione, r.stelle, u.email "
+        String query = "SELECT r.id_recensione, r.descrizione, r.stelle, u.nickname "
         		+ "FROM recensioni r "
         		+ "JOIN utenti u ON r.id_utente = u.id_utente "
         		+ "WHERE r.id_prodotto = ? "
@@ -31,7 +31,7 @@ public class RecensioneDAO {
                     bean.setIdRecensione(resultSet.getInt("id_recensione"));
                     bean.setStelle(resultSet.getInt("stelle"));
                     bean.setRecensione(resultSet.getString("descrizione"));
-                    bean.setEmailUtente(resultSet.getString("email"));
+                    bean.setNicknameUtente(resultSet.getString("nickname"));
                     recensioni.add(bean);
                 }
             }
@@ -47,7 +47,7 @@ public class RecensioneDAO {
 		String query = "INSERT INTO recensioni (id_utente, id_prodotto, descrizione, stelle) VALUES (?, ?, ?, ?)";
 		try (Connection connection = ConnessioneDB.getConnection();
 	         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-				preparedStatement.setInt(1, 1/*recensione.getIdUtemte()*/);
+				preparedStatement.setInt(1, 1/*recensione.getIdUtente()*/);
 				preparedStatement.setInt(2, recensione.getIdProdotto());
 				preparedStatement.setString(3, recensione.getRecensione());   
 				preparedStatement.setInt(4, recensione.getStelle());       
@@ -65,5 +65,6 @@ public class RecensioneDAO {
 		
 		
 		return salvataggioCompletato;
-	}
+}
+
 }

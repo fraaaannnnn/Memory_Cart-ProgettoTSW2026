@@ -24,7 +24,7 @@
                 <li class="mobile-action"><a href="#">Carrello</a></li>
                 
                 <li class="mobile-login">
-                    <a href="#" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">LOGIN</a>
+                    <a href="/Memory_Cart/Login" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">LOGIN</a>
                 </li>
             </ul>
         </nav>
@@ -39,7 +39,7 @@
         		<span class="cart-badge">0</span>
     		</a>
     
-    		<a href="#" class="btn-primary desktop-login" style="padding: 8px 16px; font-size: 0.7rem;">LOGIN</a>
+    		<a href="/Memory_Cart/Login" class="btn-primary desktop-login" style="padding: 8px 16px; font-size: 0.7rem;">LOGIN</a>
 		</div>
     </header>
 </body>

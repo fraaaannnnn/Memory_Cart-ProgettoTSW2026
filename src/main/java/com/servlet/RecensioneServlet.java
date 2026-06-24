@@ -16,6 +16,7 @@ public class RecensioneServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
+    	request.setCharacterEncoding("UTF-8");
     	//HttpSession session = request.getSession(false);
     	String testoRecensione = request.getParameter("testo_utente");
     	//String idUserStr = (String)session.getAttribute("utenteLoggatoId");

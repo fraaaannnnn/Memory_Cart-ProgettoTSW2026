@@ -7,6 +7,7 @@ public class RecensioneBean {
 	private int stelle;
 	private String recensione;
 	private String emailUtente;
+	private String nicknameUtente;
 	public RecensioneBean() {
 		
 	}
@@ -30,6 +31,9 @@ public class RecensioneBean {
 	public String getEmailUtente() {
 		return emailUtente;
 	}
+	public String getNicknameUtente() {
+		return nicknameUtente;
+	}
 	
 	
 	//setters
@@ -52,10 +56,13 @@ public class RecensioneBean {
 	public void setEmailUtente(String emailUtente) { 
 		this.emailUtente = emailUtente;
 	}
+	public void setNicknameUtente(String nicknameUtente) {
+		this.nicknameUtente = nicknameUtente;
+	}
 	
 	@Override
 	public String toString() {
         return "RecensioneBean [id_recensione=" + id_recensione + ", id_utente=" + id_utente + ", id_prodotto=" + id_prodotto + "stelle=" + stelle
-        		+ "recensione=" + recensione + "emailUtente=" + emailUtente + "]";
+        		+ "recensione=" + recensione + " emailUtente=" + emailUtente + " nicknameUtente=" + nicknameUtente + "]";
     }
 }

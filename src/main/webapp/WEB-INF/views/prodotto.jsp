@@ -143,7 +143,7 @@
             <div class="review-card">
                 <div class="user-email-img">
                     <div class="user_img"><img class="user_img_img" src="./images/user/utente_propic.png" alt="propic.png"></div>
-                    <div class="user-email"><p><%=recensione.getEmailUtente() %></p></div>
+                    <div class="user-email"><p><%=recensione.getNicknameUtente() %></p></div>
                 </div>
                 <div class="review-stars">
                     <%  
