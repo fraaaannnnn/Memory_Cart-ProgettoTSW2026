@@ -10,7 +10,7 @@
         return;
     }
     
-    String[] prezzoSplit = String.format("%.2f", prodotto.getPrezzo()).split(",");
+    String[] prezzoSplit = String.format(java.util.Locale.ITALY, "%.2f", prodotto.getPrezzo()).split(",");
     String parteIntera = prezzoSplit[0];
     String decimali = prezzoSplit.length > 1 ? prezzoSplit[1] : "00";
 %>
@@ -24,47 +24,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="./css/style.css?v=17">
-    <link rel="stylesheet" href="./css/prodotto.css?v=12">
+    <link rel="stylesheet" href="./css/prodotto.css?v=14">
     
     <script src="./js/home.js" defer></script> 
 </head>
 <body>
-    <header>
-        <a href="Home"><h1>memory_cart</h1></a>
-        
-        <button class="hamburger" id="hamburgerBtn" aria-label="Toggle Menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <nav id="mainNav">
-            <ul>
-                <li><a href="#">Console</a></li>
-                <li><a href="#">Cartucce</a></li>
-                <li><a href="#">Arcade Club</a></li>
-                
-                <li class="mobile-action"><a href="#">Preferiti</a></li>
-                <li class="mobile-action"><a href="#">Carrello</a></li>
-                
-                <li class="mobile-login">
-                    <a href="#" class="btn-primary" style="padding: 10px 20px; font-size: 0.8rem;">LOGIN</a>
-                </li>
-            </ul>
-        </nav>
-        <div class="desktop-actions">
-            <a href="#" class="action-icon" title="Preferiti">
-                <img src="./images/whishlist.png" alt="Preferiti" class="nav-icon">
-            </a>
-    
-            <a href="#" class="action-icon" title="Carrello">
-                <img src="./images/cart.png" alt="Carrello" class="nav-icon">
-                <span class="cart-badge">0</span>
-            </a>
-    
-            <a href="#" class="btn-primary desktop-login" style="padding: 8px 16px; font-size: 0.7rem;">LOGIN</a>
-        </div>
-    </header>
+    <%@include file="header.jsp"%>
     
     <main class="product-page-wrapper">
         <section class="product-top-section">
@@ -89,10 +54,10 @@
                         }
                     %>
                     <span class="stars"><%= stelle %></span>
-                    <p style="font-size: 10px; transform: translateY(20%)">
+                </div>
+                	<p style="font-size: 10px; transform: translateY(20%)">
                         Totale recensioni: <%=prodotto.getNumeroRecensioni() %>
                     </p> 
-                </div>
                 
                 <div class="product-price-large">
                     <span class="currency">€</span>
@@ -147,12 +112,13 @@
         	<div class="top-section">
             <h3 style="color: var(--8bit-teal); font-family: 'Press Start 2P', monospace; font-size: 0.8rem;">Recensioni Utenti</h3> 
             <button class="tab-btn active" id="mostra-form-btn">Aggiungi Recensione</button>
-        	<button class="tab-btn active hidden-item" id="invia-recensione-btn">Invia</button>
+        	<button class="tab-btn active hidden-item" id="invia-recensione-btn" form="form-recensione">Invia</button>
         	</div>
             <br>
             <div class = "add-review-form hidden-item">
-                <form>
+                <form id="form-recensione" action="Recensione" method="POST">
                 <div class ="stars-container">
+                	<input type="hidden" name="id_gioco" value="<%= prodotto.getId() %>">
 	                <input type="radio" id="star5" name="rating" value="5" class="review-radio">
 	                <label for="star5">★</label>
 	                <input type="radio" id="star4" name="rating" value="4" class="review-radio">
@@ -165,7 +131,7 @@
 	                <label for="star1">★</label>
                 </div>
                 
-                <textarea id="recensioneUtente" rows="5" cols="40" placeholder="Press X to Start"></textarea>
+                <textarea id="recensioneUtente" name="testo_utente" rows="5" cols="40" placeholder="Press X to Start"></textarea>
                 </form>
 			</div>
                        <% 
@@ -175,7 +141,6 @@
                        %>
                        
             <div class="review-card">
-                
                 <div class="user-email-img">
                     <div class="user_img"><img class="user_img_img" src="./images/user/utente_propic.png" alt="propic.png"></div>
                     <div class="user-email"><p><%=recensione.getEmailUtente() %></p></div>
@@ -194,23 +159,18 @@
                     %>
                     <%= stelle%>
                 </div>
-                <p class="review-text" style="font-family: 'Inter', sans-serif; color: var(--classic-white);"><%= recensione.getRecensione() %></p>
+                <p class="review-text"><%= recensione.getRecensione() %></p>
             </div>
                        <%  
                            }
                        } else {
                        %>    
-                <p style="color: var(--classic-white); font-family: 'Inter', sans-serif;">Questo Prodotto non ha recensioni</p>
+                <p style="color: var(--classic-white); font-family: 'Press Start 2P', monospace;">Questo Prodotto non ha recensioni</p>
                <%  }%>
         </section>
 
     </main>
-    
-    <footer>
-        <% int year = Calendar.getInstance().get(Calendar.YEAR); %>
-        <p style="font-family: 'Press Start 2P', monospace; color: var(--8bit-teal); font-size: 0.7rem;">&copy; <%= year %> MEMORY_CART - PRESS X TO START</p>
-    </footer>
-
+	<%@include file="footer.jsp"%>
     <script src="./js/product.js"></script>
 </body>
 </html>

@@ -41,4 +41,29 @@ public class RecensioneDAO {
         }
         return recensioni;
     }
+	
+	public boolean salvaRecensione(RecensioneBean recensione) {
+		boolean salvataggioCompletato = false;
+		String query = "INSERT INTO recensioni (id_utente, id_prodotto, descrizione, stelle) VALUES (?, ?, ?, ?)";
+		try (Connection connection = ConnessioneDB.getConnection();
+	         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+				preparedStatement.setInt(1, 1/*recensione.getIdUtemte()*/);
+				preparedStatement.setInt(2, recensione.getIdProdotto());
+				preparedStatement.setString(3, recensione.getRecensione());   
+				preparedStatement.setInt(4, recensione.getStelle());       
+	            int righeModificate = preparedStatement.executeUpdate();
+	
+	            if (righeModificate > 0) {
+	                salvataggioCompletato = true;
+	            }
+				
+			
+		} catch (SQLException e) {
+			 System.err.println("Errore durante la creazione della recensione: " + e.getMessage());
+	         e.printStackTrace();   
+		}
+		
+		
+		return salvataggioCompletato;
+	}
 }

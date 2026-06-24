@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.bean.ProdottoBean;
 import com.dao.ProdottoDAO; 
 
-@WebServlet("/Home") 
+@WebServlet("") 
 public class HomeServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class HomeServlet extends HttpServlet {
         
         request.setAttribute("prodottiVetrina", prodottiInEvidenza);
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/views/home.jsp");
         dispatcher.forward(request, response);
     }
 

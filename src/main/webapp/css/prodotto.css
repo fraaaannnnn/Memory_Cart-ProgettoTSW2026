@@ -188,6 +188,7 @@
     border-left: 4px solid var(--8bit-teal);
     margin-bottom: 15px;
     border-radius: 0 4px 4px 0;
+	overflow: hidden;
 }
 
 .review-card .review-stars {
@@ -208,9 +209,18 @@
     height: 50px;
     border-radius: 50%;
 }
+.user-email {
+	min-width: 0;
+	overflow: hidden;
+}
 
 .user-email p {
     font-size: 1rem;
+    font-family: 'Press Start 2P', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
 }
 
 .product-sidebar {

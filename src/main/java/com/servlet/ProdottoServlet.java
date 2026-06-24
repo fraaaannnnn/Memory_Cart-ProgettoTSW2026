@@ -37,7 +37,7 @@ public class ProdottoServlet extends HttpServlet {
                     request.setAttribute("dettaglioProdotto", prodotto);
                     request.setAttribute("prodottiSuggeriti", prodottoDAO.getProdottiInEvidenza(6));
 					request.setAttribute("recensioniProdotto", recensione);
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/prodotto.jsp");
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/views/prodotto.jsp");
                     dispatcher.forward(request, response);
                     return;
                 }
@@ -48,7 +48,7 @@ public class ProdottoServlet extends HttpServlet {
             }
         }
         
-        response.sendRedirect("home.jsp");
+        response.sendRedirect("/Memory_Cart/");
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
