@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.mindrot.jbcrypt.BCrypt;
 import com.bean.UtenteBean;
+import java.util.*;
 
 public class UtenteDAO {
 
@@ -43,11 +44,9 @@ public class UtenteDAO {
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
              
             preparedStatement.setString(1, email);
-
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     String hashSalvato = resultSet.getString("pw");
-                    
                     if (BCrypt.checkpw(passwordInChiaro, hashSalvato)) {
                         
                         bean = new UtenteBean();
@@ -90,27 +89,86 @@ public class UtenteDAO {
         return exists;
     }
     
-    public boolean salvaRememberToken(String email, String token) {
-        boolean aggiornato = false;
-        
-        String query = "UPDATE utenti SET remember_token = ? WHERE email = ?";
+    public boolean aggiungiAuthToken(String email, String tokenHashato) {
+        boolean aggiunto = false;
+        String query = "INSERT INTO authtokens (email, token) VALUES (?, ?)";
         
         try (Connection connection = ConnessioneDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
              
-            preparedStatement.setString(1, token);
-            preparedStatement.setString(2, email);
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, tokenHashato);
             
             int righeModificate = preparedStatement.executeUpdate();
             if (righeModificate > 0) {
-                aggiornato = true;
+                aggiunto = true;
             }
-            
         } catch (SQLException e) {
             System.err.println("Errore durante il salvataggio del token: " + e.getMessage());
             e.printStackTrace();
         }
+        return aggiunto;
+    }
+
+    public List<String> getTokensByEmail(String email) {
+        List<String> tokens = new ArrayList<>();
+        String query = "SELECT token FROM authtokens WHERE email = ?";
         
-        return aggiornato;
+        try (Connection connection = ConnessioneDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             
+            preparedStatement.setString(1, email);
+            
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    tokens.add(resultSet.getString("token"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Errore nel recupero dei token: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return tokens;
+    }
+
+    public boolean eliminaAuthTokenSpecifico(String email, String tokenHashato) {
+        boolean eliminato = false;
+        String query = "DELETE FROM authtokens WHERE email = ? AND token = ?";
+        
+        try (Connection connection = ConnessioneDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             
+            preparedStatement.setString(1, email);
+            preparedStatement.setString(2, tokenHashato);
+            
+            int righeModificate = preparedStatement.executeUpdate();
+            if (righeModificate > 0) {
+                eliminato = true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Errore nell'eliminazione del token specifico: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return eliminato;
+    }
+
+    public UtenteBean getUtenteByEmail(String email) {
+        UtenteBean bean = null;
+        String query = "SELECT * FROM utenti WHERE email = ?";
+        try (Connection connection = ConnessioneDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, email);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    bean = new UtenteBean();
+                    bean.setId(resultSet.getInt("id_utente")); 
+                    bean.setEmail(resultSet.getString("email"));
+                    bean.setAdmin(resultSet.getBoolean("isAdmin"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bean;
     }
 }

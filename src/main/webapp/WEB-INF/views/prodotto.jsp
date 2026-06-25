@@ -23,8 +23,8 @@
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="./css/style.css?v=17">
-    <link rel="stylesheet" href="./css/prodotto.css?v=14">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/prodotto.css">
     
     <script src="./js/home.js" defer></script> 
 </head>

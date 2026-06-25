@@ -42,6 +42,6 @@ public class UtenteBean {
 	
     @Override
     public String toString() {
-        return "UtenteBean [id=" + id + " email=" + email + ", pw=" + pw + ", prezzo=" + isAdmin + "]";
+        return "UtenteBean [id=" + id + " email=" + email + ", pw=" + pw + ", isAdmin=" + isAdmin + "]";
     }
 }

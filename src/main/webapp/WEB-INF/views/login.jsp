@@ -19,7 +19,6 @@
     <main class="shop-container auth-wrapper">
         <div class="auth-card">
             <h2 class="auth-title">INSERT COIN</h2>
-            <%-- Se c'è un errore proveniente dalla Servlet, stampalo --%>
 <% if (request.getAttribute("erroreLogin") != null) { %>
     <div style="background-color: rgba(255, 0, 117, 0.1); border: 1px solid var(--insert-coin-pink); color: var(--insert-coin-pink); padding: 10px; margin-bottom: 20px; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.9rem;">
         ⚠️ <%= request.getAttribute("erroreLogin") %>

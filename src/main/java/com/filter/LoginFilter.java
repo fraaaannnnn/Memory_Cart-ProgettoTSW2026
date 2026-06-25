@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/RecensioneServlet") 
+@WebFilter("/Recensione") 
 public class LoginFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {}    
@@ -23,12 +23,12 @@ public class LoginFilter implements Filter {
         
         HttpSession session = req.getSession(false);
         
-        boolean isLoggato = (session != null && session.getAttribute("utenteLoggatoId") != null);
+        boolean isLoggato = (session != null && session.getAttribute("utenteLoggato") != null);
 
         if (isLoggato) {
             chain.doFilter(request, response);
         } else {
-            res.sendRedirect(req.getContextPath() + "/WEB-INF/views/login.jsp");
+        	request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
         }
     }
 

@@ -35,7 +35,7 @@ header {
     box-shadow: 0 4px 15px rgba(112, 11, 151, 0.3);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 99999; 
     width: 100%;
 }
 
@@ -45,6 +45,51 @@ header h1 {
     font-size: 1.2rem;
     color: var(--insert-coin-pink);
     text-shadow: 0 0 10px rgba(255, 0, 117, 0.6);
+}
+
+.user-dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.user-dropdown-menu {
+    display: none; 
+    position: absolute;
+    top: 130%;
+    right: 0;
+    background-color: var(--deep-space);
+    border: 2px solid var(--cyber-purple);
+    border-radius: 8px;
+    min-width: 160px;
+    box-shadow: 0 4px 15px rgba(112, 11, 151, 0.5);
+    z-index: 100000;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.user-dropdown-menu.show {
+    display: flex;
+}
+
+.user-dropdown-menu a {
+    color: var(--classic-white);
+    text-decoration: none;
+    padding: 15px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: left;
+    border-bottom: 1px solid rgba(112, 11, 151, 0.3);
+}
+
+.user-dropdown-menu a:last-child {
+    border-bottom: none;
+    color: var(--insert-coin-pink);
+}
+
+.user-dropdown-menu a:hover {
+    background-color: rgba(50, 224, 196, 0.1);
+    color: var(--8bit-teal);
 }
 
 nav ul {
@@ -341,6 +386,32 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     box-shadow: 0 0 15px var(--8bit-teal);
 }
 
+.user_img_img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.user-email-img {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-email {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.user-email p {
+    font-size: 1rem;
+    font-family: 'Press Start 2P', monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+}
 @media (max-width: 992px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -367,6 +438,9 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
         display: block;
         text-align: center;
         width: 100%;
+    }
+    #logout-btn {
+    	color: var(--insert-coin-pink);
     }
 
     nav {

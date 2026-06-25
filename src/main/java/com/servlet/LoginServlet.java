@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import org.mindrot.jbcrypt.BCrypt;
+import com.util.TokenUtil;
 import com.bean.UtenteBean;
 import com.dao.UtenteDAO;
 
@@ -39,12 +40,20 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("utenteLoggato", utente);
 
             if (keepMeLoggedIn != null) {
-                Cookie userCookie = new Cookie("userEmail", utente.getEmail());
-                userCookie.setMaxAge(60 * 60 * 24 * 30); 
-                response.addCookie(userCookie);
-            }
+                String tokenInChiaro = TokenUtil.generateToken();
 
-            response.sendRedirect("Home"); 
+                String tokenHashato = BCrypt.hashpw(tokenInChiaro, BCrypt.gensalt());
+                utenteDAO.aggiungiAuthToken(utente.getEmail(), tokenHashato);
+
+                String valoreCookie = utente.getEmail() + ":" + tokenInChiaro; 
+
+                Cookie rememberCookie = new Cookie("remember_me", valoreCookie);
+                rememberCookie.setMaxAge(60 * 60 * 24 * 30); 
+                rememberCookie.setHttpOnly(true); 
+                rememberCookie.setPath(request.getContextPath() + "/");
+                response.addCookie(rememberCookie);
+            }
+            response.sendRedirect("/Memory_Cart/"); 
             
         } else {
             request.setAttribute("erroreLogin", "Email o password errati. Riprova.");

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.lang.Math"%>
+<%@ page import="java.util.Calendar" %>
 <%@ page import="com.bean.ProdottoBean" %>
 <!DOCTYPE html>
 <html lang="it">
@@ -11,10 +12,10 @@
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="./css/style.css?v=2">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/home.css">
     
-    <script src="./js/home.js" defer></script>
+    <script src="./js/home.js" defer></script>    
 </head>
 <body>
 

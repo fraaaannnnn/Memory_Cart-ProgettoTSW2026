@@ -1,15 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const mainNav = document.getElementById('mainNav');
-
-    if (hamburgerBtn && mainNav) {
-        hamburgerBtn.addEventListener('click', function() {
-            hamburgerBtn.classList.toggle('active');
-            mainNav.classList.toggle('active');
-        });
-    }
 
     const track = document.getElementById('carouselTrack');
     const slides = document.querySelectorAll('.carousel-slide');
