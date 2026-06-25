@@ -12,14 +12,16 @@ public class UtenteDAO {
 
     public boolean salvaUtente(UtenteBean utente) {
         boolean salvataggioCompletato = false;
-        String query = "INSERT INTO utenti (email, pw, isAdmin) VALUES (?, ?, ?)";
+        String query = "INSERT INTO utenti (email, nickname, pw, Abbonato, Admin) VALUES (?, ?, ?, ?, ?)";
         
         try (Connection connection = ConnessioneDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
              
             preparedStatement.setString(1, utente.getEmail());
-            preparedStatement.setString(2, utente.getPw());
-            preparedStatement.setBoolean(3, utente.getAdmin());
+            preparedStatement.setString(2, utente.getUserName());
+            preparedStatement.setString(3, utente.getPw());
+            preparedStatement.setBoolean(4, utente.getAbbonato());
+            preparedStatement.setBoolean(5, utente.getAdmin());
             
             int righeModificate = preparedStatement.executeUpdate();
 

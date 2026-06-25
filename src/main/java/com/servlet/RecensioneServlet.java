@@ -10,27 +10,28 @@ import javax.servlet.http.*;
 
 import com.bean.RecensioneBean;
 import com.dao.RecensioneDAO;
-//da implementare la sessione con l'utente loggato
+import com.bean.UtenteBean;
+
 @WebServlet("/Recensione")
 public class RecensioneServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
     	request.setCharacterEncoding("UTF-8");
-    	//HttpSession session = request.getSession(false);
+    	HttpSession session = request.getSession(false);
     	String testoRecensione = request.getParameter("testo_utente");
-    	//String idUserStr = (String)session.getAttribute("utenteLoggatoId");
+    	UtenteBean user = (UtenteBean)session.getAttribute("utenteLoggato");
         String idProdottoStr = request.getParameter("id_gioco");
         String votoStelleStr = request.getParameter("rating");
         if(testoRecensione != null && !testoRecensione.trim().isEmpty() && idProdottoStr != null && !idProdottoStr.trim().isEmpty() &&
         		votoStelleStr != null && !votoStelleStr.trim().isEmpty() /*&& idUser != null && idUser.trim().isEmpty() */) {
         	try {
-	        		//int idUser = Integer.parseInt(idUserStr);
+	        		int idUser = user.getId();
 	        		int idProdotto = Integer.parseInt(idProdottoStr);
 	        		int votoStelle = Integer.parseInt(votoStelleStr);
 	        		RecensioneBean bean = new RecensioneBean();
 	        		bean.setRecensione(testoRecensione);
-	        		bean.setIdUtente(1);
+	        		bean.setIdUtente(idUser);
 	        		bean.setIdProdotto(idProdotto);
 	        		bean.setStelle(votoStelle);
 	        		RecensioneDAO recensione = new RecensioneDAO();

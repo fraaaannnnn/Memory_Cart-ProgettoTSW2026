@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.*;
 import org.mindrot.jbcrypt.BCrypt;
-import com.util.TokenUtil; 
 import com.dao.UtenteDAO;
 
 @WebServlet("/LogOut")

@@ -24,8 +24,19 @@
         ⚠️ <%= request.getAttribute("erroreLogin") %>
     </div>
 <% } %>
+			<%
+			    String messaggioSuccesso = (String) request.getAttribute("messaggioSuccesso");
+			    
+			    if (messaggioSuccesso != null) {
+			%>
+   			<div class="alert alert-success" style="color: #00ff66; font-family: ''Press Start 2P', monospace; font-size: 0.9rem; margin-bottom: 15px; text-align: center; font-weight: 600;">
+        	<%= messaggioSuccesso %>
+    		</div>
+			<%
+			    }
+			%>
             <p class="auth-subtitle">Accedi al tuo account per continuare</p>
-
+			
             <form action="Login" method="post" id="loginForm" class="retro-form">
                 
                 <div class="form-group">
@@ -50,7 +61,7 @@
             </form>
 
             <div class="auth-footer-text">
-                <p>Nuovo giocatore?</p><br><p><a href="signup.html" class="auth-link highlight">Registrati qui</a></p>
+                <p>Nuovo giocatore?</p><br><p><a href="Register" class="auth-link highlight">Registrati qui</a></p>
             </div>
         </div>
     </main>

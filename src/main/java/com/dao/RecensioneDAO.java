@@ -47,7 +47,7 @@ public class RecensioneDAO {
 		String query = "INSERT INTO recensioni (id_utente, id_prodotto, descrizione, stelle) VALUES (?, ?, ?, ?)";
 		try (Connection connection = ConnessioneDB.getConnection();
 	         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-				preparedStatement.setInt(1, 1/*recensione.getIdUtente()*/);
+				preparedStatement.setInt(1, recensione.getIdUtente());
 				preparedStatement.setInt(2, recensione.getIdProdotto());
 				preparedStatement.setString(3, recensione.getRecensione());   
 				preparedStatement.setInt(4, recensione.getStelle());       

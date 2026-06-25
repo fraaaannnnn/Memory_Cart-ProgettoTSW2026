@@ -22,7 +22,12 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+    	if(session.getAttribute("utenteLoggato") != null) {
+            response.sendRedirect("/Memory_Cart/"); 
+    	} else {
+    		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);    		
+    	}
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
