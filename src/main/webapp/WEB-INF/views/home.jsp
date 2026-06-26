@@ -23,9 +23,8 @@
 
     <section class="carousel-container">
         <div class="carousel-track" id="carouselTrack">
-            <!-- immagini placeholder del carousel banner -->
             <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" alt="Retro Gaming">
+                <img src="./images/banner/gameboy-img.png" alt="Retro Gaming">
                 <div class="slide-content">
                     <h2>READY PLAYER ONE?</h2>
                     <p>Le migliori console degli anni '80 e '90, restaurate e pronte a giocare.</p>
@@ -34,7 +33,7 @@
             </div>
 
             <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1555864326-5cf22ef123cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHJldHJvJTIwZ2FtZXxlbnwwfHwwfHx8MA%3D%3D?q=80&w=2012&auto=format&fit=crop" alt="Arcade Cabinet">
+                <img src="./images/banner/pc-image.png" alt="Arcade Cabinet">
                 <div class="slide-content">
                     <h2>INSERT COIN</h2>
                     <p>Unisciti all'Arcade Club e accumula punti XP per sbloccare sconti leggendari.</p>
@@ -43,7 +42,7 @@
             </div>
 
             <div class="carousel-slide">
-                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop" alt="Game Cartridges">
+                <img src="./images/banner/sala-giochi-img.png" alt="Game Cartridges">
                 <div class="slide-content">
                     <h2>8-BIT DREAMS</h2>
                     <p>Oltre 1000 titoli originali in cartuccia. Trova il pezzo mancante alla tua collezione.</p>
@@ -103,12 +102,12 @@
                     </div>
                     
                     
-                    
-                    <form action="CarrelloServlet" method="get" class="product-form">
-                        <input type="hidden" name="action" value="add">
-                        <input type="hidden" name="id" value="<%= prodotto.getId() %>">
-                        <button type="submit" class="btn-cart">AGGIUNGI AL CARRELLO</button>
-                    </form>
+                    <form action="Carrello" method="post" class="product-form">
+					    <input type="hidden" name="action" value="add">
+					    <input type="hidden" name="idProdotto" value="<%= prodotto.getId() %>">
+					    <input type="hidden" name="quantita" value="1">
+					    <button type="submit" class="btn-cart">AGGIUNGI AL CARRELLO</button>
+					</form>
                 </div>
             </div>
             
@@ -123,9 +122,8 @@
 
         </div>
     </section>
-
-    
 	<%@include file="footer.jsp"%>
+	<%@include file="pop_up_carrello.jsp"%>
 
 </body>
 </html>

@@ -12,11 +12,11 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+import java.util.*;
 import org.mindrot.jbcrypt.BCrypt;
 import com.bean.UtenteBean;
 import com.dao.UtenteDAO;
-
+import com.dao.CarrelloDAO;
 @WebFilter("/*")
 public class RememberMeFilter implements Filter {
 
@@ -67,6 +67,20 @@ public class RememberMeFilter implements Filter {
                     UtenteBean utente = utenteDAO.getUtenteByEmail(email);
                     if (utente != null) {
                         session.setAttribute("utenteLoggato", utente);
+                        Map<Integer, Integer> carrelloOspite = (Map<Integer, Integer>) session.getAttribute("carrelloOspite");
+                        
+                        if (carrelloOspite != null && !carrelloOspite.isEmpty()) {
+                            CarrelloDAO carrelloDAO = new CarrelloDAO();
+                            
+                            for (Map.Entry<Integer, Integer> entry : carrelloOspite.entrySet()) {
+                                int idProdotto = entry.getKey();
+                                int quantita = entry.getValue();
+                                
+                                carrelloDAO.salvaOIncrementa(utente.getId(), idProdotto, quantita);
+                            }
+                            
+                            session.removeAttribute("carrelloOspite");
+                        }
                     }
                 }
             }

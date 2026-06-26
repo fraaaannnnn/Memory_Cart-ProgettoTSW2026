@@ -312,7 +312,7 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
 .product-rating .rating-count {
     color: #888;
     font-size: 0.8rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Press Start 2P', monospace;
 }
 
 .product-price {
@@ -371,7 +371,7 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     color: var(--classic-white);
     padding: 10px 15px;
     font-size: 0.9rem;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Press Start 2P', monospace;
     font-weight: 700;
     cursor: pointer;
     width: 100%;
