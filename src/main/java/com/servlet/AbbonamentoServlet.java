@@ -38,15 +38,14 @@ public class AbbonamentoServlet extends HttpServlet {
             
             boolean successo = utenteDAO.aggiornaAbbonamento(utente.getId(), true);
             
-            System.out.println("DEBUG: Risultato DB: " + successo);
             
             if (successo) {
                 utente.setAbbonato(true);
                 session.setAttribute("utenteLoggato", utente);
                 
-                response.sendRedirect("abbonamento?success=true");
+                response.sendRedirect("Abbonamento?success=true");
             } else {
-                response.sendRedirect("abbonamento?error=true");
+                response.sendRedirect("Abbonamento?error=true");
             }
         } else {
             response.sendRedirect("/Memory_Cart/");

@@ -137,6 +137,7 @@ nav ul li a:hover {
 }
 
 .btn-primary {
+	font-family: 'Press Start 2P', monospace;
     display: inline-block;
     background-color: var(--insert-coin-pink);
     color: var(--classic-white);
