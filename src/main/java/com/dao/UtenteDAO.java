@@ -36,6 +36,24 @@ public class UtenteDAO {
         
         return salvataggioCompletato;
     }
+    
+    public boolean aggiornaAbbonamento(int idUtente, boolean statoAbbonamento) {
+        String query = "UPDATE utenti SET Abbonato = ? WHERE id_utente = ?";
+        
+        try (Connection connection = ConnessioneDB.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+             
+            preparedStatement.setBoolean(1, statoAbbonamento);
+            preparedStatement.setInt(2, idUtente);
+            
+            int righeModificate = preparedStatement.executeUpdate();
+            return righeModificate > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public UtenteBean loginUtente(String email, String passwordInChiaro) {
         UtenteBean bean = null;
@@ -55,7 +73,8 @@ public class UtenteDAO {
                         bean.setId(resultSet.getInt("id_utente")); 
                         bean.setEmail(resultSet.getString("email"));
                         bean.setPw(hashSalvato); 
-                        bean.setAdmin(resultSet.getBoolean("isAdmin"));
+                        bean.setAdmin(resultSet.getBoolean("Admin"));
+                        bean.setAbbonato(resultSet.getBoolean("Abbonato"));
                     }
                 }
             }
@@ -165,7 +184,8 @@ public class UtenteDAO {
                     bean = new UtenteBean();
                     bean.setId(resultSet.getInt("id_utente")); 
                     bean.setEmail(resultSet.getString("email"));
-                    bean.setAdmin(resultSet.getBoolean("isAdmin"));
+                    bean.setAdmin(resultSet.getBoolean("Admin"));
+                    bean.setAbbonato(resultSet.getBoolean("Abbonato"));
                 }
             }
         } catch (SQLException e) {

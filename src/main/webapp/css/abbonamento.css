@@ -1,0 +1,248 @@
+@charset "ISO-8859-1";
+
+.club-container {
+    max-width: 1000px;
+    margin: 4rem auto 8rem auto;
+    padding: 0 20px;
+}
+
+.club-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.club-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 2rem;
+    color: var(--classic-white);
+    margin-bottom: 15px;
+    text-shadow: 3px 3px var(--cyber-purple);
+}
+
+.club-subtitle {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 1.1rem;
+    color: #bbb;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.pricing-card {
+    background-color: #111122;
+    border-radius: 8px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.basic-tier {
+    border: 2px solid var(--cyber-purple);
+}
+
+.pro-tier {
+    border: 2px solid var(--insert-coin-pink);
+    box-shadow: 0 0 25px rgba(255, 0, 117, 0.2);
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+.pro-tier:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 35px rgba(255, 0, 117, 0.4);
+}
+
+.pro-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--insert-coin-pink);
+    color: var(--classic-white);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px var(--insert-coin-pink);
+    white-space: nowrap;
+}
+
+.tier-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 1px dashed rgba(112, 11, 151, 0.5);
+    padding-bottom: 30px;
+}
+
+.tier-name {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.2rem;
+    color: var(--8bit-teal);
+    margin-bottom: 20px;
+}
+
+.pro-tier .tier-name {
+    color: var(--insert-coin-pink);
+}
+
+.tier-price {
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: var(--classic-white);
+    margin-bottom: 15px;
+}
+
+.tier-price .currency {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
+
+.tier-price .amount {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.tier-price .period {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.highlight-price {
+    text-shadow: 0 0 15px rgba(255, 0, 117, 0.5);
+}
+
+.tier-desc {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem;
+    color: #bbb;
+}
+
+.tier-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    flex-grow: 1; 
+}
+
+.tier-features li {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.95rem;
+    color: var(--classic-white);
+    margin-bottom: 15px;
+    
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    line-height: 1.5;
+}
+
+.tier-features li span:last-child {
+    flex: 1;
+    min-width: 0;
+    word-wrap: break-word;
+}
+
+.tier-features li.disabled {
+    color: #555;
+}
+
+.tier-features .check,
+.tier-features .cross {
+    font-weight: bold;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.tier-features .check {
+    color: var(--8bit-teal);
+}
+
+.tier-features .highlight-check {
+    color: var(--insert-coin-pink);
+}
+
+.tier-features .cross {
+    color: #555;
+}
+
+.tier-action {
+    text-align: center;
+}
+
+.btn-secondary {
+    display: inline-block;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+    border: 2px solid var(--8bit-teal);
+    color: var(--8bit-teal);
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 700;
+    padding: 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: var(--8bit-teal);
+    color: var(--deep-space);
+    box-shadow: 0 0 10px var(--8bit-teal);
+}
+
+.upgrade-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+    .pricing-grid {
+        grid-template-columns: 1fr; 
+        gap: 60px;
+    }
+
+    .pro-tier {
+        transform: scale(1);
+    }
+
+    .pro-tier:hover {
+        transform: scale(1.02);
+    }
+}
+
+@media (max-width: 480px) {
+    .club-title {
+        font-size: 1.5rem;
+    }
+    
+    .tier-price .amount {
+        font-size: 2.5rem;
+    }
+
+    .pricing-card {
+        padding: 25px 15px; 
+    }
+    
+    .tier-features li {
+        font-size: 0.85rem;
+    }
+}

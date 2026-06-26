@@ -23,13 +23,12 @@
 
     <section class="carousel-container">
         <div class="carousel-track" id="carouselTrack">
-            <!-- immagini placeholder del carousel banner -->
             <div class="carousel-slide">
                 <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" alt="Retro Gaming">
                 <div class="slide-content">
                     <h2>READY PLAYER ONE?</h2>
                     <p>Le migliori console degli anni '80 e '90, restaurate e pronte a giocare.</p>
-                    <a href="#" class="btn-primary">Sfoglia Catalogo</a>
+                    <a href="catalogo.html" class="btn-primary">Sfoglia Catalogo</a>
                 </div>
             </div>
 
@@ -38,7 +37,7 @@
                 <div class="slide-content">
                     <h2>INSERT COIN</h2>
                     <p>Unisciti all'Arcade Club e accumula punti XP per sbloccare sconti leggendari.</p>
-                    <a href="#" class="btn-primary">Unisciti Ora</a>
+                    <a href="abbonamento" class="btn-primary">Unisciti Ora</a>
                 </div>
             </div>
 
@@ -47,7 +46,7 @@
                 <div class="slide-content">
                     <h2>8-BIT DREAMS</h2>
                     <p>Oltre 1000 titoli originali in cartuccia. Trova il pezzo mancante alla tua collezione.</p>
-                    <a href="#" class="btn-primary">Vedi Giochi</a>
+                    <a href="catalogo.html?categoria=giochi" class="btn-primary">Vedi Giochi</a>
                 </div>
             </div>
 
