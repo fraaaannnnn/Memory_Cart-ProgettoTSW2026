@@ -1,0 +1,23 @@
+@charset "UTF-8";
+.retro-pop_up{
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	background-color: var(--deep-space);
+	border: 2px solid var(--8bit-teal); 
+	color: var(--classic-white); 
+	font-family: 'Press Start 2P', monospace;
+	font-size: 0.7rem;
+	padding: 15px 20px;
+	border-radius: 4px;
+	box-shadow: 0 0 15px rgba(50, 224, 196, 0.4);
+	z-index: 9999;
+	opacity: 0;
+	transform: translateY(20px);
+	transition: opacity 0.4s ease, transform 0.4s ease;
+	pointer-events: none;
+}  
+.retro-pop_up.show {
+	opacity: 1;
+	transform: translateY(0);
+}

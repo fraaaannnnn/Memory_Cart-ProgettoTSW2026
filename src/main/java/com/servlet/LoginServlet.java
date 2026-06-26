@@ -12,6 +12,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import com.util.TokenUtil;
 import com.bean.UtenteBean;
 import com.dao.UtenteDAO;
+import com.dao.CarrelloDAO;
+import java.util.*;
 
 @WebServlet("/Login")
 public class LoginServlet extends HttpServlet {
@@ -43,7 +45,22 @@ public class LoginServlet extends HttpServlet {
             HttpSession session = request.getSession();
             
             session.setAttribute("utenteLoggato", utente);
-
+            Map<Integer, Integer> carrelloOspite = (Map<Integer, Integer>) session.getAttribute("carrelloOspite");
+            
+            if (carrelloOspite != null && !carrelloOspite.isEmpty()) {
+                CarrelloDAO carrelloDAO = new CarrelloDAO();
+                
+                for (Map.Entry<Integer, Integer> entry : carrelloOspite.entrySet()) {
+                    int idProdotto = entry.getKey();
+                    int quantita = entry.getValue();
+                    
+                    carrelloDAO.salvaOIncrementa(utente.getId(), idProdotto, quantita);
+                }
+                
+                session.removeAttribute("carrelloOspite");
+            }
+            
+            
             if (keepMeLoggedIn != null) {
                 String tokenInChiaro = TokenUtil.generateToken();
 

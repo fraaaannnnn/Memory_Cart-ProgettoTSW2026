@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/Recensione") 
+@WebFilter({"/Recensione", "/Checkout"}) 
 public class LoginFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {}    

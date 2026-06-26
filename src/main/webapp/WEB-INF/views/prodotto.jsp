@@ -65,12 +65,13 @@
                     <span class="fraction"><%= decimali %></span>
                 </div>                
                 
-                <form action="CarrelloServlet" method="post" class="add-to-cart-form">
-                    <input type="hidden" name="action" value="add">
-                    <input type="hidden" name="id" value="<%= prodotto.getId() %>">
-                    <button type="submit" class="btn-primary btn-add-cart">Aggiungi al Carrello</button>
-                    <button type="button" class="btn-wishlist">❤</button>
-                </form>
+                <form action="Carrello" method="post" class="add-to-cart-form">
+				    <input type="hidden" name="action" value="add">
+				    <input type="hidden" name="idProdotto" value="<%= prodotto.getId() %>">
+				    <input type="hidden" name="quantita" value="1">
+				    <button type="submit" class="btn-primary btn-add-cart">Aggiungi al Carrello</button>
+				    <button type="button" class="btn-wishlist">❤</button>
+				</form>
             </div>
         </section>
 
@@ -171,6 +172,7 @@
 
     </main>
 	<%@include file="footer.jsp"%>
+	<%@include file="pop_up_carrello.jsp"%>
     <script src="./js/product.js"></script>
 </body>
 </html>
