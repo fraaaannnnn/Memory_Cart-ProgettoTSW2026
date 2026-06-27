@@ -46,4 +46,49 @@ public class CarrelloDAO {
         }
         return carrello;
     }
+    
+    public boolean aggiornaQuantita(int idUtente, int idProdotto, int nuovaQuantita) {
+        String query = "UPDATE carrello SET quantita = ? WHERE id_utente = ? AND id_prodotto = ?";
+        try (Connection conn = ConnessioneDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setInt(1, nuovaQuantita);
+            ps.setInt(2, idUtente);
+            ps.setInt(3, idProdotto);
+            
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean rimuoviProdotto(int idUtente, int idProdotto) {
+        String query = "DELETE FROM carrello WHERE id_utente = ? AND id_prodotto = ?";
+        try (Connection conn = ConnessioneDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setInt(1, idUtente);
+            ps.setInt(2, idProdotto);
+            
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean svuotaCarrello(int idUtente) {
+        String query = "DELETE FROM carrello WHERE id_utente = ?";
+        try (Connection conn = ConnessioneDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setInt(1, idUtente);
+            
+            return ps.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }
