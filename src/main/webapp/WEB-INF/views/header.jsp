@@ -1,4 +1,27 @@
-<% 
+<%@ page import="java.util.Map" %>
+<%@ page import="com.bean.UtenteBean" %>
+<%@ page import="com.dao.CarrelloDAO" %>
+<%
+    int badgeCount = 0;
+    UtenteBean utenteBadge = (UtenteBean) session.getAttribute("utenteLoggato");
+
+    if (utenteBadge != null) {
+        CarrelloDAO badgeDao = new CarrelloDAO();
+        Map<Integer, Integer> carrelloDB = badgeDao.getCarrelloUtente(utenteBadge.getId());
+        if (carrelloDB != null) {
+            for (int qty : carrelloDB.values()) {
+                badgeCount += qty;
+            }
+        }
+    } else {
+        @SuppressWarnings("unchecked")
+        Map<Integer, Integer> carrelloSessione = (Map<Integer, Integer>) session.getAttribute("carrelloOspite");
+        if (carrelloSessione != null) {
+            for (int qty : carrelloSessione.values()) {
+                badgeCount += qty;
+            }
+        }
+    }
     boolean isLoggato = (session != null && session.getAttribute("utenteLoggato") != null);
 %>
 
@@ -36,7 +59,7 @@
 
         <a href="/Memory_Cart/Carrello" class="action-icon" title="Carrello">
             <img src="/Memory_Cart/images/cart.png" alt="Carrello" class="nav-icon">
-            <span class="cart-badge">0</span>
+            <span class="cart-badge"><%=badgeCount %></span>
         </a>
         
         <% if(!isLoggato) { %>

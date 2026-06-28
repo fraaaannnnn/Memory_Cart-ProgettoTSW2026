@@ -28,7 +28,7 @@
                 <div class="slide-content">
                     <h2>READY PLAYER ONE?</h2>
                     <p>Le migliori console degli anni '80 e '90, restaurate e pronte a giocare.</p>
-                    <a href="catalogo.html" class="btn-primary">Sfoglia Catalogo</a>
+                    <a href="catalogo.jsp" class="btn-primary">Sfoglia Catalogo</a>
                 </div>
             </div>
 

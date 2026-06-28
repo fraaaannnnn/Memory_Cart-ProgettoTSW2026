@@ -90,7 +90,7 @@
 
         <div class="faq-section">
             <h4 style="font-family: 'Press Start 2P', monospace; color: var(--8bit-teal); font-size: 0.9rem; text-align: center; margin-bottom: 20px;">FAQ</h4>
-            <p style="text-align: center; color: #bbb; font-family: 'Inter', sans-serif; font-size: 0.9rem;">Puoi annullare l'abbonamento PRO GAMER in qualsiasi momento direttamente dalla tua area privata.</p>
+            <p style="text-align: center; color: #bbb; font-family: 'Press Start 2P', monospace; font-size: 0.9rem;">Puoi annullare l'abbonamento PRO GAMER in qualsiasi momento direttamente dalla tua area privata.</p>
         </div>
         
         <div id="toast-container" class="toast-container"></div>

@@ -20,7 +20,7 @@
 }
 
 .club-subtitle {
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Press Start 2P', monospace;
     font-size: 1.1rem;
     color: #bbb;
     max-width: 600px;
@@ -118,7 +118,7 @@
 }
 
 .tier-price .period {
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Press Start 2P', monospace;
     font-size: 0.9rem;
     color: #888;
     margin-bottom: 5px;
@@ -130,7 +130,7 @@
 }
 
 .tier-desc {
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Press Start 2P', monospace;
     font-size: 0.95rem;
     color: #bbb;
 }
@@ -143,7 +143,7 @@
 }
 
 .tier-features li {
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Press Start 2P', monospace;
     font-size: 0.95rem;
     color: var(--classic-white);
     margin-bottom: 15px;
@@ -194,7 +194,7 @@
     background-color: transparent;
     border: 2px solid var(--8bit-teal);
     color: var(--8bit-teal);
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Press Start 2P', monospace;
     font-weight: 700;
     padding: 15px;
     border-radius: 4px;
