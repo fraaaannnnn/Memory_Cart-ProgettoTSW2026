@@ -1,0 +1,285 @@
+@charset "UTF-8";
+.shop-container {
+    max-width: 1200px;
+    margin: 4rem auto 8rem auto;
+    padding: 0 20px;
+    min-height: calc(100vh - 250px);
+}
+
+.page-title {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--insert-coin-pink);
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    text-shadow: 3px 3px var(--cyber-purple);
+    text-align: center;
+}
+
+.profile-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.profile-sidebar {
+    background-color: #111122;
+    border: 2px solid var(--cyber-purple);
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+}
+
+.avatar-container {
+    margin-bottom: 25px;
+    border-bottom: 2px dashed var(--cyber-purple);
+    padding-bottom: 20px;
+}
+
+.avatar-pixel {
+    width: 90px;
+    height: 90px;
+    background-color: var(--deep-space);
+    border: 3px solid var(--8bit-teal);
+    margin: 0 auto 15px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(50, 224, 196, 0.3);
+}
+
+.p1-badge {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--insert-coin-pink);
+    font-size: 1.5rem;
+}
+
+.avatar-container h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    color: var(--classic-white);
+    margin-bottom: 8px;
+}
+
+.rank-title {
+    font-family: 'Press Start 2P', monospace;
+    font-weight: 700;
+    color: var(--insert-coin-pink);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.stats-box h4 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.75rem;
+    color: var(--8bit-teal);
+    margin-bottom: 15px;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: #bbb;
+}
+
+.stat-value {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--classic-white);
+    font-size: 0.75rem;
+}
+
+.xp-bar-container {
+    background-color: var(--deep-space);
+    border: 1px solid var(--cyber-purple);
+    height: 12px;
+    width: 100%;
+    border-radius: 6px;
+    margin: 15px 0 8px 0;
+    overflow: hidden;
+}
+
+.xp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--cyber-purple), var(--8bit-teal));
+    box-shadow: 0 0 8px var(--8bit-teal);
+}
+
+.xp-next-level {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.75rem;
+    color: #777;
+}
+
+.profile-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.profile-card-section {
+    background-color: #111122;
+    border: 2px solid var(--cyber-purple);
+    border-radius: 8px;
+    padding: 30px;
+}
+
+.profile-card-section h3 {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--8bit-teal);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.retro-form .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+}
+
+.form-group label {
+    font-family: 'Press Start 2P', monospace;
+    font-weight: 600;
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+.form-group input {
+    width: 100%; 
+    max-width: 100%;
+    box-sizing: border-box; 
+    background-color: var(--deep-space);
+    border: 2px solid var(--cyber-purple);
+    color: var(--classic-white);
+    padding: 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--8bit-teal);
+    box-shadow: 0 0 10px rgba(50, 224, 196, 0.4);
+}
+
+.save-btn {
+    font-family: 'Press Start 2P', monospace;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.orders-table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.retro-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Press Start 2P', monospace;
+    text-align: left;
+}
+
+.retro-table th {
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.65rem;
+    color: #888;
+    padding: 12px;
+    border-bottom: 2px solid var(--cyber-purple);
+}
+
+.retro-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid rgba(112, 11, 151, 0.4);
+    color: var(--classic-white);
+    font-size: 0.95rem;
+}
+
+.order-id {
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.7rem;
+    color: var(--8bit-teal);
+}
+
+.status-badge {
+    font-family: 'Press Start 2P', monospace !important;
+    font-size: 0.55rem;
+    padding: 6px 10px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.status-badge.completed {
+    background-color: rgba(50, 224, 196, 0.15);
+    color: var(--8bit-teal);
+    border: 1px solid var(--8bit-teal);
+}
+
+.status-badge.processing {
+    background-color: rgba(255, 0, 117, 0.15);
+    color: var(--insert-coin-pink);
+    border: 1px solid var(--insert-coin-pink);
+    box-shadow: 0 0 5px rgba(255, 0, 117, 0.2);
+}
+
+@media (max-width: 992px) {
+    .profile-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .retro-form .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-layout, 
+    .profile-main-content, 
+    .profile-card-section {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .page-title {
+        font-size: 1.3rem;
+    }
+
+    .profile-card-section h3 {
+        font-size: 0.65rem;
+        line-height: 1.5;
+        word-wrap: break-word; 
+    }
+
+    .profile-card-section {
+        padding: 15px;
+    }
+    
+    .shop-container {
+        padding: 0 15px;
+    }
+
+    .retro-table th {
+        font-size: 0.5rem;
+        padding: 8px 5px;
+    }
+
+    .retro-table td {
+        font-size: 0.75rem;
+        padding: 10px 5px;
+    }
+}

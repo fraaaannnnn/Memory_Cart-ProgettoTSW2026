@@ -42,7 +42,6 @@ public class AbbonamentoServlet extends HttpServlet {
             if (successo) {
                 utente.setAbbonato(true);
                 session.setAttribute("utenteLoggato", utente);
-                
                 response.sendRedirect("Abbonamento?success=true");
             } else {
                 response.sendRedirect("Abbonamento?error=true");

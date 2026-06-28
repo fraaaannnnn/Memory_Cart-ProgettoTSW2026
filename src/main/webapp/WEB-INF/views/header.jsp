@@ -46,7 +46,7 @@
             <% if(!isLoggato) { %>
                 <li class="mobile-login"><a href="/Memory_Cart/Login">Login</a></li>
             <% } else { %>
-                <li class="mobile-login"><a href="/Memory_Cart/Profilo">Profilo</a></li>
+                <li class="mobile-login"><a href="Profilo">Profilo</a></li>
                 <li class="mobile-login"><a href="/Memory_Cart/LogOut" id="logout-btn">Logout</a></li>
             <% } %>
         </ul>
