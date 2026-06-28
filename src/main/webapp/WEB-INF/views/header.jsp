@@ -36,9 +36,9 @@
 
     <nav id="mainNav">
         <ul>
-            <li><a href="/Memory_Cart/Console">Catalogo</a></li>
-            <li><a href="/Memory_Cart/Arcade">Console</a></li>
-            <li><a href="/Memory_Cart/Cartucce">Giochi</a></li>
+            <li><a href="/Memory_Cart/Catalogo">Catalogo</a></li>
+            <li><a href="/Memory_Cart/Catalogo?categoria=2">Console</a></li>
+            <li><a href="/Memory_Cart/Catalogo?categoria=1">Giochi</a></li>
             
             <li class="mobile-action"><a href="/Memory_Cart/Preferiti">Preferiti</a></li>
             <li class="mobile-action"><a href="/Memory_Cart/Carrello">Carrello</a></li>
