@@ -54,6 +54,36 @@ public class UtenteDAO {
             return false;
         }
     }
+    
+    public boolean aggiornaDatiUtente(int idUtente, String username, String email, String hashPassword, String indirizzo) {
+        boolean cambiaPassword = (hashPassword != null);
+        String query = cambiaPassword 
+            ? "UPDATE utenti SET nickname = ?, Email = ?, Pw = ?, indirizzo = ? WHERE id_utente = ?" 
+            : "UPDATE utenti SET nickname = ?, Email = ?, indirizzo = ? WHERE id_utente = ?";
+
+        try (Connection connection = ConnessioneDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(query)) {
+             
+            ps.setString(1, username);
+            ps.setString(2, email);
+            
+            if (cambiaPassword) {
+                ps.setString(3, hashPassword);
+                ps.setString(4, indirizzo);
+                ps.setInt(5, idUtente);
+            } else {
+                ps.setString(3, indirizzo);
+                ps.setInt(4, idUtente);
+            }
+            
+            int righeModificate = ps.executeUpdate();
+            return righeModificate > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 
     public UtenteBean loginUtente(String email, String passwordInChiaro) {
         UtenteBean bean = null;
@@ -75,6 +105,8 @@ public class UtenteDAO {
                         bean.setPw(hashSalvato); 
                         bean.setAdmin(resultSet.getBoolean("Admin"));
                         bean.setAbbonato(resultSet.getBoolean("Abbonato"));
+                        bean.setUserName(resultSet.getString("nickname"));
+                        bean.setIndirizzo(resultSet.getString("indirizzo"));
                     }
                 }
             }

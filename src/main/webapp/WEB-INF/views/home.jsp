@@ -37,7 +37,7 @@
                 <div class="slide-content">
                     <h2>INSERT COIN</h2>
                     <p>Unisciti all'Arcade Club e accumula punti XP per sbloccare sconti leggendari.</p>
-                    <a href="abbonamento" class="btn-primary">Unisciti Ora</a>
+                    <a href="Abbonamento" class="btn-primary">Unisciti Ora</a>
                 </div>
             </div>
 

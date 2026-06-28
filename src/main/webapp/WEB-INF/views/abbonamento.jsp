@@ -76,7 +76,7 @@
                     <% 
                         } else {
                     %>
-                        <form action="abbonamento" method="post">
+                        <form action="Abbonamento" method="post">
                             <input type="hidden" name="tier" value="progamer">
                             <button type="submit" class="btn-primary upgrade-btn">INSERT COIN (ABBONATI)</button>
                         </form>
