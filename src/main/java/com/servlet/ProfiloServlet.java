@@ -14,12 +14,6 @@ public class ProfiloServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(false);
-        if (session == null || session.getAttribute("utenteLoggato") == null) {
-            response.sendRedirect(request.getContextPath() + "/Login");
-            return;
-        }
         request.getRequestDispatcher("/WEB-INF/views/profilo.jsp").forward(request, response);
     }
 

@@ -7,10 +7,11 @@
 <%@ page import="com.dao.ProdottoDAO" %> <%
     UtenteBean utenteLoggato = (UtenteBean) session.getAttribute("utenteLoggato");
     Map<Integer, Integer> carrelloDaMostrare = new HashMap<>();
-
+	boolean isAbbonato = false;
     if (utenteLoggato != null) {
         CarrelloDAO carrelloDAO = new CarrelloDAO();
         carrelloDaMostrare = carrelloDAO.getCarrelloUtente(utenteLoggato.getId());
+        isAbbonato = utenteLoggato.getAbbonato();
     } else {
         carrelloDaMostrare = (Map<Integer, Integer>) session.getAttribute("carrelloOspite");
         if (carrelloDaMostrare == null) {
@@ -127,10 +128,14 @@
                 </div>
                 <div class="summary-row">
                     <span>Spedizione</span>
-                    <% if(totaleCarrello == 0) { spedizione = 0; } %>
-                    <span>€ <%= String.format("%.2f", spedizione) %></span>
+                    <% if(totaleCarrello == 0 || isAbbonato){ spedizione = 0; } 
+                    %>
+                    <%if (isAbbonato) {%>
+                    <span class="custom-strike"><%= String.format("%.2f", spedizione + 5) %></span><span style="color: var(--insert-coin-pink)">€ <%= String.format("%.2f", spedizione) %></span>
+                	<%} else { %>
+                	<span>€ <%= String.format("%.2f", spedizione) %></span>
+                	<%} %>
                 </div>
-                
                 <hr class="neon-divider">
                 
                 <div class="summary-row total">

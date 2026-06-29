@@ -320,6 +320,21 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
+.custom-strike {
+    position: relative;
+    display: inline-block;
+    text-decoration: none !important; 
+}
+
+.custom-strike::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 40%;
+    width: 100%;
+    height: 2px; 
+    background-color: currentColor;
+}
 
 @media (max-width: 992px) {
     .cart-layout {
@@ -354,5 +369,132 @@
         position: absolute;
         top: 15px;
         right: 15px;
+    }
+}
+@media (max-width: 425px) {
+    .shop-container {
+        margin: 2rem auto;
+        padding: 0 10px; 
+    }
+
+    .page-title {
+        font-size: 1.2rem; 
+        margin-bottom: 2rem;
+    }
+
+    .cart-item-card {
+        padding: 10px;
+    }
+
+    .cart-img-box {
+        height: 120px; 
+    }
+
+    .item-name {
+        font-size: 0.65rem; 
+    }
+
+    .item-price .price-value {
+        font-size: 0.8rem;
+    }
+
+    .quantity-control input {
+        width: 30px;
+        font-size: 0.7rem;
+    }
+
+    .qty-btn {
+        padding: 5px;
+    }
+
+
+    .cart-summary-section {
+        padding: 15px; 
+    }
+
+    .summary-row {
+        font-size: 0.8rem; 
+    }
+
+    .summary-row.total {
+        font-size: 1rem;
+    }
+
+    .btn-empty-cart {
+        font-size: 0.65rem;
+        padding: 8px 10px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .checkout-btn {
+        font-size: 0.8rem;
+        padding: 12px 10px;
+    }
+    
+}
+
+/* --- Fix per schermi molto piccoli (Mobile sotto i 425px) --- */
+@media (max-width: 425px) {
+    .shop-container {
+        margin: 2rem auto;
+        padding: 0 10px; /* Riduciamo i margini laterali per dare respiro */
+    }
+
+    .page-title {
+        font-size: 1.2rem; /* Titolo più piccolo per evitare lo scrolling orizzontale */
+        margin-bottom: 2rem;
+    }
+
+    .cart-item-card {
+        padding: 10px;
+    }
+
+    .cart-img-box {
+        height: 120px; /* Immagine leggermente più compatta */
+    }
+
+    .item-name {
+        font-size: 0.65rem; /* Cruciale: rimpicciolire il font 8-bit per non rompere la card */
+    }
+
+    .item-price .price-value {
+        font-size: 0.8rem;
+    }
+
+    /* Rimpiccioliamo i controlli della quantità */
+    .quantity-control input {
+        width: 30px;
+        font-size: 0.7rem;
+    }
+
+    .qty-btn {
+        padding: 5px;
+    }
+
+    /* Ottimizzazione del box riepilogo */
+    .cart-summary-section {
+        padding: 15px; /* Riduciamo i 30px originali che schiacciavano il testo */
+    }
+
+    .summary-row {
+        font-size: 0.8rem; /* Font più piccolo per far stare Subtotale e Prezzo sulla stessa linea */
+    }
+
+    .summary-row.total {
+        font-size: 1rem;
+    }
+
+    /* Adattiamo i bottoni finali */
+    .btn-empty-cart {
+        font-size: 0.65rem;
+        padding: 8px 10px;
+        width: 100%; /* Spinge il bottone a prendere tutta la larghezza */
+        text-align: center;
+    }
+
+    .checkout-btn {
+        font-size: 0.8rem;
+        padding: 12px 10px;
     }
 }
