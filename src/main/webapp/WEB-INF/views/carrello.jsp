@@ -58,8 +58,8 @@
                     for (Map.Entry<Integer, Integer> entry : carrelloDaMostrare.entrySet()) {
                         int idProdotto = entry.getKey();
                         int quantita = entry.getValue();
-                        
                         ProdottoBean prodotto = prodottoDAO.prodottoDaId(idProdotto);
+                        if (quantita > prodotto.getQuantita()) quantita = prodotto.getQuantita();
                         
                         if (prodotto != null) {
                             totaleCarrello += (prodotto.getPrezzo() * quantita);
@@ -70,7 +70,7 @@
                         <img src="<%= prodotto.getImmagine() %>" alt="<%= prodotto.getNome() %>">
                     </div>
                     <div class="cart-item-details">
-    					<a href="DettaglioProdotto?id=<%= idProdotto %>" class="item-name"><%= prodotto.getNome() %></a>
+    					<a href="Prodotto?id=<%= idProdotto %>" class="item-name"><%= prodotto.getNome() %></a>
 					    <span class="item-reviews" style="font-size: 0.8rem; color: #ffcc00; margin-top: 5px; display: block;">
 					        <% if (prodotto.getNumeroRecensioni() > 0) { %>
 					            ⭐ <%= String.format("%.1f", prodotto.getMediaStelle()) %> 
@@ -82,14 +82,19 @@
 					</div>
                     <div class="cart-item-actions">
                         <div class="quantity-control">
-                            <form action="AggiornaQuantita" method="post" style="display: flex;">
-                                <input type="hidden" name="idProdotto" value="<%= idProdotto %>">
-                                
-                                <button type="submit" name="azione" value="diminuisci" class="qty-btn">-</button>
-                                <input type="number" name="quantita" value="<%= quantita %>" readonly>
-                                <button type="submit" name="azione" value="aumenta" class="qty-btn">+</button>
-                            </form>
-                        </div>
+						    <form action="AggiornaQuantita" method="post" style="display: flex;">
+						        <input type="hidden" name="idProdotto" value="<%= idProdotto %>">
+						        
+						        <button type="submit" name="azione" value="diminuisci" class="qty-btn">-</button>
+						        <input type="number" name="quantita" value="<%= quantita %>" readonly>
+						        
+						        <% if (quantita < prodotto.getQuantita()) { %>
+						            <button type="submit" name="azione" value="aumenta" class="qty-btn">+</button>
+						        <% } else { %>
+						            <button type="button" class="qty-btn" disabled style="opacity: 0.5; cursor: not-allowed; color: var(--insert-coin-pink); font-family: 'Press Start 2P', monospace;" title="Scorte massime raggiunte">MAX</button>
+						        <% } %>
+						    </form>
+						</div>
                         <div class="item-price">
                             <span class="price-value">€ <%= String.format("%.2f", prodotto.getPrezzo() * quantita) %></span>
                         </div>
@@ -152,8 +157,6 @@
 
         </div>
     </main>
-
-    <div id="toast-container" class="toast-container"></div>
     <%@ include file="footer.jsp"%>
 </body>
 </html>

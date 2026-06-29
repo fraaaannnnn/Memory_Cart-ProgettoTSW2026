@@ -63,7 +63,6 @@
                 List<ProdottoBean> prodotti = (List<ProdottoBean>) request.getAttribute("prodottiVetrina");
                 if (prodotti != null && !prodotti.isEmpty()) {
                     for (ProdottoBean prodotto : prodotti) {
-                        // Allineato alla logica sicura del catalogo per dividere euro e centesimi
                         String prezzoFormat = String.format("%.2f", prodotto.getPrezzo()).replace(",", ".");
                         String[] prezzoSplit = prezzoFormat.split("\\.");
                         String parteIntera = prezzoSplit[0];

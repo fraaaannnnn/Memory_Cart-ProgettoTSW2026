@@ -60,16 +60,29 @@
                     </p> 
                 
                 <div class="product-price-large">
+                <% 
+                if(prodotto.getQuantita() > 0) {
+                %>
                     <span class="currency">€</span>
                     <span class="whole"><%= parteIntera %></span>
                     <span class="fraction"><%= decimali %></span>
+				<%} else {
+					%>
+					<span class="whole">SOLD OUT</span>
+				<%} %>
                 </div>                
-                
+                <p style="font-size: 10px; transform: translateY(20%)">
+                        Quantità: <%=prodotto.getQuantita() %>
+                    </p> 
                 <form action="Carrello" method="post" class="add-to-cart-form">
 				    <input type="hidden" name="action" value="add">
 				    <input type="hidden" name="idProdotto" value="<%= prodotto.getId() %>">
 				    <input type="hidden" name="quantita" value="1">
+				    <%if(prodotto.getQuantita() > 0) {%>				    
 				    <button type="submit" class="btn-primary btn-add-cart">Aggiungi al Carrello</button>
+				    <%} else { %>
+				    <button type="submit" class="btn-primary btn-add-cart" disabled>Aggiungi al Carrello</button>
+					<%} %>
 				    <button type="button" class="btn-wishlist">❤</button>
 				</form>
             </div>
