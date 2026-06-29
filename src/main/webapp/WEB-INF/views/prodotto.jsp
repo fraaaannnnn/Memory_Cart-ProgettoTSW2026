@@ -70,7 +70,7 @@
 				    <input type="hidden" name="idProdotto" value="<%= prodotto.getId() %>">
 				    <input type="hidden" name="quantita" value="1">
 				    <button type="submit" class="btn-primary btn-add-cart">Aggiungi al Carrello</button>
-				    <button type="button" class="btn-wishlist">❤</button>
+                    <button type="submit" class="btn-wishlist" formaction="AggiungiPreferito">❤</button>
 				</form>
             </div>
         </section>
