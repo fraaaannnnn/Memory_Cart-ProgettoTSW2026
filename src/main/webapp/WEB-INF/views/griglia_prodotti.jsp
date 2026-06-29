@@ -35,13 +35,22 @@
                     </div>  
                     
                     <div class="product-price">
+                    <%if(prodotto.getQuantita() > 0) {
+                    	%>
                         <span class="currency">€</span><span class="whole"><%= whole %></span><span class="fraction"><%= fraction %></span>
+                    <%} else {
+                    	%>
+                        <span class="currency"></span><span class="whole">SOLD OUT</span>
+                    <%} %>
                     </div>
-                    
                     <form action="Carrello" method="post" class="product-form">
                         <input type="hidden" name="idProdotto" value="<%= prodotto.getId() %>">
                         <input type="hidden" name="quantita" value="1">
-                        <button type="submit" class="btn-cart">AGGIUNGI AL CARRELLO</button>
+                    <%if(prodotto.getQuantita() > 0 ) { %>
+                        <button type="submit" class="btn-cart">AGGIUNGI AL CARRELLO</button>                    
+                    <%} else { %>
+                    	<button type="submit" class="btn-cart" disabled>AGGIUNGI AL CARRELLO</button>                    
+                    <% } %>
                     </form>
                 </div>
             </div>

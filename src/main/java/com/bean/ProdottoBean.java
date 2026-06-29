@@ -8,6 +8,7 @@ public class ProdottoBean implements Serializable {
     
     private int id;
     private int numero_recensioni;
+    private int quantita;
     private double prezzo;
     private double media_stelle;
     private String nome;
@@ -19,6 +20,19 @@ public class ProdottoBean implements Serializable {
 
     public int getId() {
         return id;
+    }
+    public double getPrezzo() {
+    	return prezzo;
+    }
+    
+    public void setPrezzo(double prezzo) {
+    	this.prezzo = prezzo;
+    }
+    public int getQuantita() {
+    	return quantita;
+    }
+    public void setQuantita(int quantita) {
+    	this.quantita = quantita;
     }
 
     public void setId(int id) {
@@ -41,13 +55,6 @@ public class ProdottoBean implements Serializable {
         this.descrizione = descrizione;
     }
 
-    public double getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
-    }
 
     public String getImmagine() {
         return immagine;
@@ -72,6 +79,6 @@ public class ProdottoBean implements Serializable {
     
     @Override
     public String toString() {
-        return "ProdottoBean [id=" + id + ", nome=" + nome + ", prezzo=" + prezzo + "]";
+        return "ProdottoBean [id=" + id +  ",numero_recensioni" + numero_recensioni +",quantita="+ quantita + ",nome=" + nome + ",prezzo=" + prezzo + ",media_stelle" + media_stelle + ",descrizione" + descrizione +",immagine" + immagine + "]";
     }
 }

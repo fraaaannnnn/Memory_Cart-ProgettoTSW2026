@@ -32,7 +32,7 @@ header {
     justify-content: space-between;
     align-items: center;
     border-bottom: 3px solid var(--cyber-purple);
-    box-shadow: 0 4px 15px rgba(112, 11, 151, 0.3);
+    box-shadow: 0 4px 15px var(--cyber-purple);
     position: sticky;
     top: 0;
     z-index: 99999; 
@@ -44,7 +44,7 @@ header h1 {
     font-family: 'Press Start 2P', monospace;
     font-size: 1.2rem;
     color: var(--insert-coin-pink);
-    text-shadow: 0 0 10px rgba(255, 0, 117, 0.6);
+    text-shadow: 0 0 10px var(--insert-coin-pink);
 }
 
 .user-dropdown-container {
@@ -61,7 +61,7 @@ header h1 {
     border: 2px solid var(--cyber-purple);
     border-radius: 8px;
     min-width: 160px;
-    box-shadow: 0 4px 15px rgba(112, 11, 151, 0.5);
+    box-shadow: 0 4px 15px var(--cyber-purple);
     z-index: 100000;
     flex-direction: column;
     overflow: hidden;
@@ -79,7 +79,7 @@ header h1 {
     font-size: 0.7rem;
     transition: background-color 0.3s, color 0.3s;
     text-align: left;
-    border-bottom: 1px solid rgba(112, 11, 151, 0.3);
+    border-bottom: 1px solid var(--cyber-purple);
 }
 
 .user-dropdown-menu a:last-child {
@@ -88,7 +88,7 @@ header h1 {
 }
 
 .user-dropdown-menu a:hover {
-    background-color: rgba(50, 224, 196, 0.1);
+    background-color: var(--8bit-teal);
     color: var(--8bit-teal);
 }
 
@@ -137,7 +137,7 @@ nav ul li a:hover {
 }
 
 .btn-primary {
-	font-family: 'Press Start 2P', monospace;
+    font-family: 'Press Start 2P', monospace;
     display: inline-block;
     background-color: var(--insert-coin-pink);
     color: var(--classic-white);
@@ -148,7 +148,7 @@ nav ul li a:hover {
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
-    box-shadow: 0 0 10px rgba(255, 0, 117, 0.5);
+    box-shadow: 0 0 10px var(--insert-coin-pink);
     transition: 0.3s;
 }
 
@@ -247,7 +247,7 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
 
 .product-card:hover {
     border-color: var(--8bit-teal);
-    box-shadow: 0 0 15px rgba(50, 224, 196, 0.3);
+    box-shadow: 0 0 15px var(--8bit-teal);
     transform: translateY(-5px);
 }
 
@@ -332,7 +332,7 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
 .product-price .whole {
     font-size: 1.4rem;
     color: var(--8bit-teal);
-    text-shadow: 0 0 5px rgba(50, 224, 196, 0.4);
+    text-shadow: 0 0 5px var(--8bit-teal);
 }
 
 .product-price .fraction {
@@ -357,7 +357,7 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     font-family: 'Press Start 2P', monospace;
     font-size: 0.6rem;
     margin-bottom: 20px;
-    text-shadow: 0 0 5px rgba(255, 0, 117, 0.4);
+    text-shadow: 0 0 5px var(--insert-coin-pink);
 }
 
 .product-form {
@@ -377,7 +377,12 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     cursor: pointer;
     width: 100%;
     transition: all 0.3s;
-    box-shadow: 0 0 10px rgba(255, 0, 117, 0.3);
+    box-shadow: 0 0 10px var(--insert-coin-pink);
+}
+
+.btn-cart:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .btn-cart:hover {
@@ -401,8 +406,8 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
 }
 
 .user-email {
-	min-width: 0;
-	overflow: hidden;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .user-email p {
@@ -413,6 +418,22 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     text-overflow: ellipsis;
     margin: 0;
 }
+.custom-strike {
+    position: relative;
+    display: inline-block;
+    text-decoration: none !important; 
+}
+
+.custom-strike::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 40%;
+    width: 100%;
+    height: 2px; 
+    background-color: currentColor;
+}
+
 @media (max-width: 992px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -440,8 +461,9 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
         text-align: center;
         width: 100%;
     }
+    
     #logout-btn {
-    	color: var(--insert-coin-pink);
+        color: var(--insert-coin-pink);
     }
 
     nav {
@@ -450,7 +472,7 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-color: rgba(26, 26, 46, 0.98);
+        background-color: var(--deep-space);
         backdrop-filter: blur(5px);
         display: flex;
         justify-content: center;

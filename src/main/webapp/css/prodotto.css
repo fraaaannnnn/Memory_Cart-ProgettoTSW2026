@@ -111,6 +111,12 @@
     font-family: 'Press Start 2P';
 }
 
+.btn-add-cart:disabled{
+	opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
 .btn-wishlist {
     background-color: transparent;
     border: 2px solid var(--classic-white);

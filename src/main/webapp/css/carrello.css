@@ -320,21 +320,7 @@
     opacity: 0.5;
     cursor: not-allowed;
 }
-.custom-strike {
-    position: relative;
-    display: inline-block;
-    text-decoration: none !important; 
-}
 
-.custom-strike::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 40%;
-    width: 100%;
-    height: 2px; 
-    background-color: currentColor;
-}
 
 @media (max-width: 992px) {
     .cart-layout {

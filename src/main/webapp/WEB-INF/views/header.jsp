@@ -1,27 +1,45 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="com.bean.UtenteBean" %>
+<%@ page import="com.bean.ProdottoBean" %>
 <%@ page import="com.dao.CarrelloDAO" %>
+<%@ page import="com.dao.ProdottoDAO" %>
 <%
     int badgeCount = 0;
     UtenteBean utenteBadge = (UtenteBean) session.getAttribute("utenteLoggato");
 
+    // Inizializziamo i DAO
+    CarrelloDAO badgeDao = new CarrelloDAO();
+    ProdottoDAO badgeProdottoDao = new ProdottoDAO();
+    
+    Map<Integer, Integer> carrelloDaContare = null;
+
     if (utenteBadge != null) {
-        CarrelloDAO badgeDao = new CarrelloDAO();
-        Map<Integer, Integer> carrelloDB = badgeDao.getCarrelloUtente(utenteBadge.getId());
-        if (carrelloDB != null) {
-            for (int qty : carrelloDB.values()) {
-                badgeCount += qty;
-            }
-        }
+        carrelloDaContare = badgeDao.getCarrelloUtente(utenteBadge.getId());
     } else {
         @SuppressWarnings("unchecked")
         Map<Integer, Integer> carrelloSessione = (Map<Integer, Integer>) session.getAttribute("carrelloOspite");
-        if (carrelloSessione != null) {
-            for (int qty : carrelloSessione.values()) {
-                badgeCount += qty;
+        carrelloDaContare = carrelloSessione;
+    }
+
+    // Se c'è un carrello, contiamo i pezzi rispettando i limiti reali
+    if (carrelloDaContare != null) {
+        for (Map.Entry<Integer, Integer> entry : carrelloDaContare.entrySet()) {
+            int idProdotto = entry.getKey();
+            int quantitaNelDB = entry.getValue();
+            
+            ProdottoBean p = badgeProdottoDao.prodottoDaId(idProdotto);
+            
+            if (p != null) {
+                // Il FIX: Se la quantità nel DB supera le scorte reali, conta solo le scorte
+                if (quantitaNelDB > p.getQuantita()) {
+                    badgeCount += p.getQuantita();
+                } else {
+                    badgeCount += quantitaNelDB;
+                }
             }
         }
     }
+    
     boolean isLoggato = (session != null && session.getAttribute("utenteLoggato") != null);
 %>
 

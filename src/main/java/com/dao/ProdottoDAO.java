@@ -15,7 +15,7 @@ public class ProdottoDAO {
     public List<ProdottoBean> getProdottiInEvidenza(int limit) {
         List<ProdottoBean> prodotti = new ArrayList<>();
         
-        String query = "SELECT * FROM " + NOME_TABELLA + " ORDER BY id DESC LIMIT ?";
+        String query = "SELECT * FROM " + NOME_TABELLA + " WHERE quantita_magazzino > 0 ORDER BY id DESC LIMIT ?";
 
         try (Connection connection = ConnessioneDB.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -33,6 +33,7 @@ public class ProdottoDAO {
                     bean.setImmagine(resultSet.getString("immagine"));
                     bean.setMediaStelle(resultSet.getDouble("media_stelle"));
                     bean.setNumeroRecensioni(resultSet.getInt("totale_recensioni"));
+                    bean.setQuantita(resultSet.getInt("quantita_magazzino"));
                     prodotti.add(bean);
                 }
             }
@@ -45,7 +46,7 @@ public class ProdottoDAO {
     }
     
     public ProdottoBean prodottoDaId(int id) {
-        ProdottoBean prodotto = null;
+        ProdottoBean bean = null;
         String query = "SELECT * FROM " + NOME_TABELLA + " WHERE id = ?";
 
         try (Connection connection = ConnessioneDB.getConnection();
@@ -55,14 +56,15 @@ public class ProdottoDAO {
             
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    prodotto = new ProdottoBean();
-                    prodotto.setId(resultSet.getInt("id"));
-                    prodotto.setNome(resultSet.getString("nome"));
-                    prodotto.setDescrizione(resultSet.getString("descrizione"));
-                    prodotto.setPrezzo(resultSet.getDouble("prezzo"));
-                    prodotto.setImmagine(resultSet.getString("immagine"));
-                    prodotto.setMediaStelle(resultSet.getDouble("media_stelle"));
-                    prodotto.setNumeroRecensioni(resultSet.getInt("totale_recensioni"));
+                    bean = new ProdottoBean();
+                    bean.setId(resultSet.getInt("id"));
+                    bean.setNome(resultSet.getString("nome"));
+                    bean.setDescrizione(resultSet.getString("descrizione"));
+                    bean.setPrezzo(resultSet.getDouble("prezzo"));
+                    bean.setImmagine(resultSet.getString("immagine"));
+                    bean.setMediaStelle(resultSet.getDouble("media_stelle"));
+                    bean.setNumeroRecensioni(resultSet.getInt("totale_recensioni"));
+                    bean.setQuantita(resultSet.getInt("quantita_magazzino"));	
                 }
             }
 
@@ -70,7 +72,7 @@ public class ProdottoDAO {
             System.err.println("Errore durante l'estrazione del prodotto per ID: " + e.getMessage());
         }
 
-        return prodotto;
+        return bean;
     }
     
     public List<ProdottoBean> getProdottiFiltrati(String[] categorie, String prezzoMax, String sort, int limit, int offset) {
@@ -134,15 +136,15 @@ public class ProdottoDAO {
             ResultSet rs = ps.executeQuery();
             
             while (rs.next()) {
-                ProdottoBean p = new ProdottoBean();
-                p.setId(rs.getInt("id"));
-                p.setNome(rs.getString("nome"));
-                p.setPrezzo(rs.getDouble("prezzo"));
-                p.setImmagine(rs.getString("immagine"));
-                p.setMediaStelle(rs.getDouble("media_stelle"));
-                p.setNumeroRecensioni(rs.getInt("totale_recensioni"));
-                
-                lista.add(p);
+                ProdottoBean bean = new ProdottoBean();
+                bean.setId(rs.getInt("id"));
+                bean.setNome(rs.getString("nome"));
+                bean.setPrezzo(rs.getDouble("prezzo"));
+                bean.setImmagine(rs.getString("immagine"));
+                bean.setMediaStelle(rs.getDouble("media_stelle"));
+                bean.setNumeroRecensioni(rs.getInt("totale_recensioni"));
+                bean.setQuantita(rs.getInt("quantita_magazzino"));
+                lista.add(bean);
             }
         } catch (SQLException e) {
             System.err.println("Errore query filtrata: " + e.getMessage());
@@ -190,6 +192,26 @@ public class ProdottoDAO {
             e.printStackTrace();
         }
         return totale;
+    }
+    
+    public boolean aggiornaMagazzinoDopoAcquisto(int idProdotto, int quantitaAcquistata) {
+        String query = "UPDATE prodotti SET quantita_magazzino = quantita_magazzino - ? WHERE id = ? AND quantita_magazzino >= ?";
+        
+        try (Connection conn = ConnessioneDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            
+            ps.setInt(1, quantitaAcquistata);
+            ps.setInt(2, idProdotto);
+            ps.setInt(3, quantitaAcquistata);
+            
+            int righeAggiornate = ps.executeUpdate();
+            
+             return righeAggiornate > 0;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
 	
