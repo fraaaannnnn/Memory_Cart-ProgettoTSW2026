@@ -25,11 +25,11 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-    	if(session.getAttribute("utenteLoggato") != null) {
-            response.sendRedirect("/Memory_Cart/"); 
-    	} else {
-    		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);    		
-    	}
+        if(session.getAttribute("utenteLoggato") != null) {
+            response.sendRedirect(request.getContextPath() + "/"); 
+        } else {
+            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);         
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,7 +60,6 @@ public class LoginServlet extends HttpServlet {
                 session.removeAttribute("carrelloOspite");
             }
             
-            
             if (keepMeLoggedIn != null) {
                 String tokenInChiaro = TokenUtil.generateToken();
 
@@ -75,11 +74,15 @@ public class LoginServlet extends HttpServlet {
                 rememberCookie.setPath(request.getContextPath() + "/");
                 response.addCookie(rememberCookie);
             }
-            response.sendRedirect("/Memory_Cart/"); 
+
+            if (utente.getAdmin()) {
+                response.sendRedirect(request.getContextPath() + "/AdminDashboard");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/");
+            }
             
         } else {
             request.setAttribute("erroreLogin", "Email o password errati. Riprova.");
-            
             request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
         }
     }

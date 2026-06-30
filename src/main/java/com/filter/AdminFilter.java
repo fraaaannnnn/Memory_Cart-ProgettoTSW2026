@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.bean.UtenteBean;
 
-@WebFilter("/Admin/*") 
+@WebFilter({"/AdminDashboard", "/AdminModificaProdotto", "/AdminEliminaProdotto", "/AdminAggiungiProdotto"})
 public class AdminFilter implements Filter {
 
     public void init(FilterConfig fConfig) throws ServletException {}
