@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+.error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 20px;
+    text-align: center;
+    background-color: transparent;
+}
+
+.error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    max-width: 600px;
+}
+
+.glitch-text {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 6rem;
+    color: var(--classic-white, #fff);
+    position: relative;
+    margin: 0;
+    text-shadow: 4px 4px var(--cyber-purple, #6b00ff);
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.glitch-text::before {
+    left: 4px;
+    text-shadow: -2px 0 var(--insert-coin-pink, #ff0075);
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+    left: -4px;
+    text-shadow: -2px 0 var(--8bit-teal, #32e0c4);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+}
+
+.error-title {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--insert-coin-pink, #ff0075);
+    font-size: 2rem;
+    margin: 0;
+    text-shadow: 2px 2px #000;
+}
+
+.error-desc {
+    font-family: 'Press Start 2P', monospace; 
+    color: #bbb;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.insert-coin-text {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--8bit-teal, #32e0c4);
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
+.blink-text {
+    animation: blinker 1.5s linear infinite;
+}
+
+.return-home-btn {
+    display: inline-block;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    padding: 15px 30px;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+@keyframes blinker {
+    50% { opacity: 0; }
+}
+
+@keyframes glitch-anim-1 {
+    0% { clip-path: inset(20% 0 80% 0); }
+    20% { clip-path: inset(60% 0 10% 0); }
+    40% { clip-path: inset(40% 0 50% 0); }
+    60% { clip-path: inset(80% 0 5% 0); }
+    80% { clip-path: inset(10% 0 70% 0); }
+    100% { clip-path: inset(30% 0 20% 0); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { clip-path: inset(10% 0 60% 0); }
+    20% { clip-path: inset(30% 0 20% 0); }
+    40% { clip-path: inset(70% 0 10% 0); }
+    60% { clip-path: inset(20% 0 50% 0); }
+    80% { clip-path: inset(90% 0 5% 0); }
+    100% { clip-path: inset(40% 0 30% 0); }
+}
+
+@media (max-width: 425px) {
+    .glitch-text { font-size: 4rem; }
+    .error-title { font-size: 1.5rem; }
+    .error-desc { font-size: 0.9rem; }
+    .return-home-btn { 
+        font-size: 0.7rem; 
+        padding: 12px 20px; 
+    }
+}
+
+@media (max-width: 320px) {
+    .glitch-text { font-size: 3rem; }
+    .error-title { font-size: 1.2rem; }
+    .insert-coin-text { font-size: 0.6rem; }
+}
+
