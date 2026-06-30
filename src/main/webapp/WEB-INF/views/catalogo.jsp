@@ -138,7 +138,6 @@
                 productGrid.innerHTML = htmlGeneratoDallaJsp; 
             })
             .catch(error => {
-                console.error('[DEBUG-AJAX] Errore:', error);
                 productGrid.innerHTML = `<div style="width: 100%; text-align: center; padding: 50px; color: #bbb;">Errore di sistema.</div>`;
             });
         }
@@ -156,7 +155,7 @@
 
         productGrid.addEventListener('click', function(e) {
             if (e.target.classList.contains('page-link')) {
-                e.preventDefault(); // Evita che la pagina salti in alto
+                e.preventDefault();
                 paginaCorrente = parseInt(e.target.getAttribute('data-page'));
                 fetchFilteredProducts();
                 

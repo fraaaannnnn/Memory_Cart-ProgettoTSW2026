@@ -1,0 +1,55 @@
+@charset "UTF-8";
+        .admin-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        .retro-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--dark-bg, #1a1a2e);
+            border: 2px solid var(--8bit-teal, #32e0c4);
+        }
+        .retro-table th, .retro-table td {
+            border: 1px solid #2a2a4a;
+            padding: 15px;
+            text-align: left;
+            color: var(--classic-white, #fff);
+        }
+        .retro-table th {
+            background-color: #0f3460;
+            color: var(--8bit-teal, #32e0c4);
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+        }
+        .retro-table td {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        .admin-action-btn {
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            display: inline-block;
+            margin: 2px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .btn-edit { background-color: #ffcc00; color: #000; }
+        .btn-delete { background-color: #ff0075; color: #fff; }
+        .btn-add-new { 
+            background-color: var(--8bit-teal, #32e0c4); 
+            color: #000; 
+            padding: 15px 30px; 
+            font-family: 'Press Start 2P', monospace; 
+            font-size: 0.8rem;
+            text-decoration: none; 
+            display: inline-block;
+            margin-bottom: 20px;
+            box-shadow: 4px 4px 0px #0f3460;
+        }
+        .btn-add-new:hover { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #0f3460; }

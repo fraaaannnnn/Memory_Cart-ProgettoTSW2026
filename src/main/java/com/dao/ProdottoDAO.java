@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProdottoDAO {
 
@@ -65,6 +67,7 @@ public class ProdottoDAO {
                     bean.setMediaStelle(resultSet.getDouble("media_stelle"));
                     bean.setNumeroRecensioni(resultSet.getInt("totale_recensioni"));
                     bean.setQuantita(resultSet.getInt("quantita_magazzino"));	
+                    bean.setIdTipo(resultSet.getInt("id_tipo"));
                 }
             }
 
@@ -150,6 +153,97 @@ public class ProdottoDAO {
             System.err.println("Errore query filtrata: " + e.getMessage());
         }
         
+        return lista;
+    }
+    
+    public void salvaProdotto(ProdottoBean p) {
+        String query = "INSERT INTO prodotti (nome, prezzo, immagine, quantita_magazzino, descrizione, id_tipo) VALUES (?, ?, ?, ?, ?, ?)";
+        
+        try (java.sql.Connection con = ConnessioneDB.getConnection();
+             java.sql.PreparedStatement ps = con.prepareStatement(query)) {
+            
+            ps.setString(1, p.getNome());
+            ps.setDouble(2, p.getPrezzo());
+            ps.setString(3, p.getImmagine());
+            ps.setInt(4, p.getQuantita());
+            ps.setString(5, p.getDescrizione());
+            ps.setInt(6, p.getIdTipo()); 
+            
+            ps.executeUpdate();
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void modificaProdotto(ProdottoBean p) {
+        String query = "UPDATE prodotti SET nome = ?, prezzo = ?, immagine = ?, quantita_magazzino = ?, descrizione = ?, id_tipo = ? WHERE id = ?";
+        
+        try (java.sql.Connection con = ConnessioneDB.getConnection();
+             java.sql.PreparedStatement ps = con.prepareStatement(query)) {
+            
+            ps.setString(1, p.getNome());
+            ps.setDouble(2, p.getPrezzo());
+            ps.setString(3, p.getImmagine());
+            ps.setInt(4, p.getQuantita());
+            ps.setString(5, p.getDescrizione());
+            ps.setInt(6, p.getIdTipo());
+            ps.setInt(7, p.getId());
+            
+            ps.executeUpdate();
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void eliminaProdotto(int id) {
+        String query = "DELETE FROM prodotti WHERE id = ?";
+        try (Connection con = ConnessioneDB.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            
+            ps.setInt(1, id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public Map<Integer, String> getCategorie() {
+        Map<Integer, String> categorie = new LinkedHashMap<>();
+        String query = "SELECT id, descrizione FROM tipo_prodotto"; 
+        
+        try (Connection con = ConnessioneDB.getConnection();
+             PreparedStatement ps = con.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+            
+            while (rs.next()) {
+                categorie.put(rs.getInt("id"), rs.getString("descrizione"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return categorie;
+    }
+    
+    public List<ProdottoBean> ProdottiAdmin() {
+        List<ProdottoBean> lista = new ArrayList<>();
+        String query = "SELECT * FROM prodotti"; 
+        
+        try (java.sql.Connection con = ConnessioneDB.getConnection();
+             java.sql.PreparedStatement ps = con.prepareStatement(query);
+             java.sql.ResultSet rs = ps.executeQuery()) {
+            
+            while (rs.next()) {
+                ProdottoBean p = new ProdottoBean();
+                p.setId(rs.getInt("id"));
+                p.setNome(rs.getString("nome"));
+                p.setPrezzo(rs.getDouble("prezzo"));
+                p.setImmagine(rs.getString("immagine"));
+                p.setQuantita(rs.getInt("quantita_magazzino"));
+                lista.add(p);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+        }
         return lista;
     }
 

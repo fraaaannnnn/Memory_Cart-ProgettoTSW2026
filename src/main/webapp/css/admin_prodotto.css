@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+    * { 
+        font-family: 'Press Start 2P', monospace !important; 
+        box-sizing: border-box; 
+    }
+    
+    body { 
+        background-color: #0f3460; 
+        padding: 40px 20px; 
+        display: flex;
+        justify-content: center; 
+        align-items: center;     
+        min-height: 100vh;
+        margin: 0;
+    }
+    
+    .form-container { 
+        width: 100%;
+        max-width: 650px; 
+        background: #1a1a2e; 
+        padding: 40px; 
+        border: 3px solid #32e0c4; 
+        box-shadow: 0 0 20px rgba(50, 224, 196, 0.3); 
+    }
+    
+    h2 { 
+        color: #ff0075; 
+        font-size: 1.2rem; 
+        margin-bottom: 30px; 
+        text-align: center;
+        text-shadow: 2px 2px 0px #000;
+        line-height: 1.5;
+    }
+    
+    label { 
+        font-size: 0.6rem; 
+        color: #32e0c4; 
+        display: block;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        line-height: 1.4;
+    }
+    
+    input[type="text"], input[type="number"], select, textarea { 
+        width: 100%; 
+        padding: 15px; 
+        background: #0f3460; 
+        border: 2px solid #235789; 
+        color: #fff; 
+        font-size: 0.7rem;
+        outline: none;
+        transition: all 0.3s ease;
+    }
+    
+    input:focus, select:focus, textarea:focus {
+        border-color: #ff0075;
+        box-shadow: 0 0 10px rgba(255, 0, 117, 0.4);
+    }
+    
+    .img-attuale { 
+        font-size: 0.55rem; 
+        color: #aaa; 
+        display: block; 
+        margin-bottom: 15px; 
+        word-wrap: break-word; 
+        background: #132238;
+        padding: 10px;
+        border: 1px dashed #32e0c4;
+        line-height: 1.6;
+    }
+
+    input[type="file"] {
+        font-size: 0.6rem;
+        color: #fff;
+        padding: 10px;
+        border: 1px dashed #32e0c4;
+        background: #0f3460;
+        width: 100%;
+        cursor: pointer;
+    }
+    
+    input[type="file"]::file-selector-button {
+        font-family: 'Press Start 2P', monospace;
+        background: #32e0c4;
+        color: #000;
+        border: none;
+        padding: 10px 15px;
+        margin-right: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    
+    input[type="file"]::file-selector-button:hover {
+        background: #ff0075;
+        color: #fff;
+    }
+    
+    button[type="submit"] { 
+        width: 100%; 
+        padding: 20px; 
+        background: #32e0c4; 
+        color: #000; 
+        border: none; 
+        cursor: pointer; 
+        margin-top: 35px; 
+        font-size: 0.8rem;
+        box-shadow: 4px 4px 0px #0f3460; 
+        transition: all 0.2s;
+    }
+    
+    button[type="submit"]:hover {
+        background: #ff0075;
+        color: #fff;
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0px #0f3460;
+    }
+    
+    .form-container a {
+        display: block; 
+        text-align: center; 
+        margin-top: 30px; 
+        font-size: 0.6rem; 
+        text-decoration: none; 
+        color: #fff;
+        transition: 0.3s;
+    }
+    
+    .form-container a:hover {
+        color: #ff0075; 
+    }

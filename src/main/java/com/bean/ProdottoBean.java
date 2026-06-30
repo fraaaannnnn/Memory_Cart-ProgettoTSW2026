@@ -14,12 +14,19 @@ public class ProdottoBean implements Serializable {
     private String nome;
     private String descrizione;
     private String immagine;
+    private int id_tipo;
     
     public ProdottoBean() {
     }
 
     public int getId() {
         return id;
+    }
+    public int getIdTipo(){
+    	   return id_tipo;
+    }
+    public void setIdTipo(int id_tipo) {
+    	this.id_tipo=id_tipo;
     }
     public double getPrezzo() {
     	return prezzo;
