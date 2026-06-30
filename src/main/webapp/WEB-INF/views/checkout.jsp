@@ -42,7 +42,7 @@
     <main class="shop-container">
         <h2 class="page-title">CHECKOUT</h2>
 
-        <form action="#" method="post" class="checkout-form-wrapper">
+        <form action="ConfermaOrdine" method="post" class="checkout-form-wrapper">
             
             <div class="checkout-layout">
                 
