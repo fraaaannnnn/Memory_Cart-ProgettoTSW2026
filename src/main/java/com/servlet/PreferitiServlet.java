@@ -22,11 +22,6 @@ public class PreferitiServlet extends HttpServlet {
         
         HttpSession session = request.getSession(false);
         UtenteBean utente = (session != null) ? (UtenteBean) session.getAttribute("utenteLoggato") : null;
-
-        if (utente == null) {
-            response.sendRedirect(request.getContextPath() + "/Login");
-            return;
-        }
         PreferitiDAO dao = new PreferitiDAO();
         List<ProdottoBean> listaPreferiti = dao.getPreferitiByUtente(utente.getId());
         request.setAttribute("listaPreferiti", listaPreferiti);
