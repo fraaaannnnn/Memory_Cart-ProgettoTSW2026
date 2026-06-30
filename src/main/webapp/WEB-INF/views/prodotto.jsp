@@ -84,7 +84,6 @@
 				    <%} else { %>
 				    <button type="submit" class="btn-primary btn-add-cart" disabled>Aggiungi al Carrello</button>
 					<%} %>
-				    <button type="button" class="btn-wishlist">❤</button>
 				</form>
             </div>
         </section>
