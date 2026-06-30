@@ -56,7 +56,6 @@
             </div>
 <%
         }
-        // Recuperiamo le informazioni sulla paginazione dalla Servlet
         Integer paginaCorrente = (Integer) request.getAttribute("paginaCorrente");
         Integer totalePagine = (Integer) request.getAttribute("totalePagine");
 

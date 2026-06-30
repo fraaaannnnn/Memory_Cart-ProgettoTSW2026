@@ -31,11 +31,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Errore <%= errorCodeDisplay %> | memory_cart</title>
     
-    <link rel="icon" type="image/x-icon" href="${pageContext.request.contextPath}/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/errore.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/errore.css">
 </head>
 <body>
 
@@ -59,10 +59,7 @@
         </div>
     </main>
 
-    <%@ include file="footer.jsp"%>
-    
-    <div id="toast-container" class="toast-container"></div>
-    
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <%@ include file="footer.jsp"%>    
+    <script src="./js/main.js"></script>
 </body>
 </html>
