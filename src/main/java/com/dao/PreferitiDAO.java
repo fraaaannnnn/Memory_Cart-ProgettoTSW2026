@@ -68,7 +68,7 @@ public class PreferitiDAO {
                     prodotto.setImmagine(rs.getString("immagine"));
                     prodotto.setMediaStelle(rs.getDouble("media_stelle"));
                     prodotto.setNumeroRecensioni(rs.getInt("num_recensioni"));
-                    
+                    prodotto.setQuantita(rs.getInt("quantita_magazzino"));
                     lista.add(prodotto);
                 }
             }

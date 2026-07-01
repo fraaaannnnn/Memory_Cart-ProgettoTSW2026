@@ -38,7 +38,7 @@ List<ProdottoBean> listaPreferiti = (List<ProdottoBean>) request.getAttribute("l
                     (AGGIUNGI AI PREFERITI)
                 </p>
                 
-                <a href="${pageContext.request.contextPath}/Catalogo" class="btn-primary" style="text-decoration: none; padding: 15px 30px; display: inline-block;">
+                <a href="./Catalogo" class="btn-primary" style="text-decoration: none; padding: 15px 30px; display: inline-block;">
                     VAI AL CATALOGO
                 </a>
             </div>
@@ -52,7 +52,7 @@ List<ProdottoBean> listaPreferiti = (List<ProdottoBean>) request.getAttribute("l
                 %>
                     <div class="product-card wishlist-card" style="position: relative;">
                         
-                        <form action="${pageContext.request.contextPath}/RimuoviPreferito" method="post" class="remove-wishlist-form">
+                        <form action="/RimuoviPreferito" method="post" class="remove-wishlist-form">
                             <input type="hidden" name="idProdotto" value="<%= prodotto.getId() %>">
                             <button type="submit" class="remove-btn-corner" title="Rimuovi">✖</button>
                         </form>
@@ -74,12 +74,24 @@ List<ProdottoBean> listaPreferiti = (List<ProdottoBean>) request.getAttribute("l
                             </div>  
 
                             <div class="product-price">
-                                <span class="currency">€</span><span class="whole"><%= parteIntera %></span><span class="fraction"><%= decimali %></span>
+                            <% 
+                            System.out.println(prodotto.getQuantita());
+                            %>
+                            
+                            	<%if (prodotto.getQuantita() > 0) {%>
+    	                            <span class="currency">€</span><span class="whole"><%= parteIntera %></span><span class="fraction"><%= decimali %></span>                            		
+                            	<%} else { %>
+        	                        <span class="whole">SOLD OUT</span><span class="fraction">		
+                            	<%} %>
                             </div>
                             
-                            <form action="${pageContext.request.contextPath}/SpostaNelCarrello" method="post" class="product-form">
+                            <form action="/SpostaNelCarrello" method="post" class="product-form">
                                 <input type="hidden" name="idProdotto" value="<%= prodotto.getId() %>">
-                                <button type="submit" class="btn-cart">SPOSTA NEL CARRELLO</button>
+                            	<%if (prodotto.getQuantita() > 0) {%>
+	                                <button type="submit" class="btn-cart">SPOSTA NEL CARRELLO</button>
+                            	<%} else { %>
+	                                <button type="submit" class="btn-cart" disabled>SPOSTA NEL CARRELLO</button>
+                            	<%} %>
                             </form>
                         </div>
                     </div>

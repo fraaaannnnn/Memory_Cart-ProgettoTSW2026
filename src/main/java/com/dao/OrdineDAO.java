@@ -5,8 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Map;
+import java.util.*;
 import com.bean.ProdottoBean;
+import com.bean.OrdineBean;
 
 public class OrdineDAO {
 
@@ -86,4 +87,130 @@ public class OrdineDAO {
             }
         }
     }
+    public List<OrdineBean> getOrdiniByUtente(int idUtente) {
+        List<OrdineBean> ordini = new ArrayList<>();
+        String sql = "SELECT * FROM ordini WHERE id_utente = ? ORDER BY data_ordine DESC, id_ordine DESC";
+        
+        try (Connection conn = ConnessioneDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+             
+            ps.setInt(1, idUtente);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    OrdineBean ordine = new OrdineBean();
+                    ordine.setIdOrdine(rs.getInt("id_ordine"));
+                    ordine.setIdUtente(rs.getInt("id_utente"));
+                    ordine.setDataOrdine(rs.getDate("data_ordine"));
+                    ordine.setTotaleOrdine(rs.getDouble("totale_ordine"));
+                    String statoDb = rs.getString("stato");
+                    if (statoDb != null) {
+                        try {
+                            ordine.setStato(OrdineBean.Stato.valueOf(statoDb.toUpperCase()));
+                        } catch (IllegalArgumentException e) {
+                            ordine.setStato(OrdineBean.Stato.IN_PREPARAZIONE);
+                        }
+                    } else {
+                        ordine.setStato(OrdineBean.Stato.IN_PREPARAZIONE);
+                    }
+                    
+                    ordini.add(ordine);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ordini;
+    }
+    
+    public com.bean.OrdineBean getOrdineById(int idOrdine) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        com.bean.OrdineBean ordine = null;
+
+        String sql = "SELECT * FROM ordini WHERE id_ordine = ?";
+        
+        try {
+            conn = ConnessioneDB.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idOrdine);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                ordine = new com.bean.OrdineBean();
+                ordine.setIdOrdine(rs.getInt("id_ordine"));
+                ordine.setIdUtente(rs.getInt("id_utente"));
+                ordine.setDataOrdine(rs.getDate("data_ordine"));
+                ordine.setTotaleOrdine(rs.getDouble("totale_ordine"));
+                
+                String statoDb = rs.getString("stato");
+                if (statoDb != null) {
+                    ordine.setStato(com.bean.OrdineBean.Stato.valueOf(statoDb.toUpperCase()));
+                }
+                
+                ordine.setNomeSpedizione(rs.getString("nome_spedizione"));
+                ordine.setCognomeSpedizione(rs.getString("cognome_spedizione"));
+                ordine.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+                ordine.setCittaSpedizione(rs.getString("citta_spedizione"));
+                ordine.setCapSpedizione(rs.getString("cap_spedizione"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (rs != null) rs.close(); } catch (Exception e) {}
+            try { if (ps != null) ps.close(); } catch (Exception e) {}
+            try { if (conn != null) conn.close(); } catch (Exception e) {}
+        }
+        return ordine;
+    }
+    
+    public com.bean.OrdineBean getUltimoOrdineUtente(int idUtente) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        com.bean.OrdineBean ordine = null;
+
+        String sql = "SELECT * FROM ordini WHERE id_utente = ? ORDER BY id_ordine DESC LIMIT 1";
+
+        try {
+            conn = ConnessioneDB.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, idUtente);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                ordine = new com.bean.OrdineBean();
+                ordine.setIdOrdine(rs.getInt("id_ordine"));
+                ordine.setIdUtente(rs.getInt("id_utente"));
+                ordine.setDataOrdine(rs.getDate("data_ordine"));
+                ordine.setTotaleOrdine(rs.getDouble("totale_ordine"));
+                
+                String statoDb = rs.getString("stato");
+                if (statoDb != null) {
+                    try {
+                        ordine.setStato(com.bean.OrdineBean.Stato.valueOf(statoDb.toUpperCase()));
+                    } catch (IllegalArgumentException e) {
+                        ordine.setStato(com.bean.OrdineBean.Stato.IN_PREPARAZIONE);
+                    }
+                } else {
+                    ordine.setStato(com.bean.OrdineBean.Stato.IN_PREPARAZIONE);
+                }
+                
+                ordine.setNomeSpedizione(rs.getString("nome_spedizione"));
+                ordine.setCognomeSpedizione(rs.getString("cognome_spedizione"));
+                ordine.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
+                ordine.setCittaSpedizione(rs.getString("citta_spedizione"));
+                ordine.setCapSpedizione(rs.getString("cap_spedizione"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try { if (rs != null) rs.close(); } catch (Exception e) {}
+            try { if (ps != null) ps.close(); } catch (Exception e) {}
+            try { if (conn != null) conn.close(); } catch (Exception e) {}
+        }
+        return ordine;
+    }
+    
 }

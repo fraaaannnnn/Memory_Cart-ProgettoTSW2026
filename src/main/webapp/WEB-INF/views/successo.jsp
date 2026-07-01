@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.dao.OrdineDAO" %>
+<%@ page import="com.bean.OrdineBean" %>
+<%@ page import="com.bean.UtenteBean" %>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -16,6 +18,28 @@
 
     <%@include file="header.jsp" %>
 
+    <%
+        UtenteBean utenteLoggato = (UtenteBean) session.getAttribute("utenteLoggato");
+
+        String idOrdineStampare = "N/D";
+        String statoStampare = "In preparazione";
+
+        if (utenteLoggato != null) {
+            int idUtente = utenteLoggato.getId();     
+
+            OrdineDAO ordineDAO = new OrdineDAO();
+            OrdineBean ultimoOrdine = ordineDAO.getUltimoOrdineUtente(idUtente);            
+            if (ultimoOrdine != null) {
+                idOrdineStampare = String.valueOf(ultimoOrdine.getIdOrdine());
+                
+                if (ultimoOrdine.getStato() != null) {
+                    statoStampare = ultimoOrdine.getStato().toString().replace("_", " ").toLowerCase();
+                    statoStampare = statoStampare.substring(0, 1).toUpperCase() + statoStampare.substring(1);
+                }
+            }
+        }
+    %>
+
     <main class="shop-container success-container">
         <div class="success-card">
             <div class="trophy-icon">🏆</div>
@@ -23,14 +47,13 @@
             <p class="success-subtitle">Missione compiuta. Il tuo ordine è stato ricevuto con successo.</p>
             
             <div class="order-details-box">
-                <p><strong>Numero Ordine:</strong> #MC-2026-0042</p>
-                <p><strong>Status:</strong> In preparazione</p>
-                <p><strong>Email di conferma:</strong> inviata al tuo indirizzo</p>
+                <p><strong>Numero Ordine:</strong> #<%= idOrdineStampare %></p>
+                <p><strong>Status:</strong> <%= statoStampare %></p>
             </div>
 
             <div class="success-actions">
-                <a href="catalogo.html" class="btn-primary">TORNA AL CATALOGO</a>
-                <a href="profilo.html" class="btn-secondary">VEDI I TUOI ORDINI</a>
+                <a href="Catalogo" class="btn-primary">TORNA AL CATALOGO</a>
+                <a href="Profilo" class="btn-secondary">VEDI I TUOI ORDINI</a>
             </div>
         </div>
     </main>

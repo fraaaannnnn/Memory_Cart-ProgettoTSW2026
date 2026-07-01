@@ -1,0 +1,190 @@
+@charset "UTF-8";
+
+/* --- LAYOUT FATTURA --- */
+.invoice-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 60px 20px;
+}
+
+.invoice-container {
+    background-color: #111122; /* Colore più scuro per farla staccare dallo sfondo */
+    border: 3px solid var(--8bit-teal);
+    box-shadow: 10px 10px 0px rgba(50, 224, 196, 0.2); /* Ombra in stile 8-bit */
+    padding: 40px;
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+.invoice-header {
+    text-align: center;
+    border-bottom: 2px dashed var(--insert-coin-pink);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.invoice-title {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--insert-coin-pink);
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+    text-shadow: 2px 2px #000;
+}
+
+.invoice-subtitle {
+    font-family: 'Press Start 2P', monospace;
+    color: var(--8bit-teal);
+    font-size: 0.7rem;
+    margin: 0;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 650px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
+
+.section-box {
+    border: 2px solid var(--8bit-teal);
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.section-box h4 {
+    margin: 0 0 15px 0;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.75rem;
+    color: var(--insert-coin-pink);
+}
+
+.section-box p {
+    margin: 8px 0;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--classic-white);
+    line-height: 1.4;
+}
+
+.section-box p strong {
+    color: var(--8bit-teal);
+    font-weight: 600;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.invoice-table th {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    background-color: rgba(255, 0, 117, 0.15); 
+    color: var(--insert-coin-pink);
+    text-align: left;
+    padding: 12px;
+    border: 1px solid var(--insert-coin-pink);
+}
+
+.invoice-table td {
+    padding: 15px 12px;
+    border: 1px solid var(--8bit-teal);
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.total-row td {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.9rem;
+    color: var(--8bit-teal);
+    font-weight: bold;
+    background-color: transparent;
+}
+
+.invoice-footer {
+    text-align: center;
+    border-top: 2px dashed var(--insert-coin-pink);
+    padding-top: 25px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    color: #888;
+    line-height: 1.8;
+}
+
+.actions-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-print {
+    font-family: 'Press Start 2P', monospace;
+    background-color: var(--insert-coin-pink);
+    color: var(--classic-white);
+    border: 2px solid var(--classic-white);
+    padding: 15px 30px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px #000;
+    transition: all 0.1s ease;
+}
+
+.btn-print:hover {
+    background-color: #e00065;
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+@media (max-width: 480px) {
+    .invoice-wrapper {
+        padding: 30px 10px;
+    }
+
+    .invoice-container {
+        padding: 20px 15px;
+    }
+
+    .invoice-title {
+        font-size: 1.1rem;
+    }
+    .invoice-subtitle {
+        font-size: 0.55rem;
+    }
+
+    .section-box p {
+        word-break: break-word;
+    }
+
+    .invoice-table th, 
+    .invoice-table td {
+        padding: 10px 5px; 
+    }
+
+    .invoice-table th {
+        font-size: 0.55rem; 
+    }
+
+    .invoice-table td {
+        font-size: 0.85rem;
+    }
+
+    .total-row td {
+        font-size: 0.75rem;
+    }
+    
+    .btn-print {
+        padding: 12px 20px;
+        font-size: 0.7rem;
+    }
+}

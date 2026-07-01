@@ -138,6 +138,7 @@
                 productGrid.innerHTML = htmlGeneratoDallaJsp; 
             })
             .catch(error => {
+                console.error('[DEBUG-AJAX] Errore:', error);
                 productGrid.innerHTML = `<div style="width: 100%; text-align: center; padding: 50px; color: #bbb;">Errore di sistema.</div>`;
             });
         }

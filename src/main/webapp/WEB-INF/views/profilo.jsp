@@ -1,8 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.bean.UtenteBean" %>
+<%@ page import="com.bean.OrdineBean" %>
+<%@ page import="com.dao.OrdineDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%
     UtenteBean utente = (UtenteBean) session.getAttribute("utenteLoggato");
+    
+    // Recupero gli ordini dal DAO
+    List<OrdineBean> listaOrdini = null;
+    if (utente != null) {
+        OrdineDAO ordineDAO = new OrdineDAO();
+        listaOrdini = ordineDAO.getOrdiniByUtente(utente.getId());
+    }
+    
+    // Formattatore per mostrare la data in formato "Giorno/Mese/Anno"
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 %>
 <!DOCTYPE html>
 <html lang="it">
@@ -29,7 +42,7 @@
                     <div class="avatar-pixel">
                         <span class="p1-badge">P1</span>
                     </div>
-                   
+                    
                     <h3><%= utente != null ? utente.getUserName() : "Guest" %></h3>
                     
                     <% if (utente != null && utente.getAbbonato()) { %>
@@ -81,19 +94,15 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label for="username">Nome Utente</label>
-                                <input type="text" id="username" name="username" value="<%= utente != null ? utente.getUserName() : "" %>" required>
+                                <input type="text" id="username" name="username" value="<%= utente != null && utente.getUserName() != null ? utente.getUserName() : "" %>" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">E-mail</label>
-                                <input type="email" id="email" name="email" value="<%= utente != null ? utente.getEmail() : "" %>" required>
+                                <input type="email" id="email" name="email" value="<%= utente != null && utente.getEmail() != null ? utente.getEmail() : "" %>" required>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group full-width">
                                 <label for="password">Nuova Password</label>
                                 <input type="password" id="password" name="password" placeholder="••••••••">
-                            </div>
-                            <div class="form-group">
-                                <label for="indirizzo">Indirizzo Spedizione</label>
-                                <input type="text" id="indirizzo" name="indirizzo" value="<%= (utente != null && utente.getIndirizzo() != null) ? utente.getIndirizzo() : "" %>">
                             </div>
                         </div>
                         <button type="submit" class="btn-primary save-btn">SALVA MODIFICHE</button>
@@ -105,37 +114,54 @@
                     
                     <div class="orders-table-container">
                         <table class="retro-table">
-                            <thead>
-                                <tr>
-                                    <th>ID ORDINE</th>
-                                    <th>DATA</th>
-                                    <th>TOTALE</th>
-                                    <th>STATO MISSIONE</th>
-                                </tr>
-                            </thead>
-                            <!--  esempio visivo cronologia ordini
-                            <tbody>
-                                <tr>
-                                    <td class="order-id">#MC-8492</td>
-                                    <td>15/06/2026</td>
-                                    <td>€ 45.00</td>
-                                    <td><span class="status-badge completed">COMPLETATA</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="order-id">#MC-7210</td>
-                                    <td>28/05/2026</td>
-                                    <td>€ 120.00</td>
-                                    <td><span class="status-badge completed">COMPLETATA</span></td>
-                                </tr>
-                                <tr>
-                                    <td class="order-id">#MC-9901</td>
-                                    <td>23/06/2026</td>
-                                    <td>€ 80.00</td>
-                                    <td><span class="status-badge processing">IN CORSO</span></td>
-                                </tr>
-                            </tbody>
-                            -->
-                            </table>
+						    <thead>
+						        <tr>
+						            <th>ID ORDINE</th>
+						            <th>DATA</th>
+						            <th>TOTALE</th>
+						            <th>STATO MISSIONE</th>
+						            <th>FATTURA</th> </tr>
+						    </thead>
+						    <tbody>
+						        <% 
+						        if (listaOrdini != null && !listaOrdini.isEmpty()) { 
+						            for (OrdineBean ordine : listaOrdini) {
+						                String dataFormat = ordine.getDataOrdine() != null ? sdf.format(ordine.getDataOrdine()) : "N/D";
+						                String totaleFormat = String.format("%.2f", ordine.getTotaleOrdine()).replace(",", ".");
+						                
+						                String classeBadge = "processing";
+						                String testoStato = "IN CORSO";
+						                
+						                if (ordine.getStato() != null) {
+						                    switch (ordine.getStato()) {
+						                        case CONSEGNATO: classeBadge = "completed"; testoStato = "COMPLETATA"; break;
+						                        case SPEDITO: classeBadge = "processing"; testoStato = "IN VIAGGIO"; break;
+						                        case ANNULLATO: classeBadge = "cancelled"; testoStato = "ANNULLATA"; break;
+						                        case IN_PREPARAZIONE: default: classeBadge = "processing"; testoStato = "IN CORSO"; break;
+						                    }
+						                }
+						        %>
+						        <tr>
+						            <td class="order-id">#MC-<%= ordine.getIdOrdine() %></td>
+						            <td><%= dataFormat %></td>
+						            <td>€ <%= totaleFormat %></td>
+						            <td><span class="status-badge <%= classeBadge %>"><%= testoStato %></span></td>
+						            <td>
+						                <a href="Fattura?id=<%= ordine.getIdOrdine() %>" class="btn-primary" style="padding: 5px 10px; font-size: 0.6rem; text-decoration: none; display: inline-block;">
+						                    ⬇ PDF
+						                </a>
+						            </td>
+						        </tr>
+						        <% 
+						            } 
+						        } else { 
+						        %>
+						        <tr>
+						            <td colspan="5" style="text-align: center; padding: 20px;">Nessuna missione registrata nei server.</td>
+						        </tr>
+						        <% } %>
+						    </tbody>
+						</table>
                     </div>
                 </div>
 

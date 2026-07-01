@@ -83,6 +83,7 @@
                     <button type="submit" class="btn-wishlist" formaction="AggiungiPreferito">❤</button>
 				    <%} else { %>
 				    <button type="submit" class="btn-primary btn-add-cart" disabled>Aggiungi al Carrello</button>
+                    <button type="submit" class="btn-wishlist" formaction="AggiungiPreferito">❤</button>
 					<%} %>
 				</form>
             </div>

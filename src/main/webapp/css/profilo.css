@@ -140,6 +140,10 @@
     margin-bottom: 25px;
 }
 
+.full-width {
+    grid-column: span 2;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
@@ -182,8 +186,9 @@
 }
 
 .orders-table-container {
-    width: 100%;
-    overflow-x: auto;
+    max-height: 300px;
+    overflow-y: auto; 
+    border: 2px solid var(--pixel-border-color, #333);
 }
 
 .retro-table {
@@ -196,6 +201,10 @@
 .retro-table th {
     font-family: 'Press Start 2P', monospace !important;
     font-size: 0.65rem;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #1a1a2e;
     color: #888;
     padding: 12px;
     border-bottom: 2px solid var(--cyber-purple);

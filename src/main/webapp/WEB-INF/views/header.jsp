@@ -7,7 +7,6 @@
     int badgeCount = 0;
     UtenteBean utenteBadge = (UtenteBean) session.getAttribute("utenteLoggato");
 
-    // Inizializziamo i DAO
     CarrelloDAO badgeDao = new CarrelloDAO();
     ProdottoDAO badgeProdottoDao = new ProdottoDAO();
     
@@ -21,7 +20,6 @@
         carrelloDaContare = carrelloSessione;
     }
 
-    // Se c'è un carrello, contiamo i pezzi rispettando i limiti reali
     if (carrelloDaContare != null) {
         for (Map.Entry<Integer, Integer> entry : carrelloDaContare.entrySet()) {
             int idProdotto = entry.getKey();
@@ -30,7 +28,6 @@
             ProdottoBean p = badgeProdottoDao.prodottoDaId(idProdotto);
             
             if (p != null) {
-                // Il FIX: Se la quantità nel DB supera le scorte reali, conta solo le scorte
                 if (quantitaNelDB > p.getQuantita()) {
                     badgeCount += p.getQuantita();
                 } else {

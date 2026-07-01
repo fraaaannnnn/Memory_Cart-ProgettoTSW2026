@@ -218,6 +218,9 @@ public class UtenteDAO {
                     bean.setEmail(resultSet.getString("email"));
                     bean.setAdmin(resultSet.getBoolean("Admin"));
                     bean.setAbbonato(resultSet.getBoolean("Abbonato"));
+                    bean.setUserName(resultSet.getString("nickname"));
+                    bean.setIndirizzo(resultSet.getString("indirizzo"));
+                    bean.setPw(resultSet.getString("pw"));
                 }
             }
         } catch (SQLException e) {
