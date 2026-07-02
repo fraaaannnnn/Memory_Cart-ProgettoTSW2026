@@ -7,14 +7,12 @@
 <%
     UtenteBean utente = (UtenteBean) session.getAttribute("utenteLoggato");
     
-    // Recupero gli ordini dal DAO
     List<OrdineBean> listaOrdini = null;
     if (utente != null) {
         OrdineDAO ordineDAO = new OrdineDAO();
         listaOrdini = ordineDAO.getOrdiniByUtente(utente.getId());
     }
     
-    // Formattatore per mostrare la data in formato "Giorno/Mese/Anno"
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 %>
 <!DOCTYPE html>

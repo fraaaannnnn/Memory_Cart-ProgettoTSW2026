@@ -12,97 +12,99 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | memory_cart</title>
     <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/carrello.css"> 
     <link rel="stylesheet" href="./css/admin.css"> 
-    
-    <style>
-        * {
-            font-family: 'Press Start 2P', monospace !important;
-        }
-        .retro-table td {
-            font-size: 0.6rem !important;
-            line-height: 1.5;
-        }
-        .retro-table th {
-            font-size: 0.7rem !important;
-        }
-        .admin-action-btn {
-            font-size: 0.5rem !important;
-        }
-    </style>
 </head>
 <body>
 
-    <%@ include file="/WEB-INF/views/header.jsp"%> 
+    <%@ include file="admin_header.jsp"%> 
     
-    <main class="shop-container">
-        
-        <h2 class="page-title" style="color: #ff0075;">PANNELLO DI CONTROLLO</h2>
-        <p style="color: #ccc; font-size: 0.6rem; margin-bottom: 30px;">
-            > GESTIONE CATALOGO PRODOTTI
-        </p>
+    <main class="admin-main-container">
+        <div class="dashboard-wrapper">
+            
+            <div class="dashboard-header">
+                <div class="dashboard-titles">
+                    <h2 class="admin-title">PANNELLO DI CONTROLLO</h2>
+                    <p class="admin-subtitle">&gt; GESTIONE CATALOGO PRODOTTI</p>
+                </div>
+                <div class="dashboard-actions">
+                    <a href="${pageContext.request.contextPath}/AdminAggiungiProdotto" class="btn-add-new">
+                        + NUOVO ARTICOLO
+                    </a>
+                </div>
+            </div>
 
-        <div style="text-align: right; width: 100%;">
-            <a href="${pageContext.request.contextPath}/AdminAggiungiProdotto" class="btn-add-new">
-                + NUOVO ARTICOLO
-            </a>
-        </div>
-
-        <div class="admin-table-wrapper">
-            <table class="retro-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Foto</th>
-                        <th>Nome Gioco</th>
-                        <th>Prezzo</th>
-                        <th>Qtà</th>
-                        <th>Comandi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% if (prodotti != null && !prodotti.isEmpty()) { 
-                        for (ProdottoBean p : prodotti) { %>
+            <div class="admin-table-wrapper">
+                <table class="retro-table admin-table">
+                    <thead>
                         <tr>
-                            <td><%= p.getId() %></td>
-                            <td><img src="./<%= p.getImmagine() %>" alt="img" style="width: 60px; height: 60px; object-fit: cover; border: 1px solid #32e0c4;"></td>
-                            <td><%= p.getNome() %></td>
-                            <td style="color: #32e0c4;">€ <%= String.format("%.2f", p.getPrezzo()) %></td>
-                            <td>
-                                <% if(p.getQuantita() > 0) { %>
-                                    <%= p.getQuantita() %>
-                                <% } else { %>
-                                    <span style="color: #ff0075;">ESAURITO</span>
-                                <% } %>
-                            </td>
-                            <td>
-                                <form action="./AdminModificaProdotto" method="GET" style="display:inline;">
-                                    <input type="hidden" name="idProdotto" value="<%= p.getId() %>">
-                                    <button type="submit" class="admin-action-btn btn-edit">MODIFICA</button>
-                                </form>
-                                
-                                <form action="./AdminEliminaProdotto" method="POST" onsubmit="return confirm('Sicuro?');">
-                                     <input type="hidden" name="idProdotto" value="<%= p.getId() %>">
-                                     <button type="submit" class="admin-action-btn btn-delete">ELIMINA</button>
-                                </form>
-                            </td>
+                            <th>ID</th>
+                            <th>FOTO</th>
+                            <th>NOME GIOCO</th>
+                            <th>PREZZO</th>
+                            <th>QTÀ</th>
+                            <th>COMANDI</th>
                         </tr>
-                    <%  } 
-                    } else { %>
-                        <tr>
-                            <td colspan="6" style="text-align:center; padding: 30px; color: #ff0075;">
-                                IL DATABASE È VUOTO. INSERISCI UN GIOCO.
-                            </td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% if (prodotti != null && !prodotti.isEmpty()) { 
+                            for (ProdottoBean p : prodotti) { %>
+                            <tr>
+                                <td class="text-center">#<%= p.getId() %></td>
+                                <td class="text-center">
+                                    <img src="./<%= p.getImmagine() %>" alt="img" class="admin-thumb">
+                                </td>
+                                <td class="product-name-cell"><%= p.getNome() %></td>
+                                <td class="price-cell">€ <%= String.format("%.2f", p.getPrezzo()) %></td>
+                                <td class="text-center">
+                                    <% if(p.getQuantita() > 0) { %>
+                                        <span class="qty-ok"><%= p.getQuantita() %></span>
+                                    <% } else { %>
+                                        <span class="qty-empty">ESAURITO</span>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <div class="action-buttons-cell">
+                                        <form action="./AdminModificaProdotto" method="GET">
+                                            <input type="hidden" name="idProdotto" value="<%= p.getId() %>">
+                                            <button type="submit" class="admin-action-btn btn-edit">MODIFICA</button>
+                                        </form>
+                                        
+                                        <form action="./AdminEliminaProdotto" method="POST" id="form-delete-<%= p.getId() %>">
+                                             <input type="hidden" name="idProdotto" value="<%= p.getId() %>">
+                                             <button type="button" class="admin-action-btn btn-delete" onclick="openRetroModal('form-delete-<%= p.getId() %>')">ELIMINA</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <%  } 
+                        } else { %>
+                            <tr>
+                                <td colspan="6" class="empty-db-msg">
+                                    IL DATABASE È VUOTO. INSERISCI UN GIOCO.
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
     <%@ include file="/WEB-INF/views/footer.jsp"%>
+    
+    <div id="retro-alert-modal" class="retro-modal-overlay">
+        <div class="retro-modal-box">
+            <h3 class="retro-modal-title">WARNING!</h3>
+            <p class="retro-modal-text">Sei sicuro di voler eliminare definitivamente questo articolo dal database?</p>
+            <div class="retro-modal-actions">
+                <button type="button" class="btn-modal-cancel" onclick="closeRetroModal()">ANNULLA</button>
+                <button type="button" class="btn-modal-confirm" onclick="confirmRetroDelete()">ELIMINA</button>
+            </div>
+        </div>
+    </div>
+    <script src="./js/admin_prodotti.js"></script>
 </body>
 </html>

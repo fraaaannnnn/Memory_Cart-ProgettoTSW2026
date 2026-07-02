@@ -74,10 +74,6 @@ List<ProdottoBean> listaPreferiti = (List<ProdottoBean>) request.getAttribute("l
                             </div>  
 
                             <div class="product-price">
-                            <% 
-                            System.out.println(prodotto.getQuantita());
-                            %>
-                            
                             	<%if (prodotto.getQuantita() > 0) {%>
     	                            <span class="currency">€</span><span class="whole"><%= parteIntera %></span><span class="fraction"><%= decimali %></span>                            		
                             	<%} else { %>

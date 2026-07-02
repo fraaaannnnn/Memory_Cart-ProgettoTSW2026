@@ -7,7 +7,6 @@ public class UtenteBean {
 	private String email, pw, username;
 	private boolean isAbbonato;
 	private boolean isAdmin;
-	private String indirizzo;
 	
     private static final long serialVersionUID = 1L;
 
@@ -20,14 +19,6 @@ public class UtenteBean {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-	
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo=indirizzo;
 	}
 	public String getEmail() {
 		return email;

@@ -29,7 +29,6 @@ public class AggiornaProfiloServlet extends HttpServlet {
 
         String nuovoUsername = request.getParameter("username");
         String nuovaEmail = request.getParameter("email");
-        String nuovoIndirizzo = request.getParameter("indirizzo");
         String nuovaPassword = request.getParameter("password"); 
         String hashPassword = null;
         if (nuovaPassword != null && !nuovaPassword.trim().isEmpty()) {
@@ -37,13 +36,11 @@ public class AggiornaProfiloServlet extends HttpServlet {
         }
 
         UtenteDAO dao = new UtenteDAO();
-        boolean successo = dao.aggiornaDatiUtente(utente.getId(), nuovoUsername, nuovaEmail, hashPassword, nuovoIndirizzo);
+        boolean successo = dao.aggiornaDatiUtente(utente.getId(), nuovoUsername, nuovaEmail, hashPassword);
         if (successo) {
             utente.setUserName(nuovoUsername);
             utente.setEmail(nuovaEmail);
-            utente.setIndirizzo(nuovoIndirizzo);
             session.setAttribute("utenteLoggato", utente);
-            
             response.sendRedirect(request.getContextPath() + "/Profilo?update=success");
         } else {
             response.sendRedirect(request.getContextPath() + "/Profilo?update=error");

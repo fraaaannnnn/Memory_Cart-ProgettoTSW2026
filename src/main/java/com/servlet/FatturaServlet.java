@@ -1,6 +1,7 @@
 package com.servlet;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import com.bean.UtenteBean;
 import com.bean.OrdineBean;
+import com.bean.ProdottoBean;
 import com.dao.OrdineDAO;
 
 @WebServlet("/Fattura")
@@ -40,7 +42,12 @@ public class FatturaServlet extends HttpServlet {
             return;
         }
 
+        // --- NUOVO CODICE: Recuperiamo i prodotti dell'ordine ---
+        List<ProdottoBean> prodottiOrdine = ordineDAO.getProdottiOrdine(idOrdine);
+
+        // Passiamo l'ordine e la lista dei prodotti alla JSP
         request.setAttribute("ordine", ordine);
+        request.setAttribute("prodottiOrdine", prodottiOrdine);
         
         request.getRequestDispatcher("/WEB-INF/views/fattura.jsp").forward(request, response);
     }

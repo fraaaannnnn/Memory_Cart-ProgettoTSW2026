@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.bean.OrdineBean" %>
 <%@ page import="com.bean.UtenteBean" %>
+<%@ page import="com.bean.ProdottoBean" %>
+<%@ page import="java.util.List" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     OrdineBean ordine = (OrdineBean) request.getAttribute("ordine");
     UtenteBean utenteLoggato = (UtenteBean) session.getAttribute("utenteLoggato");
+    
+    @SuppressWarnings("unchecked")
+    List<ProdottoBean> prodottiOrdine = (List<ProdottoBean>) request.getAttribute("prodottiOrdine");
     
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
@@ -25,9 +30,6 @@
     <link rel="stylesheet" href="./css/fattura.css">
 </head>
 <body>
-
-    <%@include file="header.jsp" %>
-
     <main class="invoice-wrapper">
         <% if (ordine != null) { %>
             <div class="invoice-container">
@@ -54,17 +56,32 @@
                     <thead>
                         <tr>
                             <th>LOG DESCRIZIONE OPERAZIONE</th>
-                            <th style="text-align: right; width: 150px;">SCORE (PREZZO)</th>
+                            <th style="text-align: center; width: 60px;">QTY</th>
+                            <th style="text-align: right; width: 120px;">SCORE (PREZZO)</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Acquisto hardware / oggettistica dal catalogo memory_cart</td>
-                            <td style="text-align: right;">€ <%= totaleFormat %></td>
-                        </tr>
+                        <% 
+                        if (prodottiOrdine != null && !prodottiOrdine.isEmpty()) {
+                            for (ProdottoBean p : prodottiOrdine) {
+                                double subTotaleRigo = p.getPrezzo() * p.getQuantita();
+                                String prezzoRigoStr = String.format("%.2f", subTotaleRigo).replace(",", ".");
+                        %>
+                                <tr>
+                                    <td><%= p.getNome() %></td>
+                                    <td style="text-align: center;">x<%= p.getQuantita() %></td>
+                                    <td style="text-align: right;">€ <%= prezzoRigoStr %></td>
+                                </tr>
+                        <%  } 
+                        } else { %>
+                                <tr>
+                                    <td colspan="3" style="text-align: center; font-style: italic; color: #888;">Nessun dettaglio prodotto trovato nel database.</td>
+                                </tr>
+                        <% } %>
+                        
                         <tr class="total-row">
-                            <td style="text-align: right; border-right: none;">TOTAL SCORE:</td>
-                            <td style="text-align: right; border-left: none;">€ <%= totaleFormat %></td>
+                            <td colspan="2" style="text-align: right; border-right: none;">TOTAL SCORE:</td>
+                            <td style="text-align: right; border-left: none;">€<%= totaleFormat %></td>
                         </tr>
                     </tbody>
                 </table>
@@ -73,17 +90,25 @@
                     Grazie per aver completato la missione su memory_cart!<br>
                     I dati sono stati sincronizzati nei database centrali.<br>
                 </div>
+                <br>
+                <div class="go-back-container">
+                    <a href="/Memory_Cart" style="font-family:'Press Start 2P', monospace; color: var(--insert-coin-pink);">TORNA ALLA BASE</a>
+                </div>
             </div>
             
-        <% } else { %>
+            <div class="back-btn-container">
+            </div>
+            
+        <% } else { %>	
             <div style="text-align: center; margin-top: 50px;">
                 <h2 style="font-family: 'Press Start 2P', monospace; color: var(--insert-coin-pink);">ERRORE 404: DATA NOT FOUND</h2>
                 <p>Impossibile recuperare i dati del log di questa missione.</p>
+                <div class="back-btn-container" style="margin-top: 30px;">
+                </div>
             </div>
         <% } %>
     </main>
 
-    <%@include file="footer.jsp" %>
     <div id="toast-container" class="toast-container"></div>
     
 </body>

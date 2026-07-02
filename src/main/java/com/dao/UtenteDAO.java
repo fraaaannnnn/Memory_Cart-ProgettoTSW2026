@@ -55,11 +55,11 @@ public class UtenteDAO {
         }
     }
     
-    public boolean aggiornaDatiUtente(int idUtente, String username, String email, String hashPassword, String indirizzo) {
+    public boolean aggiornaDatiUtente(int idUtente, String username, String email, String hashPassword) {
         boolean cambiaPassword = (hashPassword != null);
         String query = cambiaPassword 
-            ? "UPDATE utenti SET nickname = ?, Email = ?, Pw = ?, indirizzo = ? WHERE id_utente = ?" 
-            : "UPDATE utenti SET nickname = ?, Email = ?, indirizzo = ? WHERE id_utente = ?";
+            ? "UPDATE utenti SET nickname = ?, Email = ?, Pw = ? WHERE id_utente = ?" 
+            : "UPDATE utenti SET nickname = ?, Email = ? WHERE id_utente = ?";
 
         try (Connection connection = ConnessioneDB.getConnection();
              PreparedStatement ps = connection.prepareStatement(query)) {
@@ -69,10 +69,8 @@ public class UtenteDAO {
             
             if (cambiaPassword) {
                 ps.setString(3, hashPassword);
-                ps.setString(4, indirizzo);
                 ps.setInt(5, idUtente);
             } else {
-                ps.setString(3, indirizzo);
                 ps.setInt(4, idUtente);
             }
             
@@ -106,7 +104,6 @@ public class UtenteDAO {
                         bean.setAdmin(resultSet.getBoolean("Admin"));
                         bean.setAbbonato(resultSet.getBoolean("Abbonato"));
                         bean.setUserName(resultSet.getString("nickname"));
-                        bean.setIndirizzo(resultSet.getString("indirizzo"));
                     }
                 }
             }
@@ -219,7 +216,6 @@ public class UtenteDAO {
                     bean.setAdmin(resultSet.getBoolean("Admin"));
                     bean.setAbbonato(resultSet.getBoolean("Abbonato"));
                     bean.setUserName(resultSet.getString("nickname"));
-                    bean.setIndirizzo(resultSet.getString("indirizzo"));
                     bean.setPw(resultSet.getString("pw"));
                 }
             }

@@ -24,7 +24,7 @@ public class RecensioneServlet extends HttpServlet {
         String idProdottoStr = request.getParameter("id_gioco");
         String votoStelleStr = request.getParameter("rating");
         if(testoRecensione != null && !testoRecensione.trim().isEmpty() && idProdottoStr != null && !idProdottoStr.trim().isEmpty() &&
-        		votoStelleStr != null && !votoStelleStr.trim().isEmpty() /*&& idUser != null && idUser.trim().isEmpty() */) {
+        		votoStelleStr != null && !votoStelleStr.trim().isEmpty()) {
         	try {
 	        		int idUser = user.getId();
 	        		int idProdotto = Integer.parseInt(idProdottoStr);

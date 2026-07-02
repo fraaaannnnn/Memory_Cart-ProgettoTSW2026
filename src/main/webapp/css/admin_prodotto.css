@@ -1,131 +1,193 @@
 @charset "UTF-8";
 
-    * { 
-        font-family: 'Press Start 2P', monospace !important; 
-        box-sizing: border-box; 
-    }
-    
-    body { 
-        background-color: #0f3460; 
-        padding: 40px 20px; 
-        display: flex;
-        justify-content: center; 
-        align-items: center;     
-        min-height: 100vh;
-        margin: 0;
-    }
-    
-    .form-container { 
-        width: 100%;
-        max-width: 650px; 
-        background: #1a1a2e; 
-        padding: 40px; 
-        border: 3px solid #32e0c4; 
-        box-shadow: 0 0 20px rgba(50, 224, 196, 0.3); 
-    }
-    
-    h2 { 
-        color: #ff0075; 
-        font-size: 1.2rem; 
-        margin-bottom: 30px; 
-        text-align: center;
-        text-shadow: 2px 2px 0px #000;
-        line-height: 1.5;
-    }
-    
-    label { 
-        font-size: 0.6rem; 
-        color: #32e0c4; 
-        display: block;
-        margin-top: 25px;
-        margin-bottom: 10px;
-        line-height: 1.4;
-    }
-    
-    input[type="text"], input[type="number"], select, textarea { 
-        width: 100%; 
-        padding: 15px; 
-        background: #0f3460; 
-        border: 2px solid #235789; 
-        color: #fff; 
-        font-size: 0.7rem;
-        outline: none;
-        transition: all 0.3s ease;
-    }
-    
-    input:focus, select:focus, textarea:focus {
-        border-color: #ff0075;
-        box-shadow: 0 0 10px rgba(255, 0, 117, 0.4);
-    }
-    
-    .img-attuale { 
-        font-size: 0.55rem; 
-        color: #aaa; 
-        display: block; 
-        margin-bottom: 15px; 
-        word-wrap: break-word; 
-        background: #132238;
-        padding: 10px;
-        border: 1px dashed #32e0c4;
-        line-height: 1.6;
+.admin-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.form-container {
+    background-color: #111122;
+    border: 3px solid var(--cyber-purple);
+    box-shadow: 0 0 20px rgba(112, 11, 151, 0.4);
+    border-radius: 8px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 650px;
+    box-sizing: border-box;
+}
+
+.admin-title {
+    color: var(--insert-coin-pink);
+    text-align: center;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px #000;
+    line-height: 1.5;
+}
+
+.retro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.input-group label {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    color: var(--8bit-teal);
+    line-height: 1.4;
+}
+
+.input-group input[type="text"],
+.input-group input[type="number"],
+.input-group select,
+.input-group textarea {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--cyber-purple);
+    color: var(--classic-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    padding: 12px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.input-group textarea {
+    resize: vertical;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--8bit-teal);
+    box-shadow: 0 0 10px rgba(50, 224, 196, 0.5);
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.retro-file-input {
+    font-family: 'Inter', sans-serif;
+    color: var(--classic-white);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.retro-file-input::file-selector-button {
+    background-color: var(--cyber-purple);
+    color: var(--classic-white);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    border: none;
+    padding: 12px 15px;
+    margin-right: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.retro-file-input::file-selector-button:hover {
+    background-color: var(--8bit-teal);
+    color: #000;
+}
+
+.img-attuale {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: var(--insert-coin-pink);
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.btn-submit {
+    background-color: var(--insert-coin-pink);
+    color: var(--classic-white);
+    border: 2px solid var(--8bit-teal);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    padding: 15px;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px var(--insert-coin-pink);
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--8bit-teal);
+    border-color: var(--insert-coin-pink);
+    color: var(--deep-space);
+    box-shadow: 0 0 15px var(--8bit-teal);
+    transform: scale(1.02);
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    color: var(--8bit-teal);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-link:hover {
+    color: var(--insert-coin-pink);
+    text-shadow: 0 0 8px var(--insert-coin-pink);
+}
+
+@media (max-width: 600px) {
+    .admin-main-container {
+        padding: 20px 10px;
     }
 
-    input[type="file"] {
-        font-size: 0.6rem;
-        color: #fff;
-        padding: 10px;
-        border: 1px dashed #32e0c4;
-        background: #0f3460;
+    .form-container {
+        padding: 25px 20px;
+    }
+
+    .admin-title {
+        font-size: 1.1rem;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .half-width {
         width: 100%;
-        cursor: pointer;
     }
-    
-    input[type="file"]::file-selector-button {
-        font-family: 'Press Start 2P', monospace;
-        background: #32e0c4;
-        color: #000;
-        border: none;
-        padding: 10px 15px;
-        margin-right: 15px;
-        cursor: pointer;
-        transition: 0.3s;
+
+    .retro-file-input::file-selector-button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        text-align: center;
     }
-    
-    input[type="file"]::file-selector-button:hover {
-        background: #ff0075;
-        color: #fff;
+
+    .btn-submit {
+        font-size: 0.85rem;
+        padding: 12px;
     }
-    
-    button[type="submit"] { 
-        width: 100%; 
-        padding: 20px; 
-        background: #32e0c4; 
-        color: #000; 
-        border: none; 
-        cursor: pointer; 
-        margin-top: 35px; 
-        font-size: 0.8rem;
-        box-shadow: 4px 4px 0px #0f3460; 
-        transition: all 0.2s;
-    }
-    
-    button[type="submit"]:hover {
-        background: #ff0075;
-        color: #fff;
-        transform: translate(2px, 2px);
-        box-shadow: 2px 2px 0px #0f3460;
-    }
-    
-    .form-container a {
-        display: block; 
-        text-align: center; 
-        margin-top: 30px; 
-        font-size: 0.6rem; 
-        text-decoration: none; 
-        color: #fff;
-        transition: 0.3s;
-    }
-    
-    .form-container a:hover {
-        color: #ff0075; 
-    }
+}
