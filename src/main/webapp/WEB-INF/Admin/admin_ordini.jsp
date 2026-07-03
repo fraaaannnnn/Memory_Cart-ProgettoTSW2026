@@ -43,7 +43,6 @@
                 </div>
             </div>
 
-            <!-- --- PANNELLO FILTRI --- -->
             <div class="filter-panel">
                 <form action="./AdminOrdini" method="GET" class="filter-form">
                     <div class="filter-grid">
@@ -67,7 +66,6 @@
                 </form>
             </div>
 
-            <!-- --- TABELLA DEGLI ORDINI --- -->
             <div class="admin-table-wrapper" style="margin-top: 20px;">
                 <table class="retro-table admin-table">
                     <thead>
@@ -109,15 +107,12 @@
                                     <div class="action-buttons-cell" style="justify-content: center; gap: 8px;">
                                         
                                         <% if (o.getStato() == OrdineBean.Stato.IN_PREPARAZIONE) { %>
-                                            <!-- FORM SPEDIZIONE -->
                                             <form action="./AdminAggiornaStato" method="POST" id="form-ship-<%= o.getIdOrdine() %>" style="display:inline;">
                                                 <input type="hidden" name="idOrdine" value="<%= o.getIdOrdine() %>">
                                                 <input type="hidden" name="nuovoStato" value="SPEDITO">
-                                                <!-- type="button" e onclick personalizzato -->
                                                 <button type="button" class="admin-action-btn btn-ship" title="Segna come Spedito" onclick="openRetroModal('form-ship-<%= o.getIdOrdine() %>', 'Vuoi segnare la missione come SPEDITA?')">✔</button>
                                             </form>
                                             
-                                            <!-- FORM ANNULLAMENTO -->
                                             <form action="./AdminAggiornaStato" method="POST" id="form-cancel-<%= o.getIdOrdine() %>" style="display:inline;">
                                                 <input type="hidden" name="idOrdine" value="<%= o.getIdOrdine() %>">
                                                 <input type="hidden" name="nuovoStato" value="ANNULLATO">
@@ -125,7 +120,6 @@
                                             </form>
                                             
                                         <% } else if (o.getStato() == OrdineBean.Stato.SPEDITO) { %>
-                                            <!-- FORM CONSEGNA -->
                                             <form action="./AdminAggiornaStato" method="POST" id="form-deliver-<%= o.getIdOrdine() %>" style="display:inline;">
                                                 <input type="hidden" name="idOrdine" value="<%= o.getIdOrdine() %>">
                                                 <input type="hidden" name="nuovoStato" value="CONSEGNATO">

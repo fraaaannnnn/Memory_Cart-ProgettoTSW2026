@@ -46,14 +46,14 @@ public class PreferitiDAO {
     public List<ProdottoBean> getPreferitiByUtente(int idUtente) {
         List<ProdottoBean> lista = new ArrayList<>();
         
-        String query = "SELECT p.id, p.nome, p.prezzo, p.immagine, " +
+        String query = "SELECT p.id, p.nome, p.prezzo, p.immagine, p.quantita_magazzino, " +
                        "IFNULL(AVG(r.stelle), 0) AS media_stelle, " +
                        "COUNT(r.id_prodotto) AS num_recensioni " +
                        "FROM prodotti p " +
                        "JOIN preferiti w ON p.id = w.id_prodotto " +
                        "LEFT JOIN recensioni r ON p.id = r.id_prodotto " +
                        "WHERE w.id_utente = ? " +
-                       "GROUP BY p.id, p.nome, p.prezzo, p.immagine";
+                       "GROUP BY p.id, p.nome, p.prezzo, p.immagine, p.quantita_magazzino";
         
         try (Connection con = ConnessioneDB.getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
@@ -68,7 +68,8 @@ public class PreferitiDAO {
                     prodotto.setImmagine(rs.getString("immagine"));
                     prodotto.setMediaStelle(rs.getDouble("media_stelle"));
                     prodotto.setNumeroRecensioni(rs.getInt("num_recensioni"));
-                    prodotto.setQuantita(rs.getInt("quantita_magazzino"));
+                    prodotto.setQuantita(rs.getInt("quantita_magazzino")); 
+                    
                     lista.add(prodotto);
                 }
             }

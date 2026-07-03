@@ -31,6 +31,10 @@ public class AggiungiPreferitoServlet extends HttpServlet {
         PreferitiDAO dao = new PreferitiDAO();
         dao.AggiungiPreferito(utente.getId(), idProdotto);
         
+        session.setAttribute("toastTitle", "WISHLIST AGGIORNATA");
+        session.setAttribute("toastMessage", "Item aggiunto ai tuoi preferiti! ❤");
+        session.setAttribute("toastError", false);
+        
         response.sendRedirect(request.getContextPath() + "/Prodotto?id=" + idProdotto);
     }
 }

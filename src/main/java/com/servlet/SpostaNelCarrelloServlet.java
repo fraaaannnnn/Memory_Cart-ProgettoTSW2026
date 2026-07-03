@@ -33,6 +33,9 @@ public class SpostaNelCarrelloServlet extends HttpServlet {
         PreferitiDAO prefDao = new PreferitiDAO();
         prefDao.RimuoviPreferito(idUtente, idProdotto);
 
+        session.setAttribute("toastTitle", "INVENTARIO AGGIORNATO");
+        session.setAttribute("toastMessage", "Item spostato nel carrello con successo!");
+        session.setAttribute("toastError", false);
         response.sendRedirect(request.getContextPath() + "/Preferiti");
     }
 }

@@ -17,7 +17,6 @@ import com.dao.CarrelloDAO;
 public class CarrelloServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/WEB-INF/views/carrello.jsp").forward(request, response);
     }
@@ -27,6 +26,8 @@ public class CarrelloServlet extends HttpServlet {
         
         String idProdottoStr = request.getParameter("idProdotto");
         String quantitaStr = request.getParameter("quantita");
+        String acceptHeader = request.getHeader("Accept");
+        boolean isAjax = acceptHeader != null && acceptHeader.contains("application/json");
 
         if (idProdottoStr != null && !idProdottoStr.trim().isEmpty() && 
             quantitaStr != null && !quantitaStr.trim().isEmpty()) {
@@ -54,22 +55,42 @@ public class CarrelloServlet extends HttpServlet {
                     session.setAttribute("carrelloOspite", carrelloOspite);
                 }
                 
+                if (isAjax) {
+                    response.setContentType("application/json");
+                    response.setCharacterEncoding("UTF-8");
+                    response.getWriter().write("{\"success\": true, \"message\": \"Oggetto aggiunto al carrello!\"}");
+                    return; 
+                }
+
                 session.setAttribute("pop_up_carrello", "OGGETTO AGGIUNTO AL CARRELLO");
                 
             } catch (NumberFormatException e) {
                 System.err.println("Errore di parsing parametri Carrello: " + e.getMessage());
+                if (isAjax) {
+                    response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                    response.setContentType("application/json");
+                    response.getWriter().write("{\"success\": false, \"message\": \"Dati non validi\"}");
+                    return;
+                }
             }
 
-            String referer = request.getHeader("referer");
-            if (referer != null) {
-                response.sendRedirect(referer);
-            } else {
-                response.sendRedirect(request.getContextPath() + "/Carrello");
+            if (!isAjax) {
+                String referer = request.getHeader("referer");
+                if (referer != null) {
+                    response.sendRedirect(referer);
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/Carrello");
+                }
+                return; 
             }
-            
-            return; 
         }
 
-        response.sendRedirect(request.getContextPath() + "/Carrello");
+        if (isAjax) {
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            response.setContentType("application/json");
+            response.getWriter().write("{\"success\": false, \"message\": \"Parametri mancanti\"}");
+        } else {
+            response.sendRedirect(request.getContextPath() + "/Carrello");
+        }
     }
 }

@@ -42,10 +42,8 @@ public class FatturaServlet extends HttpServlet {
             return;
         }
 
-        // --- NUOVO CODICE: Recuperiamo i prodotti dell'ordine ---
         List<ProdottoBean> prodottiOrdine = ordineDAO.getProdottiOrdine(idOrdine);
 
-        // Passiamo l'ordine e la lista dei prodotti alla JSP
         request.setAttribute("ordine", ordine);
         request.setAttribute("prodottiOrdine", prodottiOrdine);
         

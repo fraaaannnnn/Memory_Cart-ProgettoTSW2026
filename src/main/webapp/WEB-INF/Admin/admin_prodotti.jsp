@@ -30,7 +30,7 @@
                     <p class="admin-subtitle">&gt; GESTIONE CATALOGO PRODOTTI</p>
                 </div>
                 <div class="dashboard-actions">
-                    <a href="${pageContext.request.contextPath}/AdminAggiungiProdotto" class="btn-add-new">
+                    <a href="./AdminAggiungiProdotto" class="btn-add-new">
                         + NUOVO ARTICOLO
                     </a>
                 </div>

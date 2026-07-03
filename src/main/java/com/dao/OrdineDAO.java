@@ -305,7 +305,6 @@ public class OrdineDAO {
         List<OrdineBean> ordini = new ArrayList<>();
         StringBuilder query = new StringBuilder("SELECT * FROM ordini WHERE 1=1");
         
-        // Costruzione dinamica della query in base ai filtri compilati
         if (dataInizio != null && !dataInizio.trim().isEmpty()) {
             query.append(" AND data_ordine >= ?");
         }

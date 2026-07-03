@@ -98,7 +98,7 @@
 
     <%@include file="footer.jsp" %>
 
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <script src="./js/main.js"></script>
 
     <% 
         String success = request.getParameter("success");

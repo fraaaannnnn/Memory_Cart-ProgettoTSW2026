@@ -443,6 +443,75 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     background-color: currentColor;
 }
 
+
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9999999;
+    pointer-events: none; 
+}
+
+.retro-toast {
+    pointer-events: auto; 
+    background-color: #0b0c10;
+    width: 320px;
+    padding: 0;
+    border-radius: 4px;
+    box-shadow: 4px 4px 0px #000;
+    font-family: 'Inter', sans-serif;
+    animation: toastSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+}
+
+/* Colore in caso di successo (Azzurro Neon) */
+.toast-success {
+    border: 2px solid var(--8bit-teal, #32e0c4);
+}
+.toast-success .toast-header-bar {
+    background-color: var(--8bit-teal, #32e0c4);
+    color: #000;
+}
+
+/* Colore in caso di errore (Rosa Insert Coin) */
+.toast-error {
+    border: 2px solid var(--insert-coin-pink, #ff0075);
+}
+.toast-error .toast-header-bar {
+    background-color: var(--insert-coin-pink, #ff0075);
+    color: #fff;
+}
+
+.toast-header-bar {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    padding: 8px 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.toast-body-text {
+    padding: 12px;
+    color: #fff;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    background-color: rgba(26, 26, 46, 0.9);
+}
+
+/* --- ANIMAZIONI TOAST --- */
+@keyframes toastSlideIn {
+    0% { transform: translateX(120%) scale(0.9); opacity: 0; }
+    100% { transform: translateX(0) scale(1); opacity: 1; }
+}
+
+@keyframes toastFadeOut {
+    0% { transform: translateX(0); opacity: 1; }
+    100% { transform: translateX(50px); opacity: 0; filter: blur(4px); }
+}
+
 @media (max-width: 992px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr);
