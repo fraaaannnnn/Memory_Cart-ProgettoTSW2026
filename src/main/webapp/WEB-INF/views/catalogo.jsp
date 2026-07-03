@@ -29,7 +29,10 @@
                 <form id="filterForm" class="filter-form">
                     
                     <h3 class="filter-title">FILTRA MISSIONI</h3>
-                    
+                    <div class="filter-group">
+                        <h4>Ricerca Gioco</h4>
+                        <input type="text" name="searchQuery" id="searchBar" placeholder="Es. Zelda, Mario..." class="retro-search-input">
+                    </div>
                     <div class="filter-group">
 					    <h4>Categoria</h4>
 					    <label class="filter-checkbox">
@@ -95,6 +98,7 @@
         const priceRange = document.getElementById('priceRange');
         const priceVal = document.getElementById('priceVal');
         const sortSelect = document.getElementById('sort');
+        const searchBar = document.getElementById('searchBar');
 
         const urlParams = new URLSearchParams(window.location.search);
         const initialCategoria = urlParams.get('categoria');
@@ -153,7 +157,15 @@
         priceRange.addEventListener('change', resetPageAndFetch);
         filterForm.addEventListener('change', resetPageAndFetch);
         sortSelect.addEventListener('change', resetPageAndFetch);
-
+		
+        let debounceTimer;
+        searchBar.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                resetPageAndFetch();
+            }, 400); 
+        });
+        
         productGrid.addEventListener('click', function(e) {
             if (e.target.classList.contains('page-link')) {
                 e.preventDefault();

@@ -340,6 +340,31 @@
     }
 }
 
+
+.retro-search-input {
+    width: 100%;
+    padding: 10px 12px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--8bit-teal);
+    color: var(--classic-white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.retro-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}
+
+.retro-search-input:focus {
+    outline: none;
+    border-color: var(--insert-coin-pink);
+    box-shadow: 0 0 8px rgba(255, 0, 117, 0.5);
+}
+
 @media (max-width: 768px) {
     .catalog-top-bar {
         flex-direction: column;

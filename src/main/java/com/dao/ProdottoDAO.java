@@ -78,7 +78,7 @@ public class ProdottoDAO {
         return bean;
     }
     
-    public List<ProdottoBean> getProdottiFiltrati(String[] categorie, String prezzoMax, String sort, int limit, int offset) {
+    public List<ProdottoBean> getProdottiFiltrati(String[] categorie, String prezzoMax, String sort, String searchQuery, int limit, int offset) {
         List<ProdottoBean> lista = new ArrayList<>();
         
         StringBuilder query = new StringBuilder("SELECT * FROM prodotti WHERE 1=1");
@@ -97,6 +97,10 @@ public class ProdottoDAO {
         if (prezzoMax != null && !prezzoMax.trim().isEmpty()) {
             query.append(" AND prezzo <= ?");
         }
+        if (searchQuery != null && !searchQuery.trim().isEmpty()) {
+            query.append(" AND nome LIKE ?");
+        }
+        
         
         if (sort != null) {
             switch (sort) {
@@ -132,6 +136,10 @@ public class ProdottoDAO {
             
             if (prezzoMax != null && !prezzoMax.trim().isEmpty()) {
                 ps.setDouble(paramIndex++, Double.parseDouble(prezzoMax));
+            }
+            
+            if (searchQuery != null && !searchQuery.trim().isEmpty()) {
+                ps.setString(paramIndex++, "%" + searchQuery.trim() + "%"); 
             }
             
             ps.setInt(paramIndex++, limit);
@@ -247,7 +255,7 @@ public class ProdottoDAO {
         return lista;
     }
 
-    public int contaProdottiFiltrati(String[] categorie, String prezzoMax) {
+    public int contaProdottiFiltrati(String[] categorie, String prezzoMax, String searchQuery) {
         int totale = 0;
         StringBuilder query = new StringBuilder("SELECT COUNT(*) FROM prodotti WHERE 1=1");
         
@@ -263,6 +271,9 @@ public class ProdottoDAO {
         if (prezzoMax != null && !prezzoMax.trim().isEmpty()) {
             query.append(" AND prezzo <= ?");
         }
+        if (searchQuery != null && !searchQuery.trim().isEmpty()) {
+            query.append(" AND nome LIKE ?");
+        }
 
         try (Connection conn = ConnessioneDB.getConnection();
              PreparedStatement ps = conn.prepareStatement(query.toString())) {
@@ -276,6 +287,9 @@ public class ProdottoDAO {
             }
             if (prezzoMax != null && !prezzoMax.trim().isEmpty()) {
                 ps.setDouble(paramIndex++, Double.parseDouble(prezzoMax));
+            }
+            if (searchQuery != null && !searchQuery.trim().isEmpty()) {
+                ps.setString(paramIndex++, "%" + searchQuery.trim() + "%"); 
             }
             
             ResultSet rs = ps.executeQuery();

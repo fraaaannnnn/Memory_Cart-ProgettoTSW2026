@@ -20,6 +20,8 @@ public class FiltroCatalogoServlet extends HttpServlet {
         String prezzoMax = request.getParameter("prezzoMax");
         String sort = request.getParameter("sort");
         
+        String searchQuery = request.getParameter("searchQuery"); 
+        
         int page = 1;
         String pageStr = request.getParameter("page");
         if (pageStr != null && !pageStr.isEmpty()) {
@@ -31,9 +33,8 @@ public class FiltroCatalogoServlet extends HttpServlet {
         
         ProdottoDAO dao = new ProdottoDAO();
         
-        List<ProdottoBean> listaFiltrata = dao.getProdottiFiltrati(categorie, prezzoMax, sort, prodottiPerPagina, offset);
-        
-        int totaleProdotti = dao.contaProdottiFiltrati(categorie, prezzoMax);
+        List<ProdottoBean> listaFiltrata = dao.getProdottiFiltrati(categorie, prezzoMax, sort, searchQuery, prodottiPerPagina, offset);
+        int totaleProdotti = dao.contaProdottiFiltrati(categorie, prezzoMax, searchQuery);
         
         int totalePagine = (int) Math.ceil((double) totaleProdotti / prodottiPerPagina);
         
