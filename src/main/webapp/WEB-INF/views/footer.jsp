@@ -4,7 +4,6 @@
         <p style="font-family: 'Press Start 2P', monospace; color: var(--8bit-teal); font-size: 0.7rem;">&copy; <%= year %> MEMORY_CART - PRESS X TO START</p>
     </footer>
    <script>
-// Portiamo la funzione FUORI, così è globale e chiunque può usarla!
 function showRetroToast(title, message, isError = false) {
     let container = document.getElementById('toast-container');
     if (!container) {
@@ -30,7 +29,6 @@ function showRetroToast(title, message, isError = false) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Il nostro vecchio amico AJAX per l'aggiunta al carrello rapida
     document.addEventListener('submit', function(e) {
         if (e.target && e.target.tagName === 'FORM') {
             const form = e.target;

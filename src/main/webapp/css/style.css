@@ -467,7 +467,6 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     overflow: hidden;
 }
 
-/* Colore in caso di successo (Azzurro Neon) */
 .toast-success {
     border: 2px solid var(--8bit-teal, #32e0c4);
 }
@@ -476,7 +475,6 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     color: #000;
 }
 
-/* Colore in caso di errore (Rosa Insert Coin) */
 .toast-error {
     border: 2px solid var(--insert-coin-pink, #ff0075);
 }
@@ -501,7 +499,6 @@ main, section, .products-section, .product-grid, .product-card, .product-image {
     background-color: rgba(26, 26, 46, 0.9);
 }
 
-/* --- ANIMAZIONI TOAST --- */
 @keyframes toastSlideIn {
     0% { transform: translateX(120%) scale(0.9); opacity: 0; }
     100% { transform: translateX(0) scale(1); opacity: 1; }

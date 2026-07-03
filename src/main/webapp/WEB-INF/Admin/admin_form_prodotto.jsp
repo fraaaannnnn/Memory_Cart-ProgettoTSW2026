@@ -19,7 +19,6 @@
 </head>
 <body>
 
-    <%-- <%@include file="header.jsp" %> --%>
 
     <main class="admin-main-container">
         <div class="form-container">
