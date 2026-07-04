@@ -43,7 +43,6 @@
                     <li><span class="check">✓</span> <span>Creazione Wishlist</span></li>
                     <li><span class="check">✓</span> <span>Storico degli ordini</span></li>
                     <li class="disabled"><span class="cross">✕</span> <span>Spedizione Gratuita</span></li>
-                    <li class="disabled"><span class="cross">✕</span> <span>Accesso anticipato ai rari</span></li>
                 </ul>
 
                 <div class="tier-action">
@@ -64,7 +63,6 @@
               <ul class="tier-features">
                     <li><span class="check">✓</span> <span>Tutti i vantaggi del Player 1</span></li>
                     <li><span class="check highlight-check">✓</span> <span><strong>Spedizione Gratuita</strong> su tutti gli ordini</span></li>
-                    <li><span class="check highlight-check">✓</span> <span>Accesso <strong>anticipato di 24h</strong> ai giochi rari</span></li>
                     <li><span class="check highlight-check">✓</span> <span>Badge "Pro Gamer" sul profilo</span></li>
                 </ul>
 
@@ -106,7 +104,7 @@
     %>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            showRetroToast('LEVEL UP! Abbonamento PRO GAMER attivato.', 'wishlist');
+            showRetroToast('LEVEL UP! Abbonamento PRO GAMER attivato.', 'Benvenuto nel club PRO');
         });
     </script>
     <% } %>
