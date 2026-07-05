@@ -54,12 +54,6 @@ public class ConfermaOrdineServlet extends HttpServlet {
             return;
         }
 
-        if (carrello != null) {
-            for (Map.Entry<Integer, Integer> entry : carrello.entrySet()) {
-            }
-        } else {
-        }
-
         if (carrello == null || carrello.isEmpty()) {
             session.setAttribute("erroreCarrello", "Il carrello è vuoto.");
             response.sendRedirect(request.getContextPath() + "/Carrello");
