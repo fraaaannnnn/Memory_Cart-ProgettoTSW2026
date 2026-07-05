@@ -37,9 +37,9 @@ public class RecensioneServlet extends HttpServlet {
         if (votoStelleStr == null || votoStelleStr.trim().isEmpty()) {
             session.setAttribute("toastTitle", "MISSION FAILED");
             session.setAttribute("toastMessage", "Devi selezionare un voto a stelle (da 1 a 5)!");
-            session.setAttribute("toastError", true); // True genera il toast rosso
+            session.setAttribute("toastError", true);
             response.sendRedirect(request.getContextPath() + "/Prodotto?id=" + idProdottoStr);
-            return; // Blocchiamo l'esecuzione
+            return;
         }
 
         if (testoRecensione == null || testoRecensione.trim().isEmpty()) {
