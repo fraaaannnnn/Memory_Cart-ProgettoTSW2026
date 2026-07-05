@@ -49,8 +49,6 @@
                         <span class="p1-badge">P1</span>
                     </div>
                     
-                    <h3><%= utente != null ? utente.getUserName() : "Guest" %></h3>
-                    
                     <% if (utente != null && utente.getAbbonato()) { %>
                         <p class="rank-title">PRO GAMER</p>
                     <% } else { %>

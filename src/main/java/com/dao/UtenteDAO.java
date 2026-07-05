@@ -69,9 +69,9 @@ public class UtenteDAO {
             
             if (cambiaPassword) {
                 ps.setString(3, hashPassword);
-                ps.setInt(5, idUtente);
-            } else {
                 ps.setInt(4, idUtente);
+            } else {
+                ps.setInt(3, idUtente);
             }
             
             int righeModificate = ps.executeUpdate();

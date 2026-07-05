@@ -6,7 +6,7 @@
     ProdottoBean prodotto = (ProdottoBean) request.getAttribute("dettaglioProdotto");
     
     if(prodotto == null) {
-        response.sendRedirect("Home");
+        response.sendRedirect("/Memory_Cart/");
         return;
     }
     
