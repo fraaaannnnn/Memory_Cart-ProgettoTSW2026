@@ -90,10 +90,6 @@ public class ConfermaOrdineServlet extends HttpServlet {
             }
         }
 
-
-        if (totaleCarrello == 0) {
-        }
-
         double spedizione = 5.00;
         if (totaleCarrello == 0 || utenteLoggato.getAbbonato()) {
             spedizione = 0.0;
