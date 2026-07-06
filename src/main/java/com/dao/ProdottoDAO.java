@@ -301,25 +301,5 @@ public class ProdottoDAO {
         }
         return totale;
     }
-    
-    public boolean aggiornaMagazzinoDopoAcquisto(int idProdotto, int quantitaAcquistata) {
-        String query = "UPDATE prodotti SET quantita_magazzino = quantita_magazzino - ? WHERE id = ? AND quantita_magazzino >= ?";
-        
-        try (Connection conn = ConnessioneDB.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-            
-            ps.setInt(1, quantitaAcquistata);
-            ps.setInt(2, idProdotto);
-            ps.setInt(3, quantitaAcquistata);
-            
-            int righeAggiornate = ps.executeUpdate();
-            
-             return righeAggiornate > 0;
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
 }
 	

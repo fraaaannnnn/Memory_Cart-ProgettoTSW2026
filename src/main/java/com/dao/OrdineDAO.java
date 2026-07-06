@@ -243,48 +243,6 @@ public class OrdineDAO {
         }
         return prodotti;
     }
-    
-    
-
-    public List<OrdineBean> getTuttiOrdini() {
-        List<OrdineBean> ordini = new ArrayList<>();
-        String sql = "SELECT * FROM ordini ORDER BY data_ordine DESC, id_ordine DESC";
-        
-        try (Connection conn = ConnessioneDB.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
-             
-            while (rs.next()) {
-                OrdineBean ordine = new OrdineBean();
-                ordine.setIdOrdine(rs.getInt("id_ordine"));
-                ordine.setIdUtente(rs.getInt("id_utente"));
-                ordine.setDataOrdine(rs.getDate("data_ordine"));
-                ordine.setTotaleOrdine(rs.getDouble("totale_ordine"));
-                
-                String statoDb = rs.getString("stato");
-                if (statoDb != null) {
-                    try {
-                        ordine.setStato(OrdineBean.Stato.valueOf(statoDb.toUpperCase()));
-                    } catch (IllegalArgumentException e) {
-                        ordine.setStato(OrdineBean.Stato.IN_PREPARAZIONE);
-                    }
-                } else {
-                    ordine.setStato(OrdineBean.Stato.IN_PREPARAZIONE);
-                }
-                
-                ordine.setNomeSpedizione(rs.getString("nome_spedizione"));
-                ordine.setCognomeSpedizione(rs.getString("cognome_spedizione"));
-                ordine.setIndirizzoSpedizione(rs.getString("indirizzo_spedizione"));
-                ordine.setCittaSpedizione(rs.getString("citta_spedizione"));
-                ordine.setCapSpedizione(rs.getString("cap_spedizione"));
-                
-                ordini.add(ordine);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ordini;
-    }
 
     public void aggiornaStatoOrdine(int idOrdine, String nuovoStato) {
         String sql = "UPDATE ordini SET stato = ? WHERE id_ordine = ?";
