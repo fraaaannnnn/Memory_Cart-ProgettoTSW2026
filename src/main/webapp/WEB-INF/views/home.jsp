@@ -112,7 +112,5 @@
     
     <%@include file="footer.jsp"%>
     
-    <%@include file="pop_up_carrello.jsp"%>
-
 </body>
 </html>

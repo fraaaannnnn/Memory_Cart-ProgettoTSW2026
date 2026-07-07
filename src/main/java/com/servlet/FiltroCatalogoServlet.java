@@ -19,7 +19,6 @@ public class FiltroCatalogoServlet extends HttpServlet {
         String[] categorie = request.getParameterValues("categoria"); 
         String prezzoMax = request.getParameter("prezzoMax");
         String sort = request.getParameter("sort");
-        
         String searchQuery = request.getParameter("searchQuery"); 
         
         int page = 1;

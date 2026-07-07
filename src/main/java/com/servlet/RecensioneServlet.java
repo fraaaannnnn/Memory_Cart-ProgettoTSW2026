@@ -65,7 +65,7 @@ public class RecensioneServlet extends HttpServlet {
             
             if (successo) {
                 session.setAttribute("toastTitle", "RECENSIONE INVIATA");
-                session.setAttribute("toastMessage", "Grazie per aver lasciato il tuo feedback! +50XP");
+                session.setAttribute("toastMessage", "Grazie per aver lasciato il tuo feedback!");
                 session.setAttribute("toastError", false); 
             } else {
                 session.setAttribute("toastTitle", "SYSTEM ERROR");

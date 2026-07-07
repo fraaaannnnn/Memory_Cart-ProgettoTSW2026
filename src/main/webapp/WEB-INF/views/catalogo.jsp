@@ -89,7 +89,6 @@
     </main>
 
 	<%@include file="footer.jsp"%>
-    <%@include file="pop_up_carrello.jsp" %>
 	<script>
 	document.addEventListener('DOMContentLoaded', () => {
         

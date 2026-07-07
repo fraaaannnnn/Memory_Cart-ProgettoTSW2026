@@ -18,7 +18,7 @@ import com.dao.ProdottoDAO;
                  maxFileSize = 1024 * 1024 * 10,    
                  maxRequestSize = 1024 * 1024 * 50) 
 public class AdminAggiungiProdotto extends HttpServlet {
-
+	
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProdottoDAO dao = new ProdottoDAO();
         request.setAttribute("listaCategorie", dao.getCategorie());
@@ -27,6 +27,7 @@ public class AdminAggiungiProdotto extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+        	request.setCharacterEncoding("UTF-8");
             String nome = request.getParameter("nome");
             String prezzo = request.getParameter("prezzo");
             String quantita = request.getParameter("quantita");

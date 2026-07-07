@@ -42,9 +42,7 @@ public class CarrelloServlet extends HttpServlet {
                     CarrelloDAO carrelloDAO = new CarrelloDAO();
                     carrelloDAO.salvaOIncrementa(utenteLoggato.getId(), idProdotto, quantita);
                 } else {
-                    @SuppressWarnings("unchecked")
                     Map<Integer, Integer> carrelloOspite = (Map<Integer, Integer>) session.getAttribute("carrelloOspite");
-                    
                     if (carrelloOspite == null) {
                         carrelloOspite = new HashMap<>();
                     }

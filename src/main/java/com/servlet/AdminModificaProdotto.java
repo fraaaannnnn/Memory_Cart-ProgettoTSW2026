@@ -21,6 +21,8 @@ public class AdminModificaProdotto extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("idProdotto"));
+    	request.setCharacterEncoding("UTF-8");
+
         ProdottoDAO dao = new ProdottoDAO();
         
         ProdottoBean p = dao.prodottoDaId(id);
@@ -33,12 +35,11 @@ public class AdminModificaProdotto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int id = Integer.parseInt(request.getParameter("id"));
-            String nome = request.getParameter("nome");
             double prezzo = Double.parseDouble(request.getParameter("prezzo"));
             int quantita = Integer.parseInt(request.getParameter("quantita"));
+            String nome = request.getParameter("nome");
             String descrizione = request.getParameter("descrizione");
             int idTipo = Integer.parseInt(request.getParameter("idTipo"));
-
             String percorsoDB = request.getParameter("immagineVecchia"); 
             
             Part filePart = request.getPart("immagine");

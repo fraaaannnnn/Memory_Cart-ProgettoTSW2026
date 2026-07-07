@@ -186,7 +186,6 @@
 
     </main>
 	<%@include file="footer.jsp"%>
-	<%@include file="pop_up_carrello.jsp"%>
     <script src="./js/product.js"></script>
 </body>
 </html>
